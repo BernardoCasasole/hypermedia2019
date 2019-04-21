@@ -5,8 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -32,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+	<script type="text/javascript" src="js/store.js" async></script>
 </head>
 <body class="animsition">
 
@@ -84,32 +83,31 @@
 				<!-- Header Icon -->
 				<div class="header-icons" >
 
-					<div class="header-wrapicon2">
-						<img src="images/icons/icon-magnifier.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<div class="header-wrapicon2">
+							<img src="images/icons/icon-magnifier.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+							<!-- Header cart noti -->
+							<div class="header-cart header-dropdown">
+								
+								<ul class="header-cart-wrapitem">
 									<div class="search-product pos-relative bo11 of-hidden">
 										<input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
 										<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
 											<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-										</button>
-									</div>
-									<div class="dropdown">
-										<button class="btn dropdown-toggle"></button>
-										<ul class="dropdown-menu">
-										    <li><a href="#">HTML</a></li>
-										    <li><a href="#">CSS</a></li>
-
-										</ul>
-									</div>
-								</li>
-							</ul>
+										</button>										
+									<div class="flex-w">
+										<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
+											<select class="selection-2" name="sorting">
+												<option>Default search</option>
+												<option>Search in authors</option>
+												<option>Search in events</option>
+												<option>Search in books</option>
+											</select>
+										</div>
+									</div>						
+								</ul>
+							</div>						
 						</div>
-					</div>
 
 					<span class="linedivide1"></span>
 
