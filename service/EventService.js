@@ -1,5 +1,18 @@
 'use strict';
 
+let db;
+
+exports.eventsDbSetup = function(database) {
+  db = database;
+  console.log("Checking if events table exists...");
+  return database.schema.hasTable("events").then(exists => {
+    if (!exists) {
+      console.log("It doesn't!");
+    } else {
+      console.log('Ok.');
+    }
+  });
+}
 
 /**
  * Events in schedule
@@ -10,43 +23,12 @@
  * returns List
  **/
 exports.eventsGET = function(offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-}, {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  if( limit === undefined || limit<=0 || limit === NaN) {
+    limit = 20
+  }
+  return db('events')
+    .limit(limit)
+    .offset(offset);
 }
 
 
@@ -58,28 +40,8 @@ exports.eventsGET = function(offset,limit) {
  * returns Event
  **/
 exports.findEventById = function(eventId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+  .from('events')
+  .where('id', eventId)
 }
 

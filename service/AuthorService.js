@@ -1,5 +1,18 @@
 'use strict';
 
+let db;
+
+exports.authorsDbSetup = function(database) {
+  db = database;
+  console.log("Checking if authors table exists...");
+  return database.schema.hasTable("authors").then(exists => {
+    if (!exists) {
+      console.log("It doesn't!");
+    } else {
+      console.log('Ok.');
+    }
+  });
+}
 
 /**
  * Authors present in our website
@@ -10,57 +23,12 @@
  * returns List
  **/
 exports.authorsGET = function(offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "name" : "Luigi",
-  "surname" : "Pirandello",
-  "books" : [ {
-    "id" : 0,
-    "title" : "La roba",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Uno nessuno centomila",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 20,
-      "currency" : "eur"
-    }
-  } ]
-}, {
-  "id" : 0,
-  "name" : "Luigi",
-  "surname" : "Pirandello",
-  "books" : [ {
-    "id" : 0,
-    "title" : "La roba",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Uno nessuno centomila",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 20,
-      "currency" : "eur"
-    }
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  if( limit === undefined || limit<=0 || limit === NaN) {
+    limit = 20
+  }
+  return db('authors')
+    .limit(limit)
+    .offset(offset);
 }
 
 
@@ -72,35 +40,8 @@ exports.authorsGET = function(offset,limit) {
  * returns Author
  **/
 exports.getAuthorById = function(authorId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "name" : "Luigi",
-  "surname" : "Pirandello",
-  "books" : [ {
-    "id" : 0,
-    "title" : "La roba",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Uno nessuno centomila",
-    "author" : "Luigi Pirandello",
-    "price" : {
-      "value" : 20,
-      "currency" : "eur"
-    }
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+  .from('authors')
+  .where('id', authorId)
 }
 

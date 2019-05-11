@@ -1,6 +1,20 @@
 'use strict';
 
 
+let db;
+
+exports.usersDbSetup = function(database) {
+  db = database;
+  console.log("Checking if users table exists...");
+  return database.schema.hasTable("users").then(exists => {
+    if (!exists) {
+      console.log("It doesn't!");
+    } else {
+      console.log('Ok.');
+    }
+  });
+}
+
 /**
  * Login
  * Login with a form
@@ -10,6 +24,7 @@
  * no response value expected for this operation
  **/
 exports.userLoginPOST = function(username,password) {
+  //TODO when cookies are in!
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -24,8 +39,10 @@ exports.userLoginPOST = function(username,password) {
  * no response value expected for this operation
  **/
 exports.userRegisterPOST = function(body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  return db('users').insert({
+    name: body.name,
+    email: body.email //or email:body.address? in swagger was defined address not email
+  })
+  
 }
 

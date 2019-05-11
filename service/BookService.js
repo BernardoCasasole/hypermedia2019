@@ -4,13 +4,14 @@ let db;
 
 exports.booksDbSetup = function(database) {
   db = database;
-  console.log("Checking if books table exists");
+  console.log("Checking if books table exists...");
   return database.schema.hasTable("books").then(exists => {
     if (!exists) {
-      console.log("It doesn't");
+      console.log("It doesn't!");
+    } else {
+      console.log('Ok.');
     }
   });
-
 }
 
 /**
@@ -45,6 +46,7 @@ exports.booksGET = function(offset,limit) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
+  console.log("getBookById started, id:" +bookId)
   return db.select()
   .from('books')
   .where('id', bookId);
