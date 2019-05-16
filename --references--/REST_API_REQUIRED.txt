@@ -1,0 +1,26 @@
+REST API REQUIRED
+	HEADER
+		potremmo fare un "parcer" da nome parziale di uno di questi tre oggetti a id e tenere le get by id, altrimenti
+			-get book by name
+			-get event by name
+			-get author by name
+
+	INDEX_PAGE
+		-get book by sponsored field
+			aggiungere campo sponsored alle seed di book
+		-get event by date
+		-get book by publication_date
+			aggiungere campo pubblication_date alle seed di book
+	BOOK PAGE
+		-get book by genre
+		-get book by theme
+		-get book by sold copies
+			aggiungere campo sold copies alle seed di book
+		-get book by author
+	EVENT PAGE
+		-get event by category
+			aggiungere category al seed di event
+
+
+
+
