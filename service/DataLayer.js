@@ -9,8 +9,7 @@ let {cartsDbSetup} =  require("./CartService");
 
 function setupDataLayer() {
   console.log("Setting up data layer");
-  booksDbSetup(sqlDb);
-  return authorsDbSetup(sqlDb);
+  return allDbSetup(sqlDb);
 }
 
 let allDbSetup = function allDbSetup(db) {
