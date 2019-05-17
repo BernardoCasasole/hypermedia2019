@@ -5,32 +5,33 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('authors', function(table) {
         table.increments('id');
         table.string('name').notNullable();
-        table.string('description');
-        table.string('biography')
-        table.list('books').notNullable();
+        table.text('description');
+        table.text('biography')
     })
 
     .createTable('books', function(table) {
         table.increments('id');
         table.text('title').notNullable();
-        table.string('author');//.references('id').inTable('authors');
+        table.integer('author');//.references('id').inTable('authors');
         table.integer('qty').notNullable();
+        table.integer('soldQty').notNullable().defaultTo(0);
         table.float('price').notNullable();
+        table.string('currency').notNullable();
         table.text('caption');
         table.enum('status', ['available', 'out of stock']);
         table.text('isbn');
-        table.list('categories');
+        table.json('categories');
         table.text('description');
         table.text('additional_info');
         table.text('reviews');
-        table.list('tags');
+        table.json('tags');
     })
 
     .createTable('events', function(table) {
         table.increments('id');
         table.string('name').notNullable();
         table.string('presentedBook');
-        table.string('date');
+        table.date('date');
         table.text('detalis');
         table.integer('subscribers').notNullable().defaultTo(0);
     })
@@ -46,7 +47,7 @@ exports.up = function(knex, Promise) {
     .createTable('carts', function(table) {
         table.integer('user_id').references('id').inTable('users').unique();
         table.float('total');
-        table.text('books');
+        table.json('content');
     })
 
     
