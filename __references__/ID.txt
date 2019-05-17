@@ -1,0 +1,81 @@
+ID in books page:
+
+FIRST
+SECOND
+
+TITLE
+AUTHOR 
+PRICE
+CAPTION //commento didascalico al libro
+ISBN { ISBN: }
+CATEGORIES {Categories: <a href="#"> category </a>}
+DESCRIPTION
+ADDITIONAL_INFO
+REVIEWS
+TAGS {<a href="#" class="tag-item"> tag </a>}
+
+ID in authors page:
+
+AUTHOR_PHOTO
+NAME
+AUTHOR_DESCRIPTION
+BIOGRAPHY
+AUTHOR_BOOKS {<p class="s-text8"> -TITOLO- </p> 
+				<div > 
+					<a href="../books-detail/book.html?id=-ID-"> 
+						<img src="../images/events/event_-ID-.jpg" alt="IMG-PRODUCT" width=92px height=114px> 
+					</a>
+				</div>}
+
+ID in events page:
+
+EVENT_NAME
+EVENT_IMG
+EVENT_DETAILS{
+					<span>
+						By <a href="../author.html?id= -ID_NUMBER- "> -AUTHOR- </a>
+					<span class="m-l-3 m-r-6">|</span>
+
+					</span>
+
+					<span>
+						-DATE-
+						<span class="m-l-3 m-r-6">|</span>
+					</span>
+				}
+BOOK_RELATED{
+	<a href="../books-detail/book.html?id=-ID-" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
+		<img src="../images/front_-ID-.jpg" alt="IMG-PRODUCT">
+	</a>
+	<div class="p-t-5">
+		<a href="../books-detail/book.html?id=-ID-" class="s-text20">
+			-BOOK NAME-
+		</a>
+		<br>
+		<a href="../author.html?id=-ID-" class="s-text22">
+			-AUTHOR-
+		</a>
+		<span class="dis-block s-text17 p-t-6">
+			-DATE-
+		</span>
+	</div>
+}
+
+OTHER_EVENT {<li class="flex-w p-b-20">
+			<a href="../events-detail/event.html?id=-ID-" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
+				<img src="../images/events/event_-ID-.jpg" alt="IMG-PRODUCT">
+			</a>
+
+			<div class="w-size23 p-t-5">
+				<a href="../events-detail/event.html?id=-ID-" class="s-text20">
+					-EVENT NAME-
+				</a>
+				<br>
+				<a class="s-text22">
+					-AUTHOR-
+				</a>
+
+				<span class="dis-block s-text17 p-t-6">
+					-DATE-
+				</span>
+}

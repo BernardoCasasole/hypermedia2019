@@ -1,0 +1,13 @@
+Book 					author					Id
+
+Becoming				Michelle Obama			1
+The old man and the sea	Hemingway				2
+Remarkable Creatures	Tracy Chevalier			3
+The next 100 years		George freedman 		4
+A song of ice and fire	George R.R. Martin		5
+Sostiene Pereira		Antonio Tabucchi		6
+Rich Dad Poor Dad		Robert T. Kiyosaky		7
+The Testaments			Margaret Atwood			8
+Girl Stop Apologizing 	Rachel Hollis			9
+Educated				Tara Westower			10
+Prisoners			 	Tim Marshall			11
