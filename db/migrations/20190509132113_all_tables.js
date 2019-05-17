@@ -19,6 +19,8 @@ exports.up = function(knex, Promise) {
         table.string('currency').notNullable();
         table.text('caption');
         table.enum('status', ['available', 'out of stock']);
+        table.enum('themes', ['all', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
+        table.enum('genres', ['all', 'biography', 'fantasy', 'adventure', 'romance', 'travel', 'thriller', 'crime', 'kids', 'geopolitical', 'finance']);
         table.text('isbn');
         table.json('categories');
         table.text('description');
