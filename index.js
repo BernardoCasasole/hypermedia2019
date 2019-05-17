@@ -8,6 +8,8 @@ var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var serverPort = process.env.PORT || 8080;
+let cookieSession = require("cookie-session");
+let cookieParser = require("cookie-parser");
 let serveStatic = require("serve-static");
 
 let { setupDataLayer } = require("./service/DataLayer");
@@ -23,6 +25,10 @@ var options = {
 var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
 
+// Add cookies to responses
+app.use(cookieParser());
+app.use(cookieSession({ name: "session", keys: ["bookycookie1", "bc3"] }));
+
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
@@ -37,6 +43,36 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
+
+  /*/
+  app.use(function (req, res, next) {
+    //console.log(req.getHeader('set-cookie'));
+    res.setHeader('Set-Cookie', ['type=ninja', 'language=javascript']);
+  })
+  //*/
+
+  /*/Cookie function
+  app.use(function (req, res, next) {
+    // check if client sent cookie
+    var cookie = req.session.cookie;
+    console.log(req.session);
+    console.log(res);
+    if (cookie === undefined)
+    {
+      // no: set a new cookie
+      var randomNumber=Math.random().toString();
+      randomNumber=randomNumber.substring(2,randomNumber.length);
+      res.cookies[cookies.length] = ('cookieName123',randomNumber, { maxAge: 900000, httpOnly: true });
+      console.log('cookie created successfully');
+    } 
+    else
+    {
+      // yes, cookie was already present 
+      console.log('cookie exists', cookie);
+    } 
+    next(); // <-- important!
+    })
+  //*/
 
   app.use(serveStatic(__dirname + "/public"));
 
