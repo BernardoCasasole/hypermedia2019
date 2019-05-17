@@ -1,8 +1,5 @@
-let titleEl = document.getElementById("TITLE");
-let priceEl = document.getElementById("PRICE");
-let idEl = document.getElementById("ID");
-let json;
-let bookPath = "../../v2/books";
+let bookPath = "../../v2/books/";
+let imgPath = "../images/books/"
 
 
 
@@ -15,29 +12,45 @@ const userAction = async () => {
     writeErrorPage();
     return;
   }
-  let response = await fetch('../../v2/books/'+id+'');
+  let response = await fetch(bookPath+id+'');
   
-  json = await response.json(); //extract JSON from the http response
+  let bookJson = await response.json(); //extract JSON from the http response
 
   //if the id is valid but does not exist a book with that id return error 404 page
-  if(json[0] === undefined) {
-      console.log("a book with specified id does not exist!")
+  if(bookJson[0] === undefined || bookJson[0].author === undefined) {
+      console.log("a book with specified id does not exist, or has no author!")
       writeErrorPage();
       return;
   }
+  console.log('retrieving ../../v2/author/'+bookJson[0].author+'')
 
-  console.log(json);
+  response = await fetch('../../v2/author/'+bookJson[0].author+'');
+  let authorJson = await response.json();
+
+
   //load the data from json to html file's fields
-  loadData(json);
+  loadData(bookJson, authorJson);
 }
 
 userAction();
 
-function loadData(json) {
-    
-    titleEl.innerText = json[0].title;
-    priceEl.innerText = json[0].price;
-    idEl.innerText = json[0].id;
+function loadData(json, authorJson) {
+  console.log("logging jsons")
+  console.log(json);
+  //console.log(authorJson);
+  document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
+  document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
+
+  document.getElementById("TITLE").innerText = json[0].title;
+  document.getElementById("AUTHOR").innerText = authorJson[0].name;
+  document.getElementById("PRICE").innerText = json[0].price + " " + json[0].currency
+  document.getElementById("CAPTION").innerText = json[0].caption
+  document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
+  document.getElementById("CATEGORIES").innerText = json[0].categories
+  document.getElementById("DESCRIPTION").innerText = json[0].description
+  //document.getElementById("ADDITIONAL_INFO").innerText = json[0].additional_info
+  document.getElementById("REVIEWS").innerText = json[0].reviews
+  document.getElementById("TAGS").innerText = json[0].tags
 }
 
 
