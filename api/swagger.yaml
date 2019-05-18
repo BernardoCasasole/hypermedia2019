@@ -84,6 +84,244 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
+  /books/byTitle/{title}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book(s) by Title"
+      description: "Returns a book (or more) with specified title"
+      operationId: "getBooksByTitle"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "title"
+        in: "path"
+        description: "title of book(s) to return"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid title supplied"
+        404:
+          description: "Book not found"
+      x-swagger-router-controller: "Book"
+  /books/byTheme/{theme}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book(s) by theme"
+      description: "Returns a list of books with specified theme"
+      operationId: "getBooksByTheme"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "theme"
+        in: "path"
+        description: "theme of books to return"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid theme supplied"
+        404:
+          description: "Books not found"
+      x-swagger-router-controller: "Book"
+  /books/byGenre/{genre}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book(s) by genre"
+      description: "Returns a book (or more) with specified genre"
+      operationId: "getBooksByGenre"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "genre"
+        in: "path"
+        description: "genre of book(s) to return"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid genre supplied"
+        404:
+          description: "Books not found"
+      x-swagger-router-controller: "Book"
+  /books/byAuthor/{author}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book(s) by author"
+      description: "Returns a book (or more) with specified author"
+      operationId: "getBooksByAuthor"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "author"
+        in: "path"
+        description: "author of book(s) to return"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid author supplied"
+        404:
+          description: "Books not found"
+      x-swagger-router-controller: "Book"
+  /books/byPublicationDate/{date}:
+    get:
+      tags:
+      - "book"
+      summary: "Find book(s) by publication date"
+      description: "Returns a book (or more) with specified date"
+      operationId: "getBooksByPublicationDate"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "date"
+        in: "path"
+        description: "publication date of book(s) to return"
+        required: true
+        type: "string"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid date supplied"
+        404:
+          description: "Books not found"
+      x-swagger-router-controller: "Book"
+  /books/sponsored:
+    get:
+      tags:
+      - "book"
+      summary: "Find sponsored books"
+      description: "Returns a list of sponsored books"
+      operationId: "getSponsoredBooks"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        404:
+          description: "Books not found"
+      x-swagger-router-controller: "Book"
+  /books/bySoldCopies:
+    get:
+      tags:
+      - "book"
+      summary: "Find books by number of sold copies"
+      description: "Returns a list of books ordered by sold copies"
+      operationId: "getBookBySoldCopies"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        404:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Book"
   /authors:
     get:
       tags:
@@ -138,6 +376,31 @@ paths:
             $ref: "#/definitions/Author"
         400:
           description: "Invalid ID supplied"
+        404:
+          description: "Author not found"
+      x-swagger-router-controller: "Author"
+  /author/byName/{name}:
+    get:
+      tags:
+      - "author"
+      summary: "Find author by name"
+      description: "Returns an author"
+      operationId: "getAuthorByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "name"
+        in: "path"
+        description: "name of author to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Author"
+        400:
+          description: "Invalid name supplied"
         404:
           description: "Author not found"
       x-swagger-router-controller: "Author"
@@ -198,6 +461,98 @@ paths:
         404:
           description: "Event not found"
       x-swagger-router-controller: "Event"
+  /events/byName/{eventName}:
+    get:
+      tags:
+      - "event"
+      summary: "Find event by name"
+      description: "Returns a specific event by name"
+      operationId: "findEventByName"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eventName"
+        in: "path"
+        description: "name of event to register in"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: "Invalid name supplied"
+        404:
+          description: "Event not found"
+      x-swagger-router-controller: "Event"
+  /events/byCategory/{category}:
+    get:
+      tags:
+      - "event"
+      summary: "Find events by category"
+      description: "Returns a list of events by category"
+      operationId: "findEventByCategory"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "category"
+        in: "path"
+        description: "category of event to register in"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: "Invalid category supplied"
+        404:
+          description: "Event not found"
+      x-swagger-router-controller: "Event"
+  /events/byDate/{date}:
+    get:
+      tags:
+      - "event"
+      summary: "Find events by date"
+      description: "Returns a list of events by date"
+      operationId: "findEventByDate"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "date"
+        in: "path"
+        description: "category of event to register in"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: "Invalid category supplied"
+        404:
+          description: "Event not found"
+      x-swagger-router-controller: "Event"
+  /user:
+    get:
+      tags:
+      - "user"
+      summary: "retrieve a user, based on cookies"
+      description: "returns a specific user, based on cookies and login done before"
+      operationId: "getUser"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: "User not found"
+      x-swagger-router-controller: "User"
   /user/login:
     post:
       tags:

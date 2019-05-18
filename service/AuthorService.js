@@ -45,3 +45,45 @@ exports.getAuthorById = function(authorId) {
   .where('id', authorId)
 }
 
+
+
+/**
+ * Find author by name
+ * Returns an author
+ *
+ * name String name of author to return
+ * returns Author
+ **/
+exports.getAuthorByName = function(name) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "name" : "Luigi",
+  "surname" : "Pirandello",
+  "books" : [ {
+    "id" : 0,
+    "title" : "La roba",
+    "author" : "Luigi Pirandello",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    }
+  }, {
+    "id" : 1,
+    "title" : "Uno nessuno centomila",
+    "author" : "Luigi Pirandello",
+    "price" : {
+      "value" : 20,
+      "currency" : "eur"
+    }
+  } ]
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+

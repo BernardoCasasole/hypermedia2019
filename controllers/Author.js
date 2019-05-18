@@ -25,3 +25,14 @@ module.exports.getAuthorById = function getAuthorById (req, res, next) {
       utils.writeJson(res, response);
     });
 };
+
+module.exports.getAuthorByName = function getAuthorByName (req, res, next) {
+  var name = req.swagger.params['name'].value;
+  Author.getAuthorByName(name)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};

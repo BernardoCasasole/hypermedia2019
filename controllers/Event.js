@@ -25,3 +25,36 @@ module.exports.findEventById = function findEventById (req, res, next) {
       utils.writeJson(res, response);
     });
 };
+
+module.exports.findEventByCategory = function findEventByCategory (req, res, next) {
+  var category = req.swagger.params['category'].value;
+  Event.findEventByCategory(category)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.findEventByDate = function findEventByDate (req, res, next) {
+  var date = req.swagger.params['date'].value;
+  Event.findEventByDate(date)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
+module.exports.findEventByName = function findEventByName (req, res, next) {
+  var eventName = req.swagger.params['eventName'].value;
+  Event.findEventByName(eventName)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};

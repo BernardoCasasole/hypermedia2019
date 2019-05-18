@@ -45,3 +45,102 @@ exports.findEventById = function(eventId) {
   .where('id', eventId)
 }
 
+/**
+ * Find events by category
+ * Returns a list of events by category
+ *
+ * category String category of event to register in
+ * returns Event
+ **/
+exports.findEventByCategory = function(category) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 1,
+  "name" : "Manzoni Presentation",
+  "presentedBook" : [ {
+    "id" : 0,
+    "title" : "I promessi sposi",
+    "author" : "Alessandro Manzoni",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    }
+  } ],
+  "date" : "1/6/2019",
+  "subscribers" : "1"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find events by date
+ * Returns a list of events by date
+ *
+ * date String category of event to register in
+ * returns Event
+ **/
+exports.findEventByDate = function(date) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 1,
+  "name" : "Manzoni Presentation",
+  "presentedBook" : [ {
+    "id" : 0,
+    "title" : "I promessi sposi",
+    "author" : "Alessandro Manzoni",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    }
+  } ],
+  "date" : "1/6/2019",
+  "subscribers" : "1"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+/**
+ * Find event by name
+ * Returns a specific event by name
+ *
+ * eventName String name of event to register in
+ * returns Event
+ **/
+exports.findEventByName = function(eventName) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 1,
+  "name" : "Manzoni Presentation",
+  "presentedBook" : [ {
+    "id" : 0,
+    "title" : "I promessi sposi",
+    "author" : "Alessandro Manzoni",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    }
+  } ],
+  "date" : "1/6/2019",
+  "subscribers" : "1"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}

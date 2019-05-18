@@ -52,3 +52,217 @@ exports.getBookById = function(bookId) {
   .where('id', bookId);
 }
 
+/**
+ * Find books by number of sold copies
+ * Returns a list of books ordered by sold copies
+ *
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBookBySoldCopies = function(offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find book(s) by author
+ * Returns a book (or more) with specified author
+ *
+ * author String author of book(s) to return
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBooksByAuthor = function(author,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find book(s) by genre
+ * Returns a book (or more) with specified genre
+ *
+ * genre String genre of book(s) to return
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBooksByGenre = function(genre,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find book(s) by publication date
+ * Returns a book (or more) with specified date
+ *
+ * date String publication date of book(s) to return
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBooksByPublicationDate = function(date,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find book(s) by theme
+ * Returns a list of books with specified theme
+ *
+ * theme String theme of books to return
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBooksByTheme = function(theme,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find book(s) by Title
+ * Returns a book (or more) with specified title
+ *
+ * title String title of book(s) to return
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getBooksByTitle = function(title,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Find sponsored books
+ * Returns a list of sponsored books
+ *
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns Book
+ **/
+exports.getSponsoredBooks = function(offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Il deserto dei tartari",
+  "author" : "Dino Buzzati",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
