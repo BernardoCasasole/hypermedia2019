@@ -4,7 +4,7 @@
   "description": "This is a simple bookstore server with a book inventory, users and a shopping cart.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "knex seed:run && node index.js"
   },
   "keywords": [
     "swagger"
@@ -22,4 +22,4 @@
     "sudo": "^1.0.3",
     "swagger-tools": "0.10.1"
   }
-}
+} 

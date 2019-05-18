@@ -1,56 +1,47 @@
-let bookPath = "../../v2/books/";
-let imgPath = "../images/books/"
-
+let authorPath = "../../v2/author/";
+let imgPath = "../images/authors/"
 
 
 const userAction = async () => {
     let args = getURLArgs();
     let id = args.id;
-
+    console.log(authorPath+id)
     //if the id of a book is undefined, return error 404 and a link to the home
   if (id === undefined) {
     writeErrorPage();
     return;
   }
-  console.log(bookPath+id);
-  let response = await fetch(bookPath+id+'');
+  let response = await fetch(authorPath+id+'');
   
-  let bookJson = await response.json(); //extract JSON from the http response
+  let authorJson = await response.json(); //extract JSON from the http response
 
   //if the id is valid but does not exist a book with that id return error 404 page
-  if(bookJson[0] === undefined || bookJson[0].author === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
+  if(authorJson[0] === undefined || authorJson[0].name === undefined) {
+      console.log("an author with specified id does not exist")
       writeErrorPage();
       return;
   }
-  console.log('retrieving ../../v2/author/'+bookJson[0].author+'')
+  console.log('retrieving ../../v2/author/'+authorJson[0].id+'')
 
-  response = await fetch('../../v2/author/'+bookJson[0].author+'');
-  let authorJson = await response.json();
+  response = await fetch('../../v2/author/'+authorJson[0].id+'');
+  let authorsJson = await response.json();
+  //console.log(response.json());
 
 
   //load the data from json to html file's fields
-  loadData(bookJson, authorJson);
+  loadData(authorJson, authorsJson);
 }
 
 userAction();
 
-function loadData(json, authorJson) {
+function loadData(json, authorsJson) {
   console.log("logging jsons")
-  console.log(json);
   //console.log(authorJson);
-  document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
-  document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
+  document.getElementById("AUTHOR_PHOTO").src = imgPath+"author-"+json[0].id+".jpg"
 
-  document.getElementById("TITLE").innerText = json[0].title;
-  document.getElementById("AUTHOR").innerText = authorJson[0].name;
-  document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
-  document.getElementById("CAPTION").innerText = json[0].caption
-  document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
-  document.getElementById("GENRES").innerText = "Genre: "+ json[0].genres
-  document.getElementById("DESCRIPTION").innerText = json[0].description
-  document.getElementById("REVIEWS").innerText = reviewsParser(json[0].reviews)
-  document.getElementById("THEMES").innerText = json[0].theme1 + '\n' + json[0].theme2 + '\n' + json[0].theme3
+  document.getElementById("NAME").innerText = json[0].name
+  document.getElementById("AUTHOR_DESCRIPTION").innerText = json[0].description
+  document.getElementById("BIOGRAPHY").innerText = json[0].biography
 }
 
 
@@ -66,15 +57,6 @@ function parseTopURL() {
     }
   }
   return undefined;
-}
-
-function reviewsParser(reviews) {
-  let arrayReviews = reviews.split(";");
-  let fixedReviews = ""
-  for(i=0; i<arrayReviews.length; i++){
-    fixedReviews = fixedReviews + '\n' + arrayReviews[i];
-  }
-  return fixedReviews;
 }
 
 //Function needed to get the arguments contained in the URL

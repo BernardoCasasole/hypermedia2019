@@ -19,22 +19,24 @@ exports.up = function(knex, Promise) {
         table.string('currency').notNullable();
         table.text('caption');
         table.enum('status', ['available', 'out of stock']);
-        table.enum('themes', ['all', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
+        table.enum('theme1', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
+        table.enum('theme2', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
+        table.enum('theme3', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
         table.enum('genres', ['all', 'biography', 'fantasy', 'adventure', 'romance', 'travel', 'thriller', 'crime', 'kids', 'geopolitical', 'finance']);
+        table.boolean('isSponsored');
         table.text('isbn');
-        table.json('categories');
         table.text('description');
         table.text('additional_info');
         table.text('reviews');
-        table.json('tags');
     })
 
     .createTable('events', function(table) {
         table.increments('id');
+        table.integer('author');
         table.string('name').notNullable();
         table.string('presentedBook');
         table.date('date');
-        table.text('detalis');
+        table.text('details');
         table.integer('subscribers').notNullable().defaultTo(0);
     })
 

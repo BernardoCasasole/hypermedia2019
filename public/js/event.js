@@ -1,5 +1,5 @@
-let bookPath = "../../v2/books/";
-let imgPath = "../images/books/"
+let eventsPath = "../../v2/events/";
+let imgPath = "../images/events/"
 
 
 
@@ -12,25 +12,24 @@ const userAction = async () => {
     writeErrorPage();
     return;
   }
-  console.log(bookPath+id);
-  let response = await fetch(bookPath+id+'');
+  let response = await fetch(eventsPath+id+'');
   
-  let bookJson = await response.json(); //extract JSON from the http response
+  let eventJson = await response.json(); //extract JSON from the http response
 
   //if the id is valid but does not exist a book with that id return error 404 page
-  if(bookJson[0] === undefined || bookJson[0].author === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
+  if(eventJson[0] === undefined || eventJson[0].author === undefined) {
+      console.log("an event with specified id does not exist, or has no name!")
       writeErrorPage();
       return;
   }
-  console.log('retrieving ../../v2/author/'+bookJson[0].author+'')
+  console.log('retrieving ../../v2/author/'+eventJson[0].author+'')
 
-  response = await fetch('../../v2/author/'+bookJson[0].author+'');
+  response = await fetch('../../v2/author/'+eventJson[0].author+'');
   let authorJson = await response.json();
 
 
   //load the data from json to html file's fields
-  loadData(bookJson, authorJson);
+  loadData(eventJson, authorJson);
 }
 
 userAction();
@@ -39,18 +38,14 @@ function loadData(json, authorJson) {
   console.log("logging jsons")
   console.log(json);
   //console.log(authorJson);
-  document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
-  document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
+  
+  document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].id+".png";
+  document.getElementById("EVENT_NAME").innerText = json[0].name;
+  document.getElementById("EVENT_NAME_2").innerText = json[0].name;
+  console.log("nome autore" + authorJson[0].name);
+  document.getElementById("EVENT_DESCRIPTION").innerText = json[0].details;
+  document.getElementById("EVENT_DETAILS").innerText = "By " + authorJson[0].name + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book: " + json[0].presentedBook + ' | ' + "Subscribers: " + json[0].subscribers;
 
-  document.getElementById("TITLE").innerText = json[0].title;
-  document.getElementById("AUTHOR").innerText = authorJson[0].name;
-  document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
-  document.getElementById("CAPTION").innerText = json[0].caption
-  document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
-  document.getElementById("GENRES").innerText = "Genre: "+ json[0].genres
-  document.getElementById("DESCRIPTION").innerText = json[0].description
-  document.getElementById("REVIEWS").innerText = reviewsParser(json[0].reviews)
-  document.getElementById("THEMES").innerText = json[0].theme1 + '\n' + json[0].theme2 + '\n' + json[0].theme3
 }
 
 
