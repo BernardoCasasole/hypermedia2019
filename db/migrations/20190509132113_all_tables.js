@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     console.log("authorsJS start")
     return knex.schema.createTable('authors', function(table) {
         table.increments('id');
-        table.string('name').unique().notNullable();
+        table.string('name').notNullable();
         table.text('description');
         table.text('biography')
     })
@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
     .createTable('books', function(table) {
         table.increments('id');
         table.text('title').notNullable();
-        table.string('author').references('name').inTable('authors');
+        table.string('author');//.references('id').inTable('authors');
         table.integer('qty').notNullable();
         table.integer('soldQty').notNullable().defaultTo(0);
         table.float('price').notNullable();

@@ -12,6 +12,8 @@ let cookieSession = require("cookie-session");
 let cookieParser = require("cookie-parser");
 let serveStatic = require("serve-static");
 
+let cookie = require("./utils/cookie.js");
+
 let { setupDataLayer } = require("./service/DataLayer");
 
 // swaggerRouter configuration
@@ -27,7 +29,22 @@ var swaggerDoc = jsyaml.safeLoad(spec);
 
 // Add cookies to responses
 app.use(cookieParser());
-app.use(cookieSession({ name: "session", keys: ["bookycookie1", "bc3"] }));
+app.use(cookieSession({ name: "session", keys: ["bookey1", "bookey2"] }));
+
+/*/
+assign a value for the cookie if the session is new
+//*/
+app.use(function(req,res,next) {
+
+  if(!req.session[cookie.name]) {
+    console.log("new session, set up cookie: ")
+    let randomNumber=Math.random().toString();
+    randomNumber=randomNumber.substring(2,randomNumber.length);
+    req.session[cookie.name] = randomNumber;
+    console.log("new session, set up cookie: " + randomNumber)
+  }
+  next();
+})
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {

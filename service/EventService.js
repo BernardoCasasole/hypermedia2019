@@ -53,29 +53,13 @@ exports.findEventById = function(eventId) {
  * returns Event
  **/
 exports.findEventByCategory = function(category) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let limit = 20;
+  let offset = 0;
+  return db.select()
+  .from('events')
+  .where('category', category)
+  .limit(limit)
+  .offset(offset);
 }
 
 
@@ -87,29 +71,13 @@ exports.findEventByCategory = function(category) {
  * returns Event
  **/
 exports.findEventByDate = function(date) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let limit = 20;
+  let offset = 0;
+  return db.select()
+  .from('events')
+  .where('date', date)
+  .limit(limit)
+  .offset(offset);
 }
 
 /**
@@ -120,27 +88,11 @@ exports.findEventByDate = function(date) {
  * returns Event
  **/
 exports.findEventByName = function(eventName) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Manzoni Presentation",
-  "presentedBook" : [ {
-    "id" : 0,
-    "title" : "I promessi sposi",
-    "author" : "Alessandro Manzoni",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ],
-  "date" : "1/6/2019",
-  "subscribers" : "1"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  let limit = 20;
+  let offset = 0;
+  return db.select()
+  .from('events')
+  .where('event', eventName)
+  .limit(limit)
+  .offset(offset);
 }

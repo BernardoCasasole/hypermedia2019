@@ -1,7 +1,7 @@
 let sqlDb = require("../db/knex.js");
 
 let {authorsDbSetup} = require("./AuthorService");
-let { booksDbSetup } = require("./BookService");
+let {booksDbSetup } = require("./BookService");
 let {eventsDbSetup} =  require("./EventService");
 let {usersDbSetup} =  require("./UserService");
 let {cartsDbSetup} =  require("./CartService");
@@ -19,7 +19,6 @@ let allDbSetup = function allDbSetup(db) {
   eventsDbSetup(db);
   usersDbSetup(db);
   return cartsDbSetup(db);
-  console.log("Finished DB setup")
 }
 
 

@@ -21,7 +21,7 @@ exports.cartsDbSetup = function(database) {
  * cartId Long 
  * returns Cart
  **/
-exports.cartCartIdGET = function(cartId) {
+exports.cartGET = function(user_id) {
   //TODO WHEN cookies are in!
   return new Promise(function(resolve, reject) {
     var examples = {};

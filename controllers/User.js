@@ -2,9 +2,16 @@
 
 var utils = require('../utils/writer.js');
 var User = require('../service/UserService');
+let cookie = require('../utils/cookie.js');
 
 module.exports.getUser = function getUser (req, res, next) {
-  User.getUser()
+  let user_id = req.session[cookie.uid];
+  if(user_id === undefined) {
+    console.log("user_id undefined, setting it to 0")
+    user_id = 0
+  } //no user with id=0 exists, so will return a empty json
+
+  User.getUser(user_id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -13,11 +20,17 @@ module.exports.getUser = function getUser (req, res, next) {
     });
 };
 
+
 module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
-  var username = req.swagger.params['username'].value;
-  var password = req.swagger.params['password'].value;
+  let username = req.swagger.params['username'].value;
+  let password = req.swagger.params['password'].value;
   User.userLoginPOST(username,password)
     .then(function (response) {
+      if(response[0] === undefined) {}
+      else {
+        //save the user id in the cookie if has logged in successfully
+        req.session[cookie.uid] = response[0].id; 
+      }
       utils.writeJson(res, response);
     })
     .catch(function (response) {

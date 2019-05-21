@@ -21,21 +21,10 @@ exports.usersDbSetup = function(database) {
  *
  * returns User
  **/
-exports.getUser = function() {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Vittorio",
-  "address" : "DEIB",
-  "creditcard" : "xyzabc"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+exports.getUser = function(user_id) {
+  return db.select()
+  .from('users')
+  .where('id', user_id)
 }
 
 /**
@@ -45,12 +34,13 @@ exports.getUser = function() {
  * username String 
  * password String 
  * no response value expected for this operation
+ * session is the req.session passed from User.js in controllers
  **/
 exports.userLoginPOST = function(username,password) {
-  //TODO when cookies are in!
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  return db.select()
+  .from('users')
+  .where('name', username)
+  .where('password', password)
 }
 
 

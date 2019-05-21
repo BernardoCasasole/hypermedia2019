@@ -29,12 +29,7 @@ exports.booksGET = function(offset,limit) {
   return db('books')
     .limit(limit)
     .offset(offset)
-    .then(data => {
-      return data.map(e => {
-        e.price = { price: e.price, currency: e.currency };
-        return e;
-      });
-    });
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -61,24 +56,11 @@ exports.getBookById = function(bookId) {
  * returns Book
  **/
 exports.getBookBySoldCopies = function(offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .orderBy('soldCopies', 'desc')
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -92,24 +74,11 @@ exports.getBookBySoldCopies = function(offset,limit) {
  * returns Book
  **/
 exports.getBooksByAuthor = function(author,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('author',author)
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -123,24 +92,11 @@ exports.getBooksByAuthor = function(author,offset,limit) {
  * returns Book
  **/
 exports.getBooksByGenre = function(genre,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('genres',genre)
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -154,24 +110,11 @@ exports.getBooksByGenre = function(genre,offset,limit) {
  * returns Book
  **/
 exports.getBooksByPublicationDate = function(date,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('publicationDate', date)
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -185,24 +128,13 @@ exports.getBooksByPublicationDate = function(date,offset,limit) {
  * returns Book
  **/
 exports.getBooksByTheme = function(theme,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('theme1',theme)
+    .orWhere('theme2', theme)
+    .orWhere('theme3', theme)
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -216,24 +148,11 @@ exports.getBooksByTheme = function(theme,offset,limit) {
  * returns Book
  **/
 exports.getBooksByTitle = function(title,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('title',title)
+    .limit(limit)
+    .offset(offset)
 }
 
 
@@ -246,23 +165,10 @@ exports.getBooksByTitle = function(title,offset,limit) {
  * returns Book
  **/
 exports.getSponsoredBooks = function(offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "author" : "Dino Buzzati",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return db.select()
+    .from('books')
+    .where('isSponsored',true)
+    .limit(limit)
+    .offset(offset)
 }
 
