@@ -41,6 +41,11 @@ function loadData(json, authorJson) {
   //console.log(authorJson);
   document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
   document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
+  let minipic1 = document.getElementById("MINPIC_PARENT2").firstChild.firstChild.firstChild;
+  let minipic2 = document.getElementById("MINPIC_PARENT2").firstChild.lastChild.firstChild;
+
+  minipic1.src = imgPath+"first-"+json[0].id+".jpg"
+  minipic2.src = imgPath+"second-"+json[0].id+".jpg"
 
   document.getElementById("TITLE").innerText = json[0].title;
   document.getElementById("AUTHOR").innerText = authorJson[0].name;
