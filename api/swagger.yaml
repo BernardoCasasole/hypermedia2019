@@ -618,6 +618,32 @@ paths:
         404:
           description: "unauthorized"
       x-swagger-router-controller: "Cart"
+  /cart/addBook/{bookId}:
+    post:
+      tags:
+      - "cart"
+      summary: "add a book"
+      description: "add a book to the current user cart"
+      operationId: "cartAddBook"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookId"
+        in: "path"
+        description: "ID of book to add in cart"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "succesfull addition to cart"
+          schema:
+            $ref: "#/definitions/Cart"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "Cart"
 definitions:
   Author:
     type: "object"
