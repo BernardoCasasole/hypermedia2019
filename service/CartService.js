@@ -27,17 +27,34 @@ exports.cartGET = function(userId) {
   .where('user_id', userId)
 }
 
-exports.cartAddBook = function(userId, bookId) {
-  userId = 1;
-  let content = db().select('content').from('carts')
-  .where('user_id', userId)
-  console.log("content taken from id " + userId)
-  console.log(content)
-  if (content[bookId] === undefined) {
-    content[bookId] = 0;
-  }
-  content[bookId] = content[bookId] + 1;
-  console.log("content updated:")
-  console.log(content)
+exports.cartAddBook = function(userId, bookId, bookQty) {
+  userId = parseInt("1");
+  bookId = parseInt(bookId)
+  bookQty = parseInt(bookQty)
+  
+  return db.select('content').from('carts')
+  .where('user_id', userId).then(
+    data => {
+    let content;
+    content = data[0].content.content;
+    console.log("content taken from id " + userId)
+    console.log(content)
+    let alreadyIn = false;
+    for(let i = 0; i < content.length; i++) {
+      if(content[i].id === bookId) {
+        alreadyIn = true;
+        content[i].qty = content[i].qty+bookQty;
+      }
+    }
+    if(!alreadyIn) {
+      content.push({id: bookId, qty: bookQty})
+    }
+    console.log("content updated:")
+    console.log(content)
+    data[0].content.content = content;
+    return db('carts').where('user_id', userId).update('content', data[0].content)
+    }
+  );
+  
 }
 

@@ -1,6 +1,10 @@
-let bookPath = "../../v2/books/";
+let booksPath = "../../v2/books/";
 let imgPath = "../images/books/"
+let bookHtmlPath = "../book.html"
+let authorHtmlPath = "../author.html"
+let cartPath = "../../v2/cart/"
 
+let bookId
 
 
 const userAction = async () => {
@@ -12,8 +16,8 @@ const userAction = async () => {
     writeErrorPage();
     return;
   }
-  console.log(bookPath+id);
-  let response = await fetch(bookPath+id+'');
+  console.log(booksPath+id);
+  let response = await fetch(booksPath+id+'');
   
   let bookJson = await response.json(); //extract JSON from the http response
 
@@ -36,6 +40,7 @@ const userAction = async () => {
 userAction();
 
 function loadData(json, authorJson) {
+  bookId = json[0].id
   console.log("logging jsons")
   console.log(json);
   //console.log(authorJson);
@@ -48,7 +53,10 @@ function loadData(json, authorJson) {
   minipic2.src = imgPath+"second-"+json[0].id+".jpg"
 
   document.getElementById("TITLE").innerText = json[0].title;
+  document.getElementById("TITLE_LINK").setAttribute('href', bookHtmlPath+"?id="+json[0].id)
   document.getElementById("AUTHOR").innerText = authorJson[0].name;
+  document.getElementById("AUTHOR_LINK").setAttribute('href', authorHtmlPath+"?id="+json[0].author)
+
   document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
   document.getElementById("CAPTION").innerText = json[0].caption
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
@@ -56,21 +64,11 @@ function loadData(json, authorJson) {
   document.getElementById("DESCRIPTION").innerText = json[0].description
   document.getElementById("REVIEWS").innerText = reviewsParser(json[0].reviews)
   document.getElementById("THEMES").innerText = json[0].theme1 + '\n' + json[0].theme2 + '\n' + json[0].theme3
-}
 
-
-//No error checking as now. Parse the url
-function parseTopURL() {
-  let query = window.location.search.substring(1);
-  console.log("window.location.search.substring(1) = '" + query + "'");
-  let args = query.split('&');
-  for(let i=0; i<args.length; i++) {
-    let pair = args[i].split('=');
-    if(pair[0] === 'id') {
-      return pair[1]
-    }
+  
+  document.getElementById("BTN_ADD_TO_CART").onclick = function() {
+    postAddToCart(bookId)
   }
-  return undefined;
 }
 
 function reviewsParser(reviews) {
@@ -114,4 +112,30 @@ function writeErrorPage() {
     a.href = "./"
     document.body.appendChild(document.createElement("br"))
     document.body.appendChild(a)
+}
+
+
+function postAddToCart(bookId) {
+  let qty = document.getElementById("BOOK_QTY").value
+  console.log("clicked add to cart button, with id: "+bookId+", qty: "+qty)
+  let details = {
+    'bookId': bookId,
+    'qty' : qty,
+};
+
+let formBody = [];
+for (var property in details) {
+  let encodedKey = encodeURIComponent(property);
+  let encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+fetch(cartPath+'addBook/'+bookId, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
+  body: formBody
+})
 }

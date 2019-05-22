@@ -636,6 +636,11 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Cart"
       responses:
         200:
           description: "succesfull addition to cart"
