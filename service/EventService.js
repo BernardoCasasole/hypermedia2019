@@ -93,7 +93,7 @@ exports.findEventByName = function(eventName) {
   let offset = 0;
   return db.select()
   .from('events')
-  .where('event', eventName)
+  .where('eventName', eventName)
   .limit(limit)
   .offset(offset);
 }

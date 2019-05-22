@@ -33,7 +33,7 @@ exports.up = function(knex, Promise) {
     .createTable('events', function(table) {
         table.increments('id');
         table.integer('author');
-        table.string('name').notNullable();
+        table.string('eventName').notNullable();
         table.string('presentedBook');
         table.date('date');
         table.text('details');
