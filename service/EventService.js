@@ -28,8 +28,8 @@ exports.eventsGET = function(offset,limit) {
   }
   return db('events')
     .limit(limit)
-    .offset(offset);
-    //.rightJoin('authors', 'events.author', '=', 'authors.id');
+    .offset(offset)
+    .leftJoin('authors', 'events.author', '=', 'authors.id');
 }
 
 

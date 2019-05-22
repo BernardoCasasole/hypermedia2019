@@ -40,8 +40,8 @@ function loadData(json, authorJson) {
   //console.log(authorJson);
   
   document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].id+".png";
-  document.getElementById("EVENT_NAME").innerText = json[0].name;
-  document.getElementById("EVENT_NAME_2").innerText = json[0].name;
+  document.getElementById("EVENT_NAME").innerText = json[0].eventName;
+  document.getElementById("EVENT_NAME_2").innerText = json[0].eventName;
   console.log("nome autore" + authorJson[0].name);
   document.getElementById("EVENT_DESCRIPTION").innerText = json[0].details;
   document.getElementById("EVENT_DETAILS").innerText = "By " + authorJson[0].name + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book: " + json[0].presentedBook + ' | ' + "Subscribers: " + json[0].subscribers;
