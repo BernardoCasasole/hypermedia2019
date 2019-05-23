@@ -3,7 +3,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: { user: 'postgres', password: 'OrnaGile7', database: 'book_db' },
+    connection: { user: 'postgres', database: 'booky_db' },
     migrations: {
       directory: __dirname + '/db/migrations',
     },
