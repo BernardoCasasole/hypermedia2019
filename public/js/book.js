@@ -121,7 +121,7 @@ function postAddToCart(bookId) {
   let details = {
     'bookId': bookId,
     'qty' : qty,
-};
+  };
 
 let formBody = [];
 for (var property in details) {
