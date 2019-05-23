@@ -342,48 +342,131 @@
 	<!-- Title Page -->
 	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/cart-slide1.jpg);">
 		<h2 class="l-text2 t-center">
-			Login
+			Register
 		</h2>
 	</section>
 
 	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-60">
-		<div class="container">
-			<div class="row">
+ 	<!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+	<div id="id01" class="modal">
+  		<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+
+	 <section class="cart bgwhite p-t-70 p-b-100">
+	  	<div class="container">
+
+			<div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-l-auto m-r-auto p-lr-15-sm">
+				<h5 class="m-text20 p-b-24">
+					No account yet? Register here!
+				</h5>
+
+				<!--  -->
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text18 w-size20 w-full-sm">
+						We just need some information about you
+					</span>
+
+				</div>
+				<form action="/action_page.php">
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Your Name</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+	      					<input type="user" placeholder="Enter your full name"  required>
+						</div>
+					</div>
+					
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Username</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+	      					<input type="user" placeholder="Enter your username" required>
+						</div>
+					</div>
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Email</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+	      					<input type="user" placeholder="Enter your email" required>
+						</div>
+					</div>
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Password</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+	      					<input type="user" placeholder="Enter your password" name="psw" required>
+						</div>
+					</div>
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Retype Password</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+	      					<input type="user" placeholder="Enter password again" name="psw" required>
+						</div>
+					</div>
+				</form>
+				<!--  -->
+				
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text18 w-size20 w-full-sm">
+						Some payment information now
+					</span>
+
+				</div>
+
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text20 w-full-sm">
+						<label ><b>Credit Card Number</b></label>
+					</span>
+
+					<div class="w-size20 w-full-sm">
+						
+      					<input type="user" placeholder="Enter card number" required>
+					</div>
+				</div>
+
+				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+					<span class="s-text20 w-full-sm">
+						<label ><b>Credit Card Holder</b></label>
+					</span>
+
+					<div class="w-size20 w-full-sm">
+						
+      					<input type="user" placeholder="Enter card holder" required>
+					</div>
+				</div>
+
+				<div class="header-cart-buttons">
+					<div class="header-cart-wrapbtn">
+						<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" type="submit" background-color: #4CAF50>Register</button>
+					</div>
+				</div>
 				
 
-				<div class="col-md-6 p-b-30">
-					<form action="action_page.php">
-  <div class="imgcontainer">
-    <img src="images/icons/avatar.svg" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
-				</div>
+						
 			</div>
-			<div class="contextual-login__inputwrapper">
-				<input type="email" placeholder="E-MAIL" id="Username" name="Username" autofocus="autofocus">
-				<input type="password" placeholder="PASSWORD" id="Password" name="Password">
-			</div>
+
 		</div>
-	</section>
+	</section> 
+
+	    
+  	
+</div>
 
 
 	<!-- Footer -->

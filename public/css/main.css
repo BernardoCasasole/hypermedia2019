@@ -1656,6 +1656,16 @@ li.sale-noti > a {
     margin-top: 0;
 }
 
+.loginbutton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 10px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%
+}
+
 
 /*[ Block1 ]
 ///////////////////////////////////////////////////////////
