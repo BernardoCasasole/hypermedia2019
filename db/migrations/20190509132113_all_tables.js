@@ -1,7 +1,6 @@
 
 
 exports.up = function(knex, Promise) {
-    console.log("authorsJS start")
     return knex.schema.createTable('authors', function(table) {
         table.increments('id');
         table.string('name').notNullable();
@@ -55,15 +54,23 @@ exports.up = function(knex, Promise) {
         table.json('content');
     })
 
-    
+    .createTable('sales', function(table) {
+        table.integer('month');
+        table.integer('year');
+        table.integer('bookId');
+        table.unique(['month', 'year', 'bookId']);
+        table.integer('totalSold');
+    })
   
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.dropTable('carts')
-  .dropTable('users')
-  .dropTable('events')
-  .dropTable('books')
-  .dropTable('authors');
+    return knex.schema
+    .dropTable('sales')
+    .dropTable('carts')
+    .dropTable('users')
+    .dropTable('events')
+    .dropTable('books')
+    .dropTable('authors');
 
 };

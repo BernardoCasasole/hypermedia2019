@@ -1,7 +1,9 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('carts').del()
+  return knex('sales').del()
+    .then(function () {
+     return knex('carts').del()
     .then(function () {
       return knex('users').del()
     .then(function () {
@@ -14,4 +16,5 @@ exports.seed = function(knex, Promise) {
     });
     });
     });
+  });
 };
