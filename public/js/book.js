@@ -16,7 +16,6 @@ const userAction = async () => {
     writeErrorPage();
     return;
   }
-  console.log(booksPath+id);
   let response = await fetch(booksPath+id+'');
   
   let bookJson = await response.json(); //extract JSON from the http response
@@ -63,7 +62,15 @@ function loadData(json, authorJson) {
   document.getElementById("GENRES").innerText = "Genre: "+ json[0].genres
   document.getElementById("DESCRIPTION").innerText = json[0].description
   document.getElementById("REVIEWS").innerText = reviewsParser(json[0].reviews)
-  document.getElementById("THEMES").innerText = json[0].theme1 + '\n' + json[0].theme2 + '\n' + json[0].theme3
+  let themes = ""
+  if(json[0].theme1 !== null)
+    themes += json[0].theme1 + '\n'
+  if(json[0].theme2 !== null)
+    themes += json[0].theme2 + '\n'
+  if(json[0].theme3 !== null)
+    themes += json[0].theme3 
+    
+  document.getElementById("THEMES").innerText = themes;
 
   
   document.getElementById("BTN_ADD_TO_CART").onclick = function() {

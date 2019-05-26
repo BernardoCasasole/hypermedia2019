@@ -1,28 +1,51 @@
-let bookPath = "../../v2/books/";
+let bookPath = "../../v2/books/"
 let imgPath = "../images/books/"
+let themePath = "../../v2/books/byTheme/"
+let genrePath = "../../v2/books/byGenre/"
 
 
 
 
 
 const userAction = async () => {
-    let args = getURLArgs();
-    
-  let response = await fetch(bookPath+'');
-  
-  let booksJson = await response.json(); //extract JSON from the http response
+  let args = getURLArgs();
+  if(args.theme !== undefined){
+    let response = await fetch(themePath+args.theme+'');
+        
+    let themeJson = await response.json(); //extract JSON from the http response
 
-  //if the id is valid but does not exist a book with that id return error 404 page
-  if(booksJson[0] === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
-      writeErrorPage();
-      return;
-  }
+    //if the id is valid but does not exist a book with that id return error 404 page
+    if(themeJson[0] === undefined) {
+        console.log("a book with specified theme does not exist!")
+        writeErrorPage();
+        return;
+    }
+    loadData(themeJson);
+  }else if(args.genre !== undefined){
+    let response = await fetch(genrePath+args.genre+'');
+        
+    let genreJson = await response.json(); //extract JSON from the http response
 
-  console.log("here")
-  ready = true;
-  //load the data from json to html file's fields
-  loadData(booksJson);
+    //if the id is valid but does not exist a book with that id return error 404 page
+    if(genreJson[0] === undefined) {
+        console.log("a book with specified genre does not exist!")
+        writeErrorPage();
+        return;
+    }
+    loadData(genreJson);
+    }else{
+        let response = await fetch(bookPath+'');
+        
+        let booksJson = await response.json(); //extract JSON from the http response
+
+        //if the id is valid but does not exist a book with that id return error 404 page
+        if(booksJson[0] === undefined) {
+            console.log("a book with specified id does not exist, or has no author!")
+            writeErrorPage();
+            return;
+        }
+        loadData(booksJson);
+    }
 }
 
 userAction();

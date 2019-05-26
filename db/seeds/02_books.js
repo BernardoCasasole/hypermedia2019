@@ -19,7 +19,7 @@ exports.seed = function(knex, Promise) {
         
         {id: 4, title: 'The next 100 years', author: 4, qty: 250, soldQty:22, price: 38.20, 
           currency:'€', status: 'available',theme1:'war', 
-          genres: 'geopolitical', isSponsored:'true', isbn: '978-3-16-148410-4', reviews: 'User2: Well written; User3: Didn\'t appreciated it', 
+          genres: 'geopolitical', isSponsored:'false', isbn: '978-3-16-148410-4', reviews: 'User2: Well written; User3: Didn\'t appreciated it', 
           description: '“Anyone who tries to make a distinction between education and entertainment doesn’t know the first thing about either.”', caption: 'generic description of the book' },
         
         {id: 5, title: 'A song of ice and fire', author: 5, qty: 250, soldQty:22, price: 38.20, 
@@ -34,7 +34,7 @@ exports.seed = function(knex, Promise) {
       
         {id: 7, title: 'Rich Dad Poor Dad', author: 7, qty: 250, soldQty:22, price: 38.20, 
         currency:'€', status: 'available', theme1:'lifestyle', theme2: 'economy', 
-        genres: 'finance', isSponsored:'true', isbn: '978-3-16-148410-7', reviews: 'User1: Good; User2: Well written; User3: Didn\'t appreciated it', 
+        genres: 'finance', isSponsored:'false', isbn: '978-3-16-148410-7', reviews: 'User1: Good; User2: Well written; User3: Didn\'t appreciated it', 
         description: '“Anyone who tries to make a distinction between education and entertainment doesn’t know the first thing about either.”', caption: 'generic description of the book' },
       
         {id: 8, title: 'The Testaments', author: 8, qty: 250, soldQty:22, price: 38.20, 

@@ -6,7 +6,7 @@ let imgPath = "../images/authors/"
 
 
 const userAction = async () => {
-    let args = getURLArgs();
+  let args = getURLArgs();
     
   let response = await fetch(authorPath+'');
   
@@ -18,62 +18,53 @@ const userAction = async () => {
       writeErrorPage();
       return;
   }
+  response = await fetch('../../v2/books/sponsored');
+  let sponsoredJson = await response.json();
 
   //load the data from json to html file's fields
-  loadData(authorJson);
+  loadData(authorJson, sponsoredJson);
 }
 
 userAction();
 
-/*var  authors = 
-    '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
-        
-        '<div class="block2">'+
-            '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
-                '<img src="images/authors/author-4.jpg" alt="IMG-PRODUCT">'+
-
-                '<div class="block2-overlay trans-0-4">'+
-                    '<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">'+
-                        '<i class="icon-wishlist icon_heart_alt" aria-hidden="true">'+'</i>'+
-                        '<i class="icon-wishlist icon_heart dis-none" aria-hidden="true">'+'</i>'+
-                    '</a>'+
-                '</div>'+
-            '</div>'+
-
-            '<div class="block2-txt p-t-20">'+
-                '<a href="authors-detail/author-georgeFriedman.html" class="block2-name dis-block s-text3 p-b-5">'+
-                    'George Friedman'+
-                '</a>'+
-            '</div>'+
-        '</div>'+
-    '</div>';
-    console.log(authors);*/
-
-function loadData(json) {
+function loadData(json, sponsoredJson) {
     let authors = "";
     for(i=0; i<json.length; i++){
 
     authors =  authors + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
-        
-   '<div class="block2">'+
-       '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
-           '<img src="images/authors/author-' + json[i].id + '.jpg" alt="IMG-PRODUCT">'+
+                            '<div class="block2">'+
+                                '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
+                                    '<img src="images/authors/author-' + json[i].id + '.jpg" alt="IMG-PRODUCT">'+
 
-           '<div class="block2-overlay trans-0-4">'+
-           '</div>'+
-       '</div>'+
+                                    '<div class="block2-overlay trans-0-4">'+
+                                    '</div>'+
+                                '</div>'+
 
-       '<div class="block2-txt p-t-20">'+
-           '<a href="author.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
-               json[i].name +
-           '</a>'+
-       '</div>'+
-   '</div>'+
-'</div>';
+                                '<div class="block2-txt p-t-20">'+
+                                    '<a href="author.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                                        json[i].name +
+                                    '</a>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
     }
-    console.log(authors);
-
+    let sponsoredHtml = "";
+    for(i=0;i<sponsoredJson.length && i<3;i++){
+    sponsoredHtml = sponsoredHtml + '<a href="../book.html?id='+sponsoredJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                                      '<img src="../images/books/first-'+sponsoredJson[i].id+'.jpg" alt="IMG-PRODUCT">'+
+                                    '</a>'+
+                                    '<div class="p-t-5">'+
+                                        '<a href="../book.html?id='+sponsoredJson[i].id+'" class="s-text20">'+
+                                        sponsoredJson[i].title +
+                                        '</a>'+
+                                        '<span class="dis-block s-text17 p-t-6">'+
+                                        sponsoredJson[i].price.toFixed(2) + ' ' + sponsoredJson[i].currency  +
+                                        '</span>'+
+                                    '</div>' + '<br>'}
+    
+    
     document.getElementById("AUTHORS").innerHTML =  authors;
+    document.getElementById("BOOK_SPONSORED").innerHTML = sponsoredHtml;
 }
 
 //Function needed to get the arguments contained in the URL

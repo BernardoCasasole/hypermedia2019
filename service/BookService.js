@@ -92,11 +92,14 @@ exports.getBooksByAuthor = function(author,offset,limit) {
  * returns Book
  **/
 exports.getBooksByGenre = function(genre,offset,limit) {
+  limit = 5;
+  offset = 0;
   return db.select()
     .from('books')
     .where('genres',genre)
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -128,6 +131,8 @@ exports.getBooksByPublicationDate = function(date,offset,limit) {
  * returns Book
  **/
 exports.getBooksByTheme = function(theme,offset,limit) {
+  limit = 5;
+  offset = 0;
   return db.select()
     .from('books')
     .where('theme1',theme)
@@ -135,6 +140,7 @@ exports.getBooksByTheme = function(theme,offset,limit) {
     .orWhere('theme3', theme)
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -165,6 +171,8 @@ exports.getBooksByTitle = function(title,offset,limit) {
  * returns Book
  **/
 exports.getSponsoredBooks = function(offset,limit) {
+  limit = 5;
+  offset = 0;
   return db.select()
     .from('books')
     .where('isSponsored',true)
