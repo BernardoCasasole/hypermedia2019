@@ -12,7 +12,7 @@ module.exports.getUser = function getUser (req, res, next) {
   } //no user with id=0 exists, so will return a empty json
 
   User.getUser(user_id)
-    .then(function (response) {
+    .then(function (response) { 
       utils.writeJson(res, response);
     })
     .catch(function (response) {
@@ -20,16 +20,27 @@ module.exports.getUser = function getUser (req, res, next) {
     });
 };
 
-
+/**
+ * NOTE:
+ * The login is cookie-based, but without concern for security: the cookie simply is the user id.
+ * In a real application an encryption and a usage of random cookies assignment would be used.
+ * Being not security a concern according to the documentation of the project, the problem was not treated
+ */
 module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
   let username = req.swagger.params['username'].value;
   let password = req.swagger.params['password'].value;
+
   User.userLoginPOST(username,password)
     .then(function (response) {
-      if(response[0] === undefined) {}
+      //if response is undefined, answer with a json conainting success = false
+      if(response[0] === undefined) {
+        response = [{success:false}]
+      }
+      //else return the user plus the success value set to true
       else {
         //save the user id in the cookie if has logged in successfully
-        req.session[cookie.uid] = response[0].id; 
+        req.session[cookie.uid] = response[0].id;
+        response[0].success = true;
       }
       utils.writeJson(res, response);
     })
@@ -37,6 +48,14 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
       utils.writeJson(res, response);
     });
 };
+
+//user logout, remove the cookie
+module.exports.userLogoutPOST = function userLogoutPOST (req, res, next) {
+  //set the cookie to undefined to logout the user, whenever he was logged or not
+  response = {success:true}
+  utils.writeJson(res, response);
+}
+
 
 module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
   var body = req.swagger.params['body'].value;

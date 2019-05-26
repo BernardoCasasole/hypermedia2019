@@ -28,15 +28,21 @@ exports.cartGET = function(userId) {
 }
 
 exports.cartAddBook = function(userId, bookId, bookQty) {
-  userId = parseInt("1");
+  userId = parseInt(userId);
   bookId = parseInt(bookId)
   bookQty = parseInt(bookQty)
+  let result = {success:false}
   
-  return db.select('content').from('carts')
-  .where('user_id', userId).then(
+  db.select('content').from('carts')
+  .where('user_id', userId)
+  .then(
     data => {
     let content;
-    content = data[0].content.content;
+    if(data[0] === undefined) {
+      content = {}
+    } else {
+      content = data[0].content.content;
+    }
     console.log("content taken from id " + userId)
     console.log(content)
     let alreadyIn = false;
@@ -52,9 +58,10 @@ exports.cartAddBook = function(userId, bookId, bookQty) {
     console.log("content updated:")
     console.log(content)
     data[0].content.content = content;
-    return db('carts').where('user_id', userId).update('content', data[0].content)
+    db('carts').where('user_id', userId).update('content', data[0].content)
+    result.success = true;
     }
   );
-  
+  return result;
 }
 

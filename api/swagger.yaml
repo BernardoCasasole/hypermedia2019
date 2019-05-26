@@ -308,6 +308,7 @@ paths:
         description: "Pagination offset. Default is 0."
         required: false
         type: "integer"
+
       - name: "limit"
         in: "query"
         description: "Maximum number of items per page. Default is 20 and cannot exceed\
@@ -321,6 +322,49 @@ paths:
             $ref: "#/definitions/Book"
         404:
           description: "Unexpected error"
+      x-swagger-router-controller: "Book"
+  /books/bySoldCopiesInMonth/{month}/{year}:
+    get:
+      tags:
+      - "book"
+      summary: "Get books ordered by num of sold copies in the specified month (num 0-11)"
+      description: "Returns books ordered by num of sold copies in the specified month"
+      operationId: "getBooksBySoldCopiesInMonth"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "month"
+        in: "path"
+        description: "month value, in range 0-11"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "year"
+        in: "path"
+        description: "year value"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid date supplied"
+        404:
+          description: "Books not found"
       x-swagger-router-controller: "Book"
   /authors:
     get:
@@ -578,6 +622,23 @@ paths:
           description: "succesfull login"
         404:
           description: "unauthorized"
+      x-swagger-router-controller: "User"
+  /user/logout:
+    post:
+      tags:
+      - "user"
+      summary: "Logout"
+      description: "Logout from current account"
+      operationId: "userLogoutPOST"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "succesfull logout"
+        404:
+          description: "error in logout"
       x-swagger-router-controller: "User"
   /user/register:
     post:

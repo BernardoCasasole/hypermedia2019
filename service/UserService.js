@@ -44,6 +44,9 @@ exports.userLoginPOST = function(username,password) {
 }
 
 
+
+
+
 /**
  * Register
  * Register into the store
@@ -58,4 +61,5 @@ exports.userRegisterPOST = function(body) {
   })
   
 }
+
 

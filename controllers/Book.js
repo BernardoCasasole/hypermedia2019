@@ -2,6 +2,7 @@
 
 var utils = require('../utils/writer.js');
 var Book = require('../service/BookService');
+let defaultLimit = 20;
 
 module.exports.booksGET = function booksGET (req, res, next) {
   var offset = req.swagger.params['offset'].value;
@@ -29,6 +30,9 @@ module.exports.getBookById = function getBookById (req, res, next) {
 module.exports.getBookBySoldCopies = function getBookBySoldCopies (req, res, next) {
   var offset = req.swagger.params['offset'].value;
   var limit = req.swagger.params['limit'].value;
+  if(typeof limit  === "undefined") {
+    limit = defaultLimit;
+  }
   Book.getBookBySoldCopies(offset,limit)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -115,3 +119,17 @@ module.exports.getSponsoredBooks = function getSponsoredBooks (req, res, next) {
     });
 };
 
+
+module.exports.getBooksBySoldCopiesInMonth = function getBooksBySoldCopiesInMonth(req, res, next) {
+  var offset = req.swagger.params['offset'].value;
+  var limit = req.swagger.params['limit'].value;
+  let month = req.swagger.params['month'].value;
+  let year = req.swagger.params['year'].value;
+  Book.getBooksBySoldCopiesInMonth(month, year, offset,limit)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+}
