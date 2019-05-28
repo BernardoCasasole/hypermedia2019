@@ -91,7 +91,7 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 								'<div class="header-cart-buttons">'+
 									'<div class="header-cart-wrapbtn">'+
 										'<!-- Button -->'+
-										'<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
+										'<a href="register.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
 											'Register'+
 										'</a>'+
 									'</div>'+
@@ -223,7 +223,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 								
 									'<div class="header-cart-buttons">'+
 										'<div class="header-cart-wrapbtn">'+
-											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" align="right" type="submit" background-color: #4CAF50>'+Login'</button>'+
+											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
 										'</div>'+
 									'</div>'+
 									'<br/>'+
@@ -232,7 +232,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 								'<div class="header-cart-buttons">'+
 									'<div class="header-cart-wrapbtn">'+
 										'<!-- Button -->'+
-										'<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
+										'<a href="register.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
 											'Register'+
 										'</a>'+
 									'</div>'+
