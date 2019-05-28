@@ -27,8 +27,10 @@ module.exports.findEventById = function findEventById (req, res, next) {
 };
 
 module.exports.findEventByCategory = function findEventByCategory (req, res, next) {
-  var category = req.swagger.params['category'].value;
-  Event.findEventByCategory(category)
+  let category = req.swagger.params['category'].value;
+  let offset = req.swagger.params['offset'].value;
+  let limit = req.swagger.params['limit'].value;
+  Event.findEventByCategory(category, limit, offset)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -37,9 +39,12 @@ module.exports.findEventByCategory = function findEventByCategory (req, res, nex
     });
 };
 
-module.exports.findEventByDate = function findEventByDate (req, res, next) {
-  var date = req.swagger.params['date'].value;
-  Event.findEventByDate(date)
+module.exports.findEventByMonth = function findEventByMonth (req, res, next) {
+  let month = req.swagger.params['month'].value;
+  let year = req.swagger.params['year'].value;
+  let offset = req.swagger.params['offset'].value;
+  let limit = req.swagger.params['limit'].value;
+  Event.findEventByMonth(month, year, limit, offset)
     .then(function (response) {
       utils.writeJson(res, response);
     })

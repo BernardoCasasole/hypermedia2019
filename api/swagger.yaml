@@ -555,21 +555,39 @@ paths:
         404:
           description: "Event not found"
       x-swagger-router-controller: "Event"
-  /events/byDate/{date}:
+  /events/byMonth/{month}/{year}:
     get:
       tags:
       - "event"
       summary: "Find events by date"
       description: "Returns a list of events by date"
-      operationId: "findEventByDate"
+      operationId: "findEventByMonth"
       produces:
       - "application/json"
       parameters:
-      - name: "date"
+      - name: "month"
         in: "path"
-        description: "category of event to register in"
+        description: "0-11 value for the month"
         required: true
-        type: "string"
+        type: "integer"
+        format: "int64"
+      - name: "year"
+        in: "path"
+        description: "year of the events searched"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
       responses:
         200:
           description: "successful operation"

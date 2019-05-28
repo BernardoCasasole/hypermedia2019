@@ -41,10 +41,12 @@ exports.up = function(knex, Promise) {
 
     .createTable('users', function(table) {
         table.increments('id');
-        table.string('name').unique().notNullable();
+        table.string('name').notNullable();
+        table.string('username').unique().notNullable();
         table.string('password').notNullable();
         table.string('email').notNullable();
-        table.string('creditcard');
+        table.string('creditcardNumber');
+        table.string('creditcardHolder');
     })
   
     

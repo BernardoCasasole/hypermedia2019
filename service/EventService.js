@@ -53,9 +53,7 @@ exports.findEventById = function(eventId) {
  * category String category of event to register in
  * returns Event
  **/
-exports.findEventByCategory = function(category) {
-  let limit = 20;
-  let offset = 0;
+exports.findEventByCategory = function(category, limit, offset) {
   return db.select()
   .from('events')
   .where('category', category)
@@ -71,12 +69,13 @@ exports.findEventByCategory = function(category) {
  * date String category of event to register in
  * returns Event
  **/
-exports.findEventByDate = function(date) {
-  let limit = 20;
-  let offset = 0;
+exports.findEventByMonth = function(month, year, limit, offset) {
+  let date1 = "1/"+month+"/"+year
+  let date2 = "31/"+month+"/"+year
   return db.select()
   .from('events')
-  .where('date', date)
+  .where('date', '>=', date1)
+  .andWhere('date', '<=', date2)
   .limit(limit)
   .offset(offset);
 }
