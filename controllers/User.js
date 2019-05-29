@@ -58,14 +58,55 @@ module.exports.userLogoutPOST = function userLogoutPOST (req, res, next) {
 
 
 module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
-  console.log("user registering. Niceeeee");
-  var body = req.swagger.params['body'].value;
-  console.log(body);
-  User.userRegisterPOST(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+  let body = req.swagger.params['body'].value;
+  let finalRes = {success:false}
+
+  //find if exists already a user with same password or email
+  User.getExistingUser(body.username, body.email)
+
+  .then(function(response1) {
+
+    //if no results are found, the new user is valid and can be registered
+    if(response1[0] === undefined) {
+      let uIndex = User.getUIndex()
+      User.userRegisterPOST(body)
+      .then(function(){//check if the insertion was successful by searching for inserted user
+        User.getUser(uIndex)
+        //then if insert was not successful, notify the failure
+        .then(function(response2) {
+          if(response2[0] === undefined) {
+            finalRes.error = 'User could not be inserted'
+            console.log(finalRes)
+            utils.writeJson(res, finalRes);
+          }//else if insert was successful, the answer is complete: set also the cookie and notify success 
+          else {
+            User.IncrementUIndex()
+            req.session[cookie.uid] = response2[0].id
+            finalRes.success = true
+            console.log(finalRes)
+            utils.writeJson(res, finalRes);
+          }
+          
+        })
+      })
+    } //else a result (or 2) was found, and cannot register 
+    else {
+      //if only 1 result or not both email and username exist for the same user, 
+      //only username or email already exists
+      if(response1[1] === undefined && 
+              !(response1[0].username === body.username && response1[0].email === body.email)) {
+        if(response1[0].username === body.username) {
+          finalRes.error = "Username already in use"
+        } else {
+          finalRes.error = "Email already in use"
+        }
+      } else {
+        finalRes.error = "Username and Email already in use"
+      }
+      console.log(finalRes)
+      utils.writeJson(res, finalRes);
+    }
+
+  })
+  
 };

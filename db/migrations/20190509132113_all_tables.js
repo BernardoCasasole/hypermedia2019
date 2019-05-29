@@ -44,7 +44,7 @@ exports.up = function(knex, Promise) {
         table.string('name').notNullable();
         table.string('username').unique().notNullable();
         table.string('password').notNullable();
-        table.string('email').notNullable();
+        table.string('email').unique().notNullable();
         table.string('creditcardNumber');
         table.string('creditcardHolder');
     })

@@ -68,7 +68,7 @@
 					</span>
 
 				</div>
-				<form onsubmit='submitUserRegForm()'>
+				<form id="REGFORM" action='javascript:submitUserRegForm()' method='POST' class="form">
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
 						<span class="s-text20 w-full-sm">
 							<label ><b>Your Name</b></label>
@@ -107,7 +107,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="password" placeholder="Enter your password" name="psw" required>
+	      					<input type="password" placeholder="Enter your password" id="pwd1" name="pwd1" required>
 						</div>
 					</div>
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
@@ -117,7 +117,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="password" placeholder="Enter password again" name="psw" required>
+	      					<input type="password" placeholder="Enter password again" id="pwd2" name="pwd2" required>
 						</div>
 					</div>
 					<!--  -->
@@ -212,6 +212,7 @@
 	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script src="js/register.js"></script>
 
 </body>
 </html>
