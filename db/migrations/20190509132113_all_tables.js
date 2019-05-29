@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
     .createTable('books', function(table) {
         table.increments('id');
         table.text('title').notNullable();
-        table.string('author');//.references('id').inTable('authors');
+        table.integer('author');//.references('id').inTable('authors');
         table.integer('qty').notNullable();
         table.integer('soldQty').notNullable().defaultTo(0);
         table.float('price').notNullable();
