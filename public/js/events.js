@@ -7,26 +7,45 @@ let imgPath = "../images/events/"
 
 const userAction = async () => {
     let args = getURLArgs();
-    
+    console.log(args);
+    var eventsJson;
+  if(args.month !== undefined && args.year !== undefined){
+    let response = await fetch(eventsPath+'byMonth/'+args.month+'/'+args.year);
+    eventsJson = await response.json(); //extract JSON from the http response
+  }
+  else{
   let response = await fetch(eventsPath+'');
-  
-  let eventsJson = await response.json(); //extract JSON from the http response
-
+  eventsJson = await response.json(); //extract JSON from the http response
+  }
   //if the id is valid but does not exist a book with that id return error 404 page
   if(eventsJson[0] === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
+      console.log("unable to find events!")
       writeErrorPage();
       return;
   }
+
+  var today = new Date();
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  var currentMonth = mm + '/' + yyyy;
+
+  response = await fetch('../../v2/books/sponsored');
+  let sponsoredJson = await response.json();
+
+  response = await fetch(eventsPath+'byMonth/'+currentMonth);
+  let eventOfMonthJson = await response.json();
  
-  loadData(eventsJson);
+  loadData(eventsJson, sponsoredJson, eventOfMonthJson);
 }
 
 userAction();
 
 
 
-function loadData(json) {
+function loadData(json, sponsoredJson, eventOfMonthJson) {
+
+
+
     let events = "";
     for(i=0; i<json.length; i++){
     events =  events + '<div class="item-blog p-b-80">'+
@@ -69,9 +88,48 @@ function loadData(json) {
                             '</div>'+
                         '</div>';
     }
+    let sponsored = "";
+    for(i=0; i<sponsoredJson.length; i++){
+        sponsored =  sponsored + 
+        '<li class="flex-w p-b-20">'+
+            '<a href="book.html?id='+ sponsoredJson[i].id +'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                '<img src="images/books/first-'+ sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+            '</a>'+
 
+            '<div class="w-size23 p-t-5">'+
+                '<a href="book.html?id='+ sponsoredJson[i].id +'" class="s-text20">'+
+                sponsoredJson[i].title +
+                '</a>'+
+                '<br>'+
+                '<span class="dis-block s-text17 p-t-6">'+
+                sponsoredJson[i].price.toFixed(2) + ' ' + sponsoredJson[i].currency + 
+                '</span>'+
+            '</div>'+
+        '</li>';
+    }
 
+    let eventOfMonth = "";
+    for(i=0; i<eventOfMonthJson.length; i++){
+        eventOfMonth =  eventOfMonth + 
+        '<li class="flex-w p-b-20">'+
+            '<a href="event.html?id='+ eventOfMonthJson[i].id +'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                '<img src="images/events/event_small-'+ eventOfMonthJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+            '</a>'+
+
+            '<div class="w-size23 p-t-5">'+
+                '<a href="event.html?id='+ eventOfMonthJson[i].id +'" class="s-text20">'+
+                eventOfMonthJson[i].eventName +
+                '</a>'+
+                '<br>'+
+                '<span class="dis-block s-text17 p-t-6">'+
+                eventOfMonthJson[i].date.split('T')[0] +
+                '</span>'+
+            '</div>'+
+        '</li>';
+    }
     document.getElementById("EVENTS").innerHTML =  events;
+    document.getElementById("SPONSORED").innerHTML =  sponsored;
+    document.getElementById("EVENT_MONTH").innerHTML = eventOfMonth;
 }
 
 //Function needed to get the arguments contained in the URL

@@ -33,6 +33,7 @@ function loadData(json, sponsoredJson) {
 
     authors =  authors + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
                             '<div class="block2">'+
+                            
                                 '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
                                     '<img src="images/authors/author-' + json[i].id + '.jpg" alt="IMG-PRODUCT">'+
 
@@ -49,7 +50,7 @@ function loadData(json, sponsoredJson) {
                         '</div>';
     }
     let sponsoredHtml = "";
-    for(i=0;i<sponsoredJson.length && i<3;i++){
+    for(i=0;i<sponsoredJson.length && i<4;i++){
     sponsoredHtml = sponsoredHtml + '<a href="../book.html?id='+sponsoredJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
                                       '<img src="../images/books/first-'+sponsoredJson[i].id+'.jpg" alt="IMG-PRODUCT">'+
                                     '</a>'+

@@ -33,7 +33,33 @@ const userAction = async () => {
         return;
     }
     loadData(genreJson);
-    }else{
+    }else if(args.sponsored !== undefined){
+        response = await fetch('../../v2/books/sponsored');
+        sponsoredJson = await response.json();
+    
+        //if the id is valid but does not exist a book with that id return error 404 page
+        if(sponsoredJson[0] === undefined) {
+            console.log("no sponsored books found!")
+            writeErrorPage();
+            return;
+        }
+        loadData(sponsoredJson)
+    }else if(args.bestsellers !== undefined){
+        var today = new Date();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        var currentMonth = mm + '/' + yyyy;
+        response = await fetch('../../v2/books/bySoldCopiesInMonth/'+currentMonth+'?limit=9');
+        bestsellersJson = await response.json();
+    
+        //if the id is valid but does not exist a book with that id return error 404 page
+        if(bestsellersJson[0] === undefined) {
+            console.log("no book found!")
+            writeErrorPage();
+            return;
+        }
+        loadData(bestsellersJson)
+    } else {
         let response = await fetch(bookPath+'');
         
         let booksJson = await response.json(); //extract JSON from the http response

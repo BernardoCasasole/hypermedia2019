@@ -40,9 +40,6 @@ userAction();
 
 function loadData(json, authorJson) {
   bookId = json[0].id
-  console.log("logging jsons")
-  console.log(json);
-  //console.log(authorJson);
   document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
   document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
   let minipic1 = document.getElementById("MINPIC_PARENT2").firstChild.firstChild.firstChild;
@@ -55,7 +52,7 @@ function loadData(json, authorJson) {
   document.getElementById("TITLE_LINK").setAttribute('href', bookHtmlPath+"?id="+json[0].id)
   document.getElementById("AUTHOR").innerText = authorJson[0].name;
   document.getElementById("AUTHOR_LINK").setAttribute('href', authorHtmlPath+"?id="+json[0].author)
-
+  
   document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
   document.getElementById("CAPTION").innerText = json[0].caption
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
@@ -69,7 +66,7 @@ function loadData(json, authorJson) {
     themes += json[0].theme2 + '\n'
   if(json[0].theme3 !== null)
     themes += json[0].theme3 
-    
+
   document.getElementById("THEMES").innerText = themes;
 
   

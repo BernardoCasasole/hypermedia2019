@@ -1,11 +1,11 @@
 let authorPath = "../../v2/author/";
 let imgPath = "../images/authors/"
+let booksPath = "../../v2/books/byAuthor/"
 
 
 const userAction = async () => {
     let args = getURLArgs();
     let id = args.id;
-    console.log(authorPath+id)
     //if the id of a book is undefined, return error 404 and a link to the home
   if (id === undefined) {
     writeErrorPage();
@@ -21,27 +21,67 @@ const userAction = async () => {
       writeErrorPage();
       return;
   }
-  console.log('retrieving ../../v2/author/'+authorJson[0].id+'')
 
-  response = await fetch('../../v2/author/'+authorJson[0].id+'');
-  let authorsJson = await response.json();
-  //console.log(response.json());
-
-
-  //load the data from json to html file's fields
-  loadData(authorJson, authorsJson);
+  response = await fetch(booksPath+authorJson[0].id+'');
+  let booksJson = await response.json();
+  response = await fetch('../../v2/books/sponsored');
+  let sponsoredJson = await response.json();
+  loadData(authorJson, booksJson, sponsoredJson);
 }
 
 userAction();
 
-function loadData(json, authorsJson) {
-  console.log("logging jsons")
-  //console.log(authorJson);
+function loadData(json,  booksJson, sponsoredJson) {
+  let books = "";
+    for(i=0; i<sponsoredJson.length; i++){
+        books = books + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
+                '<div class="block2">'+
+                    '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
+                        '<img src="images/books/first-'+sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+
+                        '<div class="block2-overlay trans-0-4">'+
+                            '<div class="block2-btn-addcart w-size1 trans-0-4">'+
+                                '<!-- Button -->'+
+                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+                                    'Add to Cart'+
+                                '</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="block2-txt p-t-20">'+
+                        '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                           sponsoredJson[i].title+
+                        '</a>'+
+
+                        '<span class="block2-price m-text6 p-r-5">'+
+                           sponsoredJson[i].price.toFixed(2) + ' '+sponsoredJson[i].currency +
+                        '</span>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+    }
+ 
+  let booksHtml = "";
+  for(i=0;i<booksJson.length && i<3;i++){
+  booksHtml = booksHtml + '<a href="../book.html?id='+booksJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                                    '<img src="../images/books/first-'+booksJson[i].id+'.jpg" alt="IMG-PRODUCT">'+
+                                  '</a>'+
+                                  '<div class="p-t-5">'+
+                                      '<a href="../book.html?id='+booksJson[i].id+'" class="s-text20">'+
+                                      booksJson[i].title +
+                                      '</a>'+
+                                      '<a class="dis-block s-text17 p-t-6">'+
+                                      booksJson[i].price.toFixed(2) + ' ' + booksJson[i].currency  +
+                                      '</a>'+
+                                  '</div>'}
   document.getElementById("AUTHOR_PHOTO").src = imgPath+"author-"+json[0].id+".jpg"
 
   document.getElementById("NAME").innerText = json[0].name
   document.getElementById("AUTHOR_DESCRIPTION").innerText = json[0].description
   document.getElementById("BIOGRAPHY").innerText = json[0].biography
+  document.getElementById("AUTHOR_BOOKS").innerHTML = booksHtml;
+  document.getElementById("SPONSORED").innerHTML = books;
 }
 
 

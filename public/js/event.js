@@ -6,7 +6,7 @@ let imgPath = "../images/events/"
 const userAction = async () => {
     let args = getURLArgs();
     let id = args.id;
-
+    console.log(args);
     //if the id of a book is undefined, return error 404 and a link to the home
   if (id === undefined) {
     writeErrorPage();
@@ -15,7 +15,7 @@ const userAction = async () => {
   let response = await fetch(eventsPath+id+'');
   
   let eventJson = await response.json(); //extract JSON from the http response
-
+  console.log(eventJson);
   //if the id is valid but does not exist a book with that id return error 404 page
   if(eventJson[0] === undefined || eventJson[0].author === undefined) {
       console.log("an event with specified id does not exist, or has no name!")
@@ -40,7 +40,7 @@ userAction();
 
 function loadData(json, authorJson, bookJson, sponsoredJson) {
   let sponsoredHtml = "";
-  for(i=0;i<sponsoredJson.length && i<3;i++){
+  for(i=0;i<sponsoredJson.length && i<4;i++){
   sponsoredHtml = sponsoredHtml + '<a href="../book.html?id='+sponsoredJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
                                     '<img src="../images/books/first-'+sponsoredJson[i].id+'.jpg" alt="IMG-PRODUCT">'+
                                   '</a>'+
@@ -57,8 +57,6 @@ function loadData(json, authorJson, bookJson, sponsoredJson) {
   document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].id+".png";
   document.getElementById("EVENT_NAME").innerText = json[0].eventName;
   document.getElementById("EVENT_NAME_2").innerText = json[0].eventName;
-  console.log("nome autore" + authorJson[0].name);
-  console.log(json[0].date[5]+json[0].date[6] +'\n'+ json[0].date)
   document.getElementById("EVENT_DESCRIPTION").innerText = json[0].details;
   document.getElementById("EVENT_DETAILS").innerHTML = "By" + '<a href="author.html?id='+json[0].id+'">' + '&nbsp;' + authorJson[0].name + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book:" + '<a href="book.html?id='+json[0].id+'">' + '&nbsp;'  + json[0].presentedBook + '&nbsp;' + '</a>' + ' | ' + "Subscribers: " + json[0].subscribers;
   document.getElementById("BOOK_RELATED").innerHTML = 

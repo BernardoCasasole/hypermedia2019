@@ -86,6 +86,13 @@ html {
   padding-right: 15px;
   padding-left: 15px;
 }
+.col-123{
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
 
 .col {
   -ms-flex-preferred-size: 0;

@@ -415,7 +415,7 @@ iframe {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
-  z-index: 1;*/
+  z-index: 1;
 }
 .dropdown-content {
   display: none;
@@ -425,7 +425,7 @@ iframe {
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-}
+}*/
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
@@ -1151,7 +1151,6 @@ li.sale-noti > a {
 
 .side-menu .sub-menu > li {
   padding-left: 12px;
-  padding-top: 
 }
 
 .side-menu .sub-menu a:hover {
