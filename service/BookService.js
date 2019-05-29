@@ -41,10 +41,10 @@ exports.booksGET = function(offset,limit) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
-  console.log("getBookById started, id:" +bookId)
   return db.select()
   .from('books')
   .where('id', bookId);
+  .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 /**
@@ -61,6 +61,7 @@ exports.getBookBySoldCopies = function(offset,limit) {
     .orderBy('soldQty', 'desc')
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -118,6 +119,7 @@ exports.getBooksByPublicationDate = function(date,offset,limit) {
     .where('publicationDate', date)
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -154,11 +156,13 @@ exports.getBooksByTheme = function(theme,offset,limit) {
  * returns Book
  **/
 exports.getBooksByTitle = function(title,offset,limit) {
+  title = '%'+title+'%'
   return db.select()
     .from('books')
-    .where('title',title)
+    .where('title','like', title)
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 
@@ -176,6 +180,7 @@ exports.getSponsoredBooks = function(offset,limit) {
     .where('isSponsored',true)
     .limit(limit)
     .offset(offset)
+    .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
 //get books ordered by sold copies in the specified month (and year)
@@ -185,7 +190,8 @@ exports.getBooksBySoldCopiesInMonth = function(month, year, offset, limit) {
   .where('month', month)
   .andWhere('year', year)
   .orderBy('totalSold', 'desc')
-  .leftJoin('books', 'sales.bookId', '=', 'books.id')
   .limit(limit)
   .offset(offset)
+  .leftJoin('books', 'sales.bookId', '=', 'books.id')
+  .leftJoin('authors', 'books.id', '=', 'authors.id')
 }

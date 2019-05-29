@@ -55,8 +55,11 @@ exports.getAuthorById = function(authorId) {
  * returns Author
  **/
 exports.getAuthorByName = function(name) {
+  console.log(name)
+  name = name.toLowerCase()
+  name = '%'+name+'%'
   return db.select()
   .from('authors')
-  .where('name', name);
+  .whereRaw('LOWER(name) = ' + name);
 }
 
