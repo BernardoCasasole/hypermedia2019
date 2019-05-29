@@ -567,7 +567,7 @@ paths:
       parameters:
       - name: "month"
         in: "path"
-        description: "0-11 value for the month"
+        description: "1-12 value for the month"
         required: true
         type: "integer"
         format: "int64"
