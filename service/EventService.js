@@ -70,9 +70,6 @@ exports.findEventByCategory = function(category, limit, offset) {
  * returns Event
  **/
 exports.findEventByMonth = function(month, year, limit, offset) {
-  let date1 = year+'/'+month+'/1'
-  let date2 = year+'/'+month+'/30'
-  console.log(date1 + ", " + date2)
   return db.select()
   .from('events')
   .whereRaw(`EXTRACT(MONTH FROM date::date) = ?`, [month])
