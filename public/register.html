@@ -27,8 +27,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-	<script type="text/javascript" src="js/store.js" async></script>
 </head>
 <body class="animsition">
 
@@ -70,7 +68,7 @@
 					</span>
 
 				</div>
-				<form action="/action_page.php">
+				<form onsubmit='submitUserRegForm()'>
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
 						<span class="s-text20 w-full-sm">
 							<label ><b>Your Name</b></label>
@@ -78,7 +76,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="user" placeholder="Enter your full name"  required>
+	      					<input type="user" placeholder="Enter your full name" name="fullname" required>
 						</div>
 					</div>
 					
@@ -89,7 +87,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="user" placeholder="Enter your username" required>
+	      					<input type="user" placeholder="Enter your username" name="username" required>
 						</div>
 					</div>
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
@@ -99,7 +97,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="user" placeholder="Enter your email" required>
+	      					<input type="email" placeholder="Enter your email" name="email" required>
 						</div>
 					</div>
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
@@ -109,7 +107,7 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="user" placeholder="Enter your password" name="psw" required>
+	      					<input type="password" placeholder="Enter your password" name="psw" required>
 						</div>
 					</div>
 					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
@@ -119,48 +117,46 @@
 
 						<div class="w-size20 w-full-sm">
 							
-	      					<input type="user" placeholder="Enter password again" name="psw" required>
+	      					<input type="password" placeholder="Enter password again" name="psw" required>
+						</div>
+					</div>
+					<!--  -->
+					
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text18 w-size20 w-full-sm">
+							Some payment information now
+						</span>
+
+					</div>
+
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Credit Card Number</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+							<input type="text" placeholder="Enter card number" name="ccn" required>
+						</div>
+					</div>
+
+					<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+						<span class="s-text20 w-full-sm">
+							<label ><b>Credit Card Holder</b></label>
+						</span>
+
+						<div class="w-size20 w-full-sm">
+							
+							<input type="text" placeholder="Enter card holder" name="cch" required>
+						</div>
+					</div>
+
+					<div class="header-cart-buttons">
+						<div class="header-cart-wrapbtn">
+							<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" type="submit" background-color: #4CAF50>Register</button>
 						</div>
 					</div>
 				</form>
-				<!--  -->
-				
-				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
-					<span class="s-text18 w-size20 w-full-sm">
-						Some payment information now
-					</span>
-
-				</div>
-
-				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
-					<span class="s-text20 w-full-sm">
-						<label ><b>Credit Card Number</b></label>
-					</span>
-
-					<div class="w-size20 w-full-sm">
-						
-      					<input type="user" placeholder="Enter card number" required>
-					</div>
-				</div>
-
-				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
-					<span class="s-text20 w-full-sm">
-						<label ><b>Credit Card Holder</b></label>
-					</span>
-
-					<div class="w-size20 w-full-sm">
-						
-      					<input type="user" placeholder="Enter card holder" required>
-					</div>
-				</div>
-
-				<div class="header-cart-buttons">
-					<div class="header-cart-wrapbtn">
-						<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" type="submit" background-color: #4CAF50>Register</button>
-					</div>
-				</div>
-				
-
 						
 			</div>
 
