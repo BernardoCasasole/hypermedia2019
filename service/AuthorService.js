@@ -55,11 +55,15 @@ exports.getAuthorById = function(authorId) {
  * returns Author
  **/
 exports.getAuthorByName = function(name) {
-  console.log(name)
-  name = name.toLowerCase()
-  name = '%'+name+'%'
+  name = name.toLowerCase();
+  name = "'%"+name+"%'"
   return db.select()
   .from('authors')
-  .whereRaw('lower(name) = ' + name);
+  .whereRaw("lower(name) like " + name)
+  /*/
+  return db.select()
+  .from('authors')
+  .where('name', 'like', name)
+  //*/
 }
 
