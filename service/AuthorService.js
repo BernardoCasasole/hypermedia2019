@@ -60,6 +60,6 @@ exports.getAuthorByName = function(name) {
   name = '%'+name+'%'
   return db.select()
   .from('authors')
-  .whereRaw('LOWER(name) = ' + name);
+  .whereRaw('lower(name) = ' + name);
 }
 

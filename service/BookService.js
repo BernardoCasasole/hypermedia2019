@@ -43,7 +43,7 @@ exports.booksGET = function(offset,limit) {
 exports.getBookById = function(bookId) {
   return db.select()
   .from('books')
-  .where('id', bookId);
+  .where('id', bookId)
   .leftJoin('authors', 'books.id', '=', 'authors.id')
 }
 
