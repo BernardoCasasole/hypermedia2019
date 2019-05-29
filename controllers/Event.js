@@ -40,6 +40,7 @@ module.exports.findEventByCategory = function findEventByCategory (req, res, nex
 };
 
 module.exports.findEventByMonth = function findEventByMonth (req, res, next) {
+  let month = req.swagger.params['month'].value;
   let year = req.swagger.params['year'].value;
   let offset = req.swagger.params['offset'].value || 0;
   let limit = req.swagger.params['limit'].value || 20;
