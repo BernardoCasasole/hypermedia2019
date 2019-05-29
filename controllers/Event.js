@@ -4,8 +4,8 @@ var utils = require('../utils/writer.js');
 var Event = require('../service/EventService');
 
 module.exports.eventsGET = function eventsGET (req, res, next) {
-  var offset = req.swagger.params['offset'].value || 0;
-  var limit = req.swagger.params['limit'].value || 20;
+  let offset = req.swagger.params['offset'].value || 0;
+  let limit = req.swagger.params['limit'].value || 20;
   Event.eventsGET(offset,limit)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -28,8 +28,8 @@ module.exports.findEventById = function findEventById (req, res, next) {
 
 module.exports.findEventByCategory = function findEventByCategory (req, res, next) {
   let category = req.swagger.params['category'].value;
-  let offset = req.swagger.params['offset'].value;
-  let limit = req.swagger.params['limit'].value;
+  let offset = req.swagger.params['offset'].value || 0;
+  let limit = req.swagger.params['limit'].value || 20;
   Event.findEventByCategory(category, limit, offset)
     .then(function (response) {
       utils.writeJson(res, response);
