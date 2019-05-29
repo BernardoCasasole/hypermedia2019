@@ -70,15 +70,18 @@ exports.findEventByCategory = function(category, limit, offset) {
  * returns Event
  **/
 exports.findEventByMonth = function(month, year, limit, offset) {
-  let date1 = "1/"+month+"/"+year
-  let date2 = "31/"+month+"/"+year
   return db.select()
   .from('events')
-  .where('date', '>=', date1)
-  .andWhere('date', '<=', date2)
+  .whereRaw(`EXTRACT(MONTH FROM date::date) = ?`, [month])
+  .andWhereRaw(`EXTRACT(YEAR FROM date::date) = ?`, [year])
+  //.whereBetween('date', [date1, date2])
   .limit(limit)
   .offset(offset);
 }
+/*
+.where('date', '>=', date1)
+  .andWhere('date', '<=', date2)
+*/
 
 /**
  * Find event by name
