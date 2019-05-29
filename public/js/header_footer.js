@@ -69,7 +69,7 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 							
 							
 							'<!-- Header cart noti- login -->'+
-							'<div class="header-cart header-dropdown">'+
+							'<div class="header-cart header-dropdown" id="HEADER_LOGIN">'+
 								'<ul class="header-cart-wrapitem">'+
 									'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
 								     '<input type="text" placeholder="Enter Username" name="uname" required>'+
