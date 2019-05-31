@@ -117,59 +117,9 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 							
 							'<!-- Header cart noti -->'+
 							'<div class="header-cart header-dropdown">'+
-								'<ul class="header-cart-wrapitem">'+
-									'<li class="header-cart-item">'+
-										'<div class="header-cart-item-img">'+
-											'<img src="images/cart/item-2.jpg" alt="IMG">'+
-										'</div>'+
+								'<ul class="header-cart-wrapitem" id="CART_LIST_D"></ul>'+
 
-										'<div class="header-cart-item-txt">'+
-											'<a href="#" class="header-cart-item-name">'+
-												'The Old Man and the Sea'+
-											'</a>'+
-
-											'<span class="header-cart-item-info">'+
-												'1 x $19.00'+
-											'</span>'+
-										'</div>'+
-									'</li>'+
-
-									'<li class="header-cart-item">'+
-										'<div class="header-cart-item-img">'+
-											'<img src="images/cart/item-1.jpg" alt="IMG">'+
-										'</div>'+
-
-										'<div class="header-cart-item-txt">'+
-											'<a href="#" class="header-cart-item-name">'+
-												'Becoming'+
-											'</a>'+
-
-											'<span class="header-cart-item-info">'+
-												'1 x $39.00'+
-											'</span>'+
-										'</div>'+
-									'</li>'+
-
-									'<li class="header-cart-item">'+
-										'<div class="header-cart-item-img">'+
-											'<img src="images/cart/item-6.jpg" alt="IMG">'+
-										'</div>'+
-
-										'<div class="header-cart-item-txt">'+
-											'<a href="#" class="header-cart-item-name">'+
-												'Sostiene Pereira'+
-											'</a>'+
-
-											'<span class="header-cart-item-info">'+
-												'1 x $17.00'+
-											'</span>'+
-										'</div>'+
-									'</li>'+
-								'</ul>'+
-
-								'<div class="header-cart-total">'+
-									'Total: $75.00'+
-								'</div>'+
+								'<div class="header-cart-total" id="CART_TOTAL_D"></div>'+
 
 								'<div class="header-cart-buttons">'+
 									'<div class="header-cart-wrapbtn">'+
@@ -256,45 +206,9 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 
 							'<!-- Header cart noti -->'+
 							'<div class="header-cart header-dropdown">'+
-								'<ul class="header-cart-wrapitem">'+
-									
+								'<ul class="header-cart-wrapitem" id="CART_LIST_M"></ul>'+
 
-									'<li class="header-cart-item">'+
-										'<div class="header-cart-item-img">'+
-											'<img src="images/cart/item-1.jpg" alt="IMG">'+
-										'</div>'+
-
-										'<div class="header-cart-item-txt">'+
-											'<a href="#" class="header-cart-item-name">'+
-												'Becoming'+
-											'</a>'+
-
-											'<span class="header-cart-item-info">'+
-												'1 x $39.00'+
-											'</span>'+
-										'</div>'+
-									'</li>'+
-
-									'<li class="header-cart-item">'+
-										'<div class="header-cart-item-img">'+
-											'<img src="images/cart/item-6.jpg" alt="IMG">'+
-										'</div>'+
-
-										'<div class="header-cart-item-txt">'+
-											'<a href="#" class="header-cart-item-name">'+
-												'Sostiene Pereira'+
-											'</a>'+
-
-											'<span class="header-cart-item-info">'+
-												'1 x $17.00'+
-											'</span>'+
-										'</div>'+
-									'</li>'+
-								'</ul>'+
-
-								'<div class="header-cart-total">'+
-									'Total: $75.00'+
-								'</div>'+
+								'<div class="header-cart-total" id="CART_TOTAL_M"></div>'+
 
 								'<div class="header-cart-buttons">'+
 									'<div class="header-cart-wrapbtn">'+

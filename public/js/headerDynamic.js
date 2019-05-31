@@ -1,7 +1,8 @@
 //code performed by this js is down the constants functions
 
 
-const loginAction = async () => {
+//do the passive login and fill the fields to make visible to the user that he's logged 
+const passiveLogin = async () => {
     let loginElD = document.getElementById('HEADER_LOGIN_D')
     let loginElM = document.getElementById('HEADER_LOGIN_M')
     let login = await fetch("v2/user")
@@ -16,6 +17,21 @@ const loginAction = async () => {
     assignBtns();
     
 }
+
+//do the passive dynamic cart filling
+const passiveCartFill = async () => {
+    let cartListD = document.getElementById("CART_LIST_D")
+    let cartTotalD = document.getElementById("CART_TOTAL_D")
+    let cartListM = document.getElementById("CART_LIST_M")
+    let cartTotalM = document.getElementById("CART_TOTAL_M")
+
+    let cartContent = await fetch("v2/cart")
+    cartContent = await cartContent.json()
+
+    fillHeaderCart(cartListD, cartTotalD, cartContent)
+    fillHeaderCart(cartListM, cartTotalM, cartContent)
+}
+
 
 //Ask for the REST logout
 const logout = async () => {
@@ -72,8 +88,11 @@ const login = async (uname, pwd) => {
 /////////////////////////////////////////////////////////////////
 //Code performed by this js
 
-loginAction();
+passiveLogin();
+passiveCartFill();
 //////////////////////////////////
+
+//other functions
 
 function fillLoginElementDesktop(loginEl, json) {
     loginEl.innerHTML = '<ul class="header-cart-wrapitem">'+
@@ -136,20 +155,40 @@ function assignBtns() {
     }
 }
 
-//get an html part of the dynamic cart for a single element
-function htmlCartElementString(element) {
+
+function fillHeaderCart(cartlistEl, carttotalEl, json) {
+    //if the json is not empty, fill the cart
+    if(json.length > 0) {
+
+        let cartlistHtml = ''
+        let total = 0.0;
+        let currency = json[0].currency;
+        for(let i=0; i<json.length; i++) {
+            cartlistHtml += htmlCartElementString(json[i])
+            total += json[i].price*json[i].qty
+        }
+        cartlistEl.innerHTML = cartlistHtml;
+        carttotalEl.innerHTML = "Total: " + total.toFixed(2) + ' ' +  currency
+    }//else notify that the cart is empty
+    else {
+        cartlistEl.innerHTML = "Your cart is empty"
+    }
+}
+
+//get an html part of the dynamic cart for a single cart object
+function htmlCartElementString(cartObject) {
     return '<li class="header-cart-item">'+
         '<div class="header-cart-item-img">'+
-            '<img src="images/cart/item-2.jpg" alt="IMG">'+
+            '<img src="images/cart/item-'+cartObject.id+'.jpg" alt="IMG">'+
         '</div>'+
 
         '<div class="header-cart-item-txt">'+
             '<a href="#" class="header-cart-item-name">'+
-                'The Old Man and the Sea'+
+                cartObject.title+
             '</a>'+
 
             '<span class="header-cart-item-info">'+
-                '1 x $19.00'+
+                '' + cartObject.qty+' x '+cartObject.price.toFixed(2)+' '+cartObject.currency+
             '</span>'+
         '</div>'+
     '</li>'
