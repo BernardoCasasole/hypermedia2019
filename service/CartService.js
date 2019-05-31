@@ -29,41 +29,26 @@ exports.cartGET = function(userId) {
   .select('id', 'qty', 'title', 'price', 'currency')
 }
 
-exports.cartAddBook = function(userId, bookId, bookQty) {
-  userId = parseInt(userId);
-  bookId = parseInt(bookId)
-  bookQty = parseInt(bookQty)
-  let result = {success:false}
-  
-  db.select('content').from('carts')
-  .where('user_id', userId)
-  .then(
-    data => {
-    let content;
-    if(data[0] === undefined) {
-      content = {}
-    } else {
-      content = data[0].content.content;
-    }
-    console.log("content taken from id " + userId)
-    console.log(content)
-    let alreadyIn = false;
-    for(let i = 0; i < content.length; i++) {
-      if(content[i].id === bookId) {
-        alreadyIn = true;
-        content[i].qty = content[i].qty+bookQty;
-      }
-    }
-    if(!alreadyIn) {
-      content.push({id: bookId, qty: bookQty})
-    }
-    console.log("content updated:")
-    console.log(content)
-    data[0].content.content = content;
-    db('carts').where('user_id', userId).update('content', data[0].content)
-    result.success = true;
-    }
-  );
-  return result;
+//add a row in carts table
+exports.cartAddBookAdd = function(userId, bookId, newBookQty) {
+  console.log("adding a book, new row: uid:"+userId+", bid:"+bookId)
+  return db('carts')
+    .insert({book_id:bookId, user_id:userId, qty:newBookQty})
 }
 
+//update a row in the cart. the update replaces the old qty
+exports.cartAddBookUpdate = function(userId, bookId, newBookQty) {
+  console.log("updating a row in cart: uid:"+userId+", bid:"+bookId+ ",new Qty:"+newBookQty)
+  return db('carts')
+  .where('user_id', userId)
+  .andWhere('book_id', bookId)
+  .update({qty: newBookQty})
+}
+
+//check if a specific row exists already
+exports.cartCheck = function(userId, bookId) {
+  return db.select()
+  .from('carts')
+  .where('book_id', bookId)
+  .andWhere('user_id', userId)
+}

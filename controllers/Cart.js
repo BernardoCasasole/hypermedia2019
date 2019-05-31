@@ -20,14 +20,39 @@ module.exports.cartGET = function cartGET (req, res, next) {
 
 
 module.exports.cartAddBook = function cartAddBook (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  console.log("logging body for add cart")
-  console.log(body)
-
   let userId = req.session[cookie.uid];
+  //if user id is undefined, write error and return
   if(userId === undefined) {
-    userId = 0 //with 0 get cart will return an empty json
+    utils.writeJson(res, {success:false, error:"User not logged"})
+    return
   }
-  let response = Cart.cartAddBook(userId, body.bookId, body.qty)
-  utils.writeJson(res, response);
+
+  let body = req.swagger.params['body'].value;
+  let bookId = parseInt(body.bookId)
+  let qty = parseInt(body.qty)
+  let finalRes = {success:false}
+
+  console.log("adding a book in cart. uid:"+userId+", bid:"+bookId+", qty:"+qty)
+
+  //check if the row with book_id and user_id specified already exists
+  Cart.cartCheck(userId, bookId)
+  .then(function(response) {
+    //if does not exists, insert the tuple
+    if(response[0]===undefined) {
+      Cart.cartAddBookAdd(userId, bookId, qty).then(function(r) {
+        finalRes.success = true;
+        utils.writeJson(res, finalRes)
+      })
+      
+
+    }//if a tuple exists, update it 
+    else {
+      Cart.cartAddBookUpdate(userId, bookId, qty+response[0].qty).then(function(r) {
+        finalRes.success = true;
+        utils.writeJson(res, finalRes)
+      })
+    }
+  }).catch(function() {
+    utils.writeJson(res, finalRes)
+  })
 };
