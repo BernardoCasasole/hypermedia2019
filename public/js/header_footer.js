@@ -69,8 +69,8 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 							
 							
 							'<!-- Header cart noti- login -->'+
-							'<div class="header-cart header-dropdown" id="HEADER_LOGIN">'+
-								'<form id="LOGIN_FORM_D" action="#">'+
+							'<div class="header-cart header-dropdown" id="HEADER_LOGIN_D">'+
+								'<form id="LOGIN_FORM_D" action="javascript:onLoginDesktopSubmit()">'+
 									'<ul class="header-cart-wrapitem">'+
 										'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
 										'<input type="text" placeholder="Enter Username" name="uname" id="unameD" required>'+
@@ -86,8 +86,8 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
 										'</div>'+
 									'</div>'+
-									'</form>'+
-									'<br/>'+
+								'</form>'+
+								'<br/>'+
 								
 
 								'<div class="header-cart-buttons">'+
@@ -209,27 +209,23 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 							
 							
 							'<!-- Header cart noti- login -->'+
-							'<div class="header-cart header-dropdown">'+
-								'<form action="javascript:OnLoginSubmit()>'+
+							'<div class="header-cart header-dropdown" id="HEADER_LOGIN_M">'+
+								'<form id="LOGIN_FORM_M" action="javascript:onLoginMobileSubmit()">'+
 									'<ul class="header-cart-wrapitem">'+
-										
-										'<input type="text" placeholder="Enter Username" id="uname" name="uname" required>'+
+										'<input type="text" placeholder="Enter Username" id="unameM" name="uname" required>'+
 										'<br/>'+
-										'<br/>'+
-										
-
-										
-										'<input type="password" placeholder="Enter Password" id= "pwd" name="pwd" required>'+
+										'<input type="password" placeholder="Enter Password" id= "pwdM" name="pwd" required>'+
 
 									'</ul>'+
-								'</form>'+
+								
 								
 									'<div class="header-cart-buttons">'+
 										'<div class="header-cart-wrapbtn">'+
 											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
 										'</div>'+
 									'</div>'+
-									'<br/>'+
+								'</form>'+
+								'<br/>'+
 								
 
 								'<div class="header-cart-buttons">'+

@@ -1,11 +1,9 @@
-setUpLoginForm();
-
-
 //code performed by this js is down the constants functions
 
 
 const loginAction = async () => {
-    let loginEl = document.getElementById('HEADER_LOGIN')
+    let loginElD = document.getElementById('HEADER_LOGIN_D')
+    let loginElM = document.getElementById('HEADER_LOGIN_M')
     let login = await fetch("v2/user")
     let json = await login.json();
     //if login is not already done, return and leave it as it is
@@ -13,7 +11,8 @@ const loginAction = async () => {
         return
     }
     
-    fillLoginElement(loginEl, json);
+    fillLoginElementDesktop(loginElD, json);
+    fillLoginElementMobile(loginElM, json);
     assignBtns();
     
 }
@@ -40,7 +39,6 @@ const logout = async () => {
 
 //ask for the REST login with specified username and password
 const login = async (uname, pwd) => {
-    console.log(uname+", "+pwd)
 
     let details = {
         'username': uname,
@@ -71,19 +69,13 @@ const login = async (uname, pwd) => {
     }
 }
 
-
+/////////////////////////////////////////////////////////////////
 //Code performed by this js
 
 loginAction();
+//////////////////////////////////
 
-
-function setUpLoginForm() {
-    let formD = document.getElementById("LOGIN_FORM_D")
-    formD.setAttribute("action", "javascript:onLoginDesktopSubmit()")
-}
-
-
-function fillLoginElement(loginEl, json) {
+function fillLoginElementDesktop(loginEl, json) {
     loginEl.innerHTML = '<ul class="header-cart-wrapitem">'+
     '<li><b>Welcome, '+json[0].name+'!</b></li>'+
     '<li>'+json[0].username+'</li>'+
@@ -107,19 +99,56 @@ function fillLoginElement(loginEl, json) {
 }
 
 
+function fillLoginElementMobile(el, json) {
+    el.innerHTML = '<ul class="header-cart-wrapitem">'+
+    '<li><b>Welcome, '+json[0].name+'!</b></li>'+
+    '<li>'+json[0].username+'</li>'+
+    '</ul><br>'+
+    '<div class="header-cart-buttons">'+
+        '<div class="header-cart-wrapbtn">'+
+                '<!-- Button -->'+
+                '<button id="LOGOUT_BTN_M" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
+                    'Logout'+
+                '</button>'+
+            '</div>'+
+
+            '<div class="header-cart-wrapbtn">'+
+                '<!-- Button -->'+
+                '<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
+                    'User Profile'+
+                '</a>'+
+            '</div>'+
+        '</div>'+
+    '</div>'
+}
+
+
 
 function assignBtns() {
     
     let logoutBtn = document.getElementById("LOGOUT_BTN")
-    console.log(logoutBtn)
     logoutBtn.onclick = function() {
+        logout()
+    }
+    let logoutBtnM = document.getElementById("LOGOUT_BTN_M")
+    logoutBtnM.onclick = function() {
         logout()
     }
 }
 
 
+
+//BUTTON FUNCTIONS /////////////////////////////////////////////
+
+
 function onLoginDesktopSubmit() {
     let uname = document.getElementById("unameD")
     let pwd = document.getElementById("pwdD")
+    login(uname.value, pwd.value)
+}
+
+function onLoginMobileSubmit() {
+    let uname = document.getElementById("unameM")
+    let pwd = document.getElementById("pwdM")
     login(uname.value, pwd.value)
 }
