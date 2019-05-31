@@ -113,7 +113,7 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 
 						'<div class="header-wrapicon2">'+
 							'<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
-							'<span class="header-icons-noti">'+'0'+'</span>'+
+							'<span id="POP_NUM_ITEMS_D"></span>'+
 							
 							'<!-- Header cart noti -->'+
 							'<div class="header-cart header-dropdown">'+
@@ -202,7 +202,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 
 						'<div class="header-wrapicon2">'+
 							'<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
-							'<span class="header-icons-noti">'+'0'+'</span>'+
+							'<span id="POP_NUM_ITEMS_M"></span>'+
 
 							'<!-- Header cart noti -->'+
 							'<div class="header-cart header-dropdown">'+

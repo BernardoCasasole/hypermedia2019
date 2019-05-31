@@ -22,14 +22,16 @@ const passiveLogin = async () => {
 const passiveCartFill = async () => {
     let cartListD = document.getElementById("CART_LIST_D")
     let cartTotalD = document.getElementById("CART_TOTAL_D")
+    let popNumberD = document.getElementById("POP_NUM_ITEMS_D")
     let cartListM = document.getElementById("CART_LIST_M")
     let cartTotalM = document.getElementById("CART_TOTAL_M")
+    let popNumberM = document.getElementById("POP_NUM_ITEMS_M")
 
     let cartContent = await fetch("v2/cart")
     cartContent = await cartContent.json()
 
-    fillHeaderCart(cartListD, cartTotalD, cartContent)
-    fillHeaderCart(cartListM, cartTotalM, cartContent)
+    fillHeaderCart(cartListD, cartTotalD, popNumberD, cartContent)
+    fillHeaderCart(cartListM, cartTotalM, popNumberM, cartContent)
 }
 
 
@@ -156,19 +158,23 @@ function assignBtns() {
 }
 
 
-function fillHeaderCart(cartlistEl, carttotalEl, json) {
+function fillHeaderCart(cartlistEl, carttotalEl, popNumberEl, json) {
     //if the json is not empty, fill the cart
     if(json.length > 0) {
 
         let cartlistHtml = ''
         let total = 0.0;
+        let totalElements = 0;
         let currency = json[0].currency;
         for(let i=0; i<json.length; i++) {
             cartlistHtml += htmlCartElementString(json[i])
             total += json[i].price*json[i].qty
+            totalElements += json[i].qty
         }
         cartlistEl.innerHTML = cartlistHtml;
         carttotalEl.innerHTML = "Total: " + total.toFixed(2) + ' ' +  currency
+        popNumberEl.setAttribute('class', 'header-icons-noti')
+        popNumberEl.innerText = totalElements
     }//else notify that the cart is empty
     else {
         cartlistEl.innerHTML = "Your cart is empty"
