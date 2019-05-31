@@ -12,7 +12,7 @@ exports.up = function(knex, Promise) {
         table.increments('id');
         table.text('title').notNullable();
         table.integer('author');//.references('id').inTable('authors');
-        table.integer('qty').notNullable();
+        table.integer('stockQty').notNullable();
         table.integer('soldQty').notNullable().defaultTo(0);
         table.float('price').notNullable();
         table.string('currency').notNullable();
@@ -51,9 +51,10 @@ exports.up = function(knex, Promise) {
   
     
     .createTable('carts', function(table) {
-        table.integer('user_id').references('id').inTable('users').unique();
-        table.float('total');
-        table.json('content');
+        table.integer('user_id').references('id').inTable('users')
+        table.integer('book_id').references('id').inTable('books')
+        table.unique(['user_id', 'book_id']);
+        table.integer('qty');
     })
 
     .createTable('sales', function(table) {

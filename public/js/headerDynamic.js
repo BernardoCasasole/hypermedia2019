@@ -136,6 +136,25 @@ function assignBtns() {
     }
 }
 
+//get an html part of the dynamic cart for a single element
+function htmlCartElementString(element) {
+    return '<li class="header-cart-item">'+
+        '<div class="header-cart-item-img">'+
+            '<img src="images/cart/item-2.jpg" alt="IMG">'+
+        '</div>'+
+
+        '<div class="header-cart-item-txt">'+
+            '<a href="#" class="header-cart-item-name">'+
+                'The Old Man and the Sea'+
+            '</a>'+
+
+            '<span class="header-cart-item-info">'+
+                '1 x $19.00'+
+            '</span>'+
+        '</div>'+
+    '</li>'
+}
+
 
 
 //BUTTON FUNCTIONS /////////////////////////////////////////////

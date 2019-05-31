@@ -22,9 +22,11 @@ exports.cartsDbSetup = function(database) {
  * returns Cart
  **/
 exports.cartGET = function(userId) {
-  return db.select()
+  return db
   .from('carts')
   .where('user_id', userId)
+  .join('books', 'carts.book_id', '=', 'books.id')
+  .select('id', 'qty', 'title', 'price', 'currency')
 }
 
 exports.cartAddBook = function(userId, bookId, bookQty) {
