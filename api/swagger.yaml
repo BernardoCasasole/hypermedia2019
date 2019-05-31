@@ -627,14 +627,11 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
-        in: "formData"
+      - in: "body"
+        name: "body"
         required: true
-        type: "string"
-      - name: "password"
-        in: "formData"
-        required: true
-        type: "string"
+        schema:
+          $ref: "#/definitions/User"
       responses:
         200:
           description: "succesfull login"

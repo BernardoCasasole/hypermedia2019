@@ -46,8 +46,8 @@ exports.getUser = function(user_id) {
 exports.userLoginPOST = function(username,password) {
   return db.select()
   .from('users')
-  .where('name', username)
-  .where('password', password)
+  .where('username', username)
+  .andWhere('password', password)
 }
 
 

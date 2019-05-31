@@ -7,7 +7,6 @@ let cookie = require('../utils/cookie.js');
 module.exports.getUser = function getUser (req, res, next) {
   let user_id = req.session[cookie.uid];
   if(user_id === undefined) {
-    console.log("user_id undefined, setting it to 0")
     user_id = 0
   } //no user with id=0 exists, so will return a empty json
 
@@ -27,32 +26,41 @@ module.exports.getUser = function getUser (req, res, next) {
  * Being not security a concern according to the documentation of the project, the problem was not treated
  */
 module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
-  let username = req.swagger.params['username'].value;
-  let password = req.swagger.params['password'].value;
+  let body = req.swagger.params['body'].value;
+  let username = body.username;
+  let password = body.password;
+  console.log("LoginPost: " + username + ", " + password)
 
+  //find the user with specified credentials
   User.userLoginPOST(username,password)
     .then(function (response) {
+      let finalRes = {success:false}
       //if response is undefined, answer with a json conainting success = false
       if(response[0] === undefined) {
-        response = [{success:false}]
+        console.log("undefined response, no success")
+        finalRes = {success:false, error:"Username or password wrong"}
       }
       //else return the user plus the success value set to true
       else {
+        console.log("user found, ok")
         //save the user id in the cookie if has logged in successfully
         req.session[cookie.uid] = response[0].id;
-        response[0].success = true;
+        finalRes = {success:true}
       }
-      utils.writeJson(res, response);
+      utils.writeJson(res, finalRes);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      let finalRes = {success:false}
+      utils.writeJson(res, finalRes);
     });
 };
+
 
 //user logout, remove the cookie
 module.exports.userLogoutPOST = function userLogoutPOST (req, res, next) {
   //set the cookie to undefined to logout the user, whenever he was logged or not
-  response = {success:true}
+  req.session[cookie.uid] = undefined;
+  let response = {success:true}
   utils.writeJson(res, response);
 }
 

@@ -70,21 +70,23 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 							
 							'<!-- Header cart noti- login -->'+
 							'<div class="header-cart header-dropdown" id="HEADER_LOGIN">'+
-								'<ul class="header-cart-wrapitem">'+
-									'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
-								     '<input type="text" placeholder="Enter Username" name="uname" required>'+
-								     '<br/>'+
+								'<form id="LOGIN_FORM_D" action="#">'+
+									'<ul class="header-cart-wrapitem">'+
+										'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
+										'<input type="text" placeholder="Enter Username" name="uname" id="unameD" required>'+
+										'<br/>'+
 
-								     '<label for="psw">'+'<b>'+'Password'+'</b>'+'</label>'+
-								     '<input type="password" placeholder="Enter Password" name="psw" required>'+
-								'</ul>'+
-
+										'<label for="pwd">'+'<b>'+'Password'+'</b>'+'</label>'+
+										'<input type="password" placeholder="Enter Password" name="pwd" id="pwdD" required>'+
+									'</ul>'+
+								
 								
 									'<div class="header-cart-buttons">'+
 										'<div class="header-cart-wrapbtn">'+
 											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
 										'</div>'+
 									'</div>'+
+									'</form>'+
 									'<br/>'+
 								
 
@@ -208,18 +210,19 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 							
 							'<!-- Header cart noti- login -->'+
 							'<div class="header-cart header-dropdown">'+
-								'<ul class="header-cart-wrapitem">'+
-									
-								     '<input type="text" placeholder="Enter Username" name="uname" required>'+
-								     '<br/>'+
-								     '<br/>'+
-								     
+								'<form action="javascript:OnLoginSubmit()>'+
+									'<ul class="header-cart-wrapitem">'+
+										
+										'<input type="text" placeholder="Enter Username" id="uname" name="uname" required>'+
+										'<br/>'+
+										'<br/>'+
+										
 
-								     
-								     '<input type="password" placeholder="Enter Password" name="psw" required>'+
+										
+										'<input type="password" placeholder="Enter Password" id= "pwd" name="pwd" required>'+
 
-								'</ul>'+
-
+									'</ul>'+
+								'</form>'+
 								
 									'<div class="header-cart-buttons">'+
 										'<div class="header-cart-wrapbtn">'+
