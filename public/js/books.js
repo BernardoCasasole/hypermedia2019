@@ -7,7 +7,7 @@ let genrePath = "../../v2/books/byGenre/"
 
 
 
-const userAction = async () => {
+const fillBooksPage = async () => {
   let args = getURLArgs();
   if(args.theme !== undefined){
     let response = await fetch(themePath+args.theme+'');
@@ -73,8 +73,11 @@ const userAction = async () => {
         loadData(booksJson);
     }
 }
+//JS ACTIONS/////////////////////////////
 
-userAction();
+fillBooksPage();
+
+//OTHER FUNCTIONS ///////////////////////////////
 
 function loadData(json) {
     let books = "";
@@ -109,7 +112,6 @@ function loadData(json) {
                 '</div>'+
             '</div>';
     }
-
     document.getElementById("BOOKS").innerHTML = books;
 }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Books - booky</title>
+	<title>Product</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -42,13 +42,13 @@
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/cart-slide1.jpg);">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-color: #a3a375;">
 		<h2 class="l-text2 t-center">
-			BOOKS
+			Search results
 		</h2>
 		<a href="bestsellers.html">
-			<p class="m-text13 t-center" id="BOOK_LIST_CAPTION">
-				 Best Seller 2019
+			<p class="m-text13 t-center">
+                
 			</p>
 		</a>
 	</section>
@@ -57,123 +57,21 @@
 	<!-- Content page -->
 	<section class="bgwhite p-t-55 p-b-65">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">
-						<!--  -->
-						<h4 class="m-text14 p-b-7">
-							Genres
-						</h4>
-							
-						<ul class="p-b-54">
-							<li class="p-t-4">
-								<a href="books.html" class="s-text13 active1">
-									All
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?genre=biography" class="s-text13">
-									Biography
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?genre=fantasy" class="s-text13">
-									Fantasy
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?genre=travel" class="s-text13">
-									Travel
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?genre=geopolitical" class="s-text13">
-									Geopolitical
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?genre=finance" class="s-text13">
-									Finance
-								</a>
-							</li>
-						</ul>
-
-						<h4 class="m-text14 p-b-7">
-							Themes
-						</h4>
-						<ul class="p-b-54">
-							<li class="p-t-4">
-								<a href="books.html" class="s-text13 active1">
-									All
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?theme=war" class="s-text13">
-									War
-								</a>
-							</li>
-							
-							<li class="p-t-4">
-								<a href="books.html?theme=nature" class="s-text13">
-									Nature
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?theme=friendship" class="s-text13">
-									Friendship
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?theme=courage" class="s-text13">
-									Courage
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="books.html?theme=economy" class="s-text13">
-									Economy
-								</a>
-							</li>
-							<li class="p-t-4">
-								<a href="books.html?theme=death" class="s-text13">
-									Death
-								</a>
-							</li>
-							<li class="p-t-4">
-								<a href="books.html?theme=love" class="s-text13">
-									Love
-								</a>
-							</li>
-							<li class="p-t-4">
-								<a href="books.html?theme=lifestyle" class="s-text13">
-									Lifestyle
-								</a>
-							</li>
-						</ul>
-
-						<!--  -->
-
-					</div>
-				</div>
 
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!--  -->
 
-					<!-- Product -->
-					<div class="row" id = "BOOKS">
-						
+                    <!-- Product -->
+                    <h3 class="l-text2 t-center" style="color:#000000" id = "BOOKS_H3"></h3>
+                    <div class="row" id = "BOOKS"></div>
 
-					</div>	
+                    <h3 class="l-text2 t-center" style="color:#000000" id="EVENTS_H3"></h3>
+                    <div class="row" id = "EVENTS"></div>	
+
+                    <h3 class="l-text2 t-center" style="color:#000000" id="AUTHORS_H3"></h3>
+                    <div class="row" id = "AUTHORS"></div>
+                    
 				</div>
-			</div>
 
 		</div>
 	</section>
@@ -197,7 +95,7 @@
 	<div id="dropDownSelect2"></div>
 
 	<script type="text/javascript" src="js/header_footer.js"></script>
-	<script type="text/javascript" src="js/books.js"></script>
+	<script type="text/javascript" src="js/search.js"></script>
 <!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->

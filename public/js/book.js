@@ -26,7 +26,6 @@ const userAction = async () => {
       writeErrorPage();
       return;
   }
-  console.log('retrieving ../../v2/author/'+bookJson[0].author+'')
 
   response = await fetch('../../v2/author/'+bookJson[0].author+'');
   let authorJson = await response.json();
@@ -36,7 +35,39 @@ const userAction = async () => {
   loadData(bookJson, authorJson);
 }
 
+const postAddToCart = async (bookId) => {
+  let qty = document.getElementById("BOOK_QTY").value
+  console.log("clicked add to cart button, with id: "+bookId+", qty: "+qty)
+  let details = {
+    'bookId': bookId,
+    'qty' : qty,
+  };
+
+let formBody = [];
+for (var property in details) {
+  let encodedKey = encodeURIComponent(property);
+  let encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+let ans = await fetch(cartPath+'addBook/'+bookId, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
+  body: formBody
+})
+
+  updateDynamicCart()
+}
+
+
+//CODE EXECUTED BY THIS JS //////////////////////////////////////
 userAction();
+
+
+//OTHER FUNCTIONS ///////////////////////////////////////// 
 
 function loadData(json, authorJson) {
   bookId = json[0].id
@@ -104,7 +135,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 
@@ -119,27 +149,3 @@ function writeErrorPage() {
 }
 
 
-function postAddToCart(bookId) {
-  let qty = document.getElementById("BOOK_QTY").value
-  console.log("clicked add to cart button, with id: "+bookId+", qty: "+qty)
-  let details = {
-    'bookId': bookId,
-    'qty' : qty,
-  };
-
-let formBody = [];
-for (var property in details) {
-  let encodedKey = encodeURIComponent(property);
-  let encodedValue = encodeURIComponent(details[property]);
-  formBody.push(encodedKey + "=" + encodedValue);
-}
-formBody = formBody.join("&");
-
-fetch(cartPath+'addBook/'+bookId, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-  },
-  body: formBody
-})
-}

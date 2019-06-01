@@ -41,24 +41,23 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 
 							'<!-- Header cart noti -->'+
 							'<div class="header-cart header-dropdown">'+
-								
+								'<form action="javascript:onSearchEnterDesktop()">'+
 								'<ul class="header-cart-wrapitem">'+
 									'<div class="search-product pos-relative bo11 of-hidden">'+
-										'<input class="s-text7 size16 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">'+
+										'<input class="s-text7 size16 p-l-23 p-r-50" type="text" id="SEARCH_LABEL_D" name="search-product" placeholder="Search in Booky...">'+
 										'<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">'+
 											'<i class="fs-12 fa fa-search" aria-hidden="true">'+'</i>'+
-										'</button>'+										
+										'</button>'+	
+									'</div>'+									
 									'<div class="flex-w">'+
 										'<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">'+
-											'<select class="selection-2" name="sorting">'+
-												'<option>'+'Default search'+'</option>'+
-												'<option>'+'Search in authors'+'</option>'+
-												'<option>'+'Search in events'+'</option>'+
-												'<option>'+'Search in books'+'</option>'+
-											'</select>'+
+											'<div class="wrap_menu">Search for...</div>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_BOOK_D" checked>Books</input><br>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_AUTHOR_D" checked>Authors</input><br>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_EVENT_D" checked>Events</input><br>'+
 										'</div>'+
 									'</div>'+						
-								'</ul>'+
+								'</ul></form>'+
 							'</div>'+						
 						'</div>'+
 
