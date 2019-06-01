@@ -32,7 +32,7 @@ exports.up = function(knex, Promise) {
     .createTable('events', function(table) {
         table.increments('eid');
         table.integer('author');
-        table.string('eventName').notNullable();
+        table.string('eventname').notNullable();
         table.integer('presentedBook').references('id').inTable('books');
         table.date('date');
         table.text('details');

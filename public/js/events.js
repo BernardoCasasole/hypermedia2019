@@ -60,7 +60,7 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                             '<div class="item-blog-txt p-t-33">'+
                                 '<h4 class="p-b-11">'+
                                     '<a href="event.html?id='+json[i].eid+'" class="m-text24">'+
-                                        json[i].eventName +
+                                        json[i].eventname +
                                     '</a>'+
                                 '</h4>'+
                             
@@ -118,7 +118,7 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
 
             '<div class="w-size23 p-t-5">'+
                 '<a href="event.html?id='+ eventOfMonthJson[i].id +'" class="s-text20">'+
-                eventOfMonthJson[i].eventName +
+                eventOfMonthJson[i].eventname +
                 '</a>'+
                 '<br>'+
                 '<span class="dis-block s-text17 p-t-6">'+

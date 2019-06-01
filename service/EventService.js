@@ -103,7 +103,7 @@ exports.findEventsByName = function(eventName, offset, limit) {
   eventName = "'%"+eventName+"%'"
   return db.select()
   .from('events')
-  .whereRaw("lower(eventName) like " + eventName)
+  .whereRaw("lower(eventname) like " + eventName)
   .limit(limit)
   .offset(offset);
 }
