@@ -246,3 +246,30 @@ function onSearchEnterDesktop() {
     window.location.href = nextUrl
 
 }
+
+function onSearchEnterMobile() {
+    let rsBook = document.getElementById("RADIO_SEARCH_BOOK_M")
+    let rsAuthor = document.getElementById("RADIO_SEARCH_AUTHOR_M")
+    let rsEvent = document.getElementById("RADIO_SEARCH_EVENT_M")
+    let stringSearched = document.getElementById("SEARCH_LABEL_M").value
+    if(stringSearched === undefined || stringSearched.length===0) 
+        stringSearched = '*'
+
+    let nextUrl = '/search.html?search='+stringSearched
+
+    //if all checkbox are off, actually search for everything
+    if(rsBook.checked === false && rsAuthor.checked === false && rsEvent.checked===false) {
+        nextUrl += '&books=true&authors=true&events=true'
+    } else {//else build the normal string
+        if(rsBook.checked === true) 
+            nextUrl+='&books=true'
+        if(rsAuthor.checked===true)
+            nextUrl+='&authors=true'
+        if(rsEvent.checked===true)
+            nextUrl+='&events=true'
+    }
+
+    window.location.href = nextUrl
+
+}
+

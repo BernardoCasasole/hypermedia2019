@@ -152,7 +152,32 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 				'<!-- Button show menu -->'+
 				'<div class="btn-show-menu">'+
 					'<!-- Header Icon mobile -->'+
-					'<div class="header-icons-mobile">'+
+					'<div class="header-icons-mobile" id="HEADER_ICONS_MOBILE">'+
+						'<div class="header-wrapicon2">'+
+							'<img src="images/icons/icon-magnifier.png"  class="header-icon1 js-show-header-dropdown" alt="ICON">'+
+
+							'<!-- Header cart noti -->'+
+							'<div class="header-cart header-dropdown">'+
+								'<form action="javascript:onSearchEnterMobile()">'+
+								'<ul class="header-cart-wrapitem">'+
+									'<div class="search-product pos-relative bo11 of-hidden">'+
+										'<input class="s-text7 size16 p-l-23 p-r-50" type="text" id="SEARCH_LABEL_M" name="search-product" placeholder="Search in Booky...">'+
+										'<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">'+
+											'<i class="fs-12 fa fa-search" aria-hidden="true">'+'</i>'+
+										'</button>'+	
+									'</div>'+									
+									'<div class="flex-w">'+
+										'<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">'+
+											'<div class="wrap_menu">Search for...</div>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_BOOK_M" checked>Books</input><br>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_AUTHOR_M" checked>Authors</input><br>'+
+											'<input type="checkbox" class="selection-2" id="RADIO_SEARCH_EVENT_M" checked>Events</input><br>'+
+										'</div>'+
+									'</div>'+						
+								'</ul></form>'+
+							'</div>'+						
+						'</div>'+
+						'<span class="linedivide2"></span>'+
 						'<div class="header-wrapicon2">'+
 							'<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
 							

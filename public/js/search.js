@@ -1,7 +1,7 @@
 let bookPath = "../../v2/books/"
 let imgPath = "../images/books/"
 
-
+let noResultRemoved = false;
 
 
 
@@ -149,10 +149,9 @@ function loadBookData(json) {
     }
     //if there were results, write them
     if(json.length > 0) {
+        removeNoResultDiv()
         document.getElementById("BOOKS_H3").innerText = "Results in books:"
         document.getElementById("BOOKS").innerHTML = books;
-    } else { //else notify user
-        document.getElementById("BOOKS").innerHTML = "No results in books.";
     }
 }
 
@@ -186,10 +185,9 @@ function loadEventData(json) {
     }
     //if there were results, write them
     if(json.length > 0) {
+        removeNoResultDiv()
         document.getElementById("EVENTS_H3").innerText = "Results in events:"
         document.getElementById("EVENTS").innerHTML = events;
-    } else { //else notify user
-        document.getElementById("EVENTS").innerHTML = "No results in events.";
     }
 }
 
@@ -220,10 +218,9 @@ function loadAuthorData(json) {
     }
     //if there were results, write them
     if(json.length > 0) {
+        removeNoResultDiv()
         document.getElementById("AUTHORS_H3").innerText = "Results in authors:"
         document.getElementById("AUTHORS").innerHTML = authors;
-    } else { //else notify user
-        document.getElementById("AUTHORS").innerHTML = "No results in authors.";
     }
 }
 
@@ -260,4 +257,11 @@ function writeErrorPage() {
     a.href = "./"
     document.body.appendChild(document.createElement("br"))
     document.body.appendChild(a)
+}
+
+function removeNoResultDiv() {
+    if(!noResultRemoved) {
+        document.getElementById("NO_RESULTS").remove()
+        noResultRemoved=true
+    }
 }
