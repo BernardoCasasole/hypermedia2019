@@ -174,7 +174,7 @@ function loadEventData(json) {
 
             '<div class="block2-txt p-t-20">'+
                 '<a href="event.html?id='+ json[i].eid +'" class="block2-name dis-block s-text3 p-b-5">'+
-                    json[i].eventName+
+                    json[i].eventname+
                 '</a>'+
                 '<span class="block2-price m-text6 p-r-5">'+
                     json[i].date.substring(0, 10)+
