@@ -26,10 +26,13 @@ exports.eventsGET = function(offset,limit) {
   if( limit === undefined || limit<=0 || limit === NaN) {
     limit = 20
   }
-  return db('events')
+  return db
+    .from('events')
     .limit(limit)
     .offset(offset)
-    .leftJoin('authors', 'events.author', '=', 'authors.id');
+    .leftJoin('authors', 'events.author', '=', 'authors.id')
+    .leftJoin('books', 'events.presentedBook', '=', 'books.id')
+    .select()
 }
 
 
@@ -43,7 +46,9 @@ exports.eventsGET = function(offset,limit) {
 exports.findEventById = function(eventId) {
   return db.select()
   .from('events')
-  .where('id', eventId)
+  .where('eid', eventId)
+  .leftJoin('authors', 'events.author', '=', 'authors.id')
+  .leftJoin('books', 'events.presentedBook', '=', 'books.id')
 }
 
 /**
@@ -57,6 +62,8 @@ exports.findEventByCategory = function(category, limit, offset) {
   return db.select()
   .from('events')
   .where('category', category)
+  .leftJoin('authors', 'events.author', '=', 'authors.id')
+  .leftJoin('books', 'events.presentedBook', '=', 'books.id')
   .limit(limit)
   .offset(offset);
 }
@@ -74,7 +81,8 @@ exports.findEventByMonth = function(month, year, limit, offset) {
   .from('events')
   .whereRaw(`EXTRACT(MONTH FROM date::date) = ?`, [month])
   .andWhereRaw(`EXTRACT(YEAR FROM date::date) = ?`, [year])
-  //.whereBetween('date', [date1, date2])
+  .leftJoin('authors', 'events.author', '=', 'authors.id')
+  .leftJoin('books', 'events.presentedBook', '=', 'books.id')
   .limit(limit)
   .offset(offset);
 }
@@ -90,12 +98,12 @@ exports.findEventByMonth = function(month, year, limit, offset) {
  * eventName String name of event to register in
  * returns Event
  **/
-exports.findEventByName = function(eventName) {
-  let limit = 20;
-  let offset = 0;
+exports.findEventsByName = function(eventName, offset, limit) {
+  eventName = eventName.toLowerCase()
+  eventName = "'%"+eventName+"%'"
   return db.select()
   .from('events')
-  .where('eventName', eventName)
+  .whereRaw("lower(eventName) like " + eventName)
   .limit(limit)
   .offset(offset);
 }

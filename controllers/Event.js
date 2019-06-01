@@ -53,9 +53,13 @@ module.exports.findEventByMonth = function findEventByMonth (req, res, next) {
     });
 };
 
-module.exports.findEventByName = function findEventByName (req, res, next) {
+module.exports.findEventsByName = function findEventsByName (req, res, next) {
   var eventName = req.swagger.params['eventName'].value;
-  Event.findEventByName(eventName)
+  let offset = req.swagger.params['offset'].value || 0;
+  let limit = req.swagger.params['limit'].value || 20;
+  console.log(eventName)
+
+  Event.findEventsByName(eventName, offset, limit)
     .then(function (response) {
       utils.writeJson(res, response);
     })

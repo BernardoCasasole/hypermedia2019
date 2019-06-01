@@ -30,10 +30,10 @@ exports.up = function(knex, Promise) {
     })
 
     .createTable('events', function(table) {
-        table.increments('id');
+        table.increments('eid');
         table.integer('author');
         table.string('eventName').notNullable();
-        table.string('presentedBook');
+        table.integer('presentedBook').references('id').inTable('books');
         table.date('date');
         table.text('details');
         table.integer('subscribers').notNullable().defaultTo(0);

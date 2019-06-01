@@ -163,8 +163,8 @@ function loadEventData(json) {
         events = events + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
         '<div class="block2">'+
             '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
-                '<img src="images/events/event_small-'+ json[i].id +'.jpg" alt="IMG-EVENT">'+
-                '<a href="event.html?id='+json[i].id+'">'+
+                '<img src="images/events/event_small-'+ json[i].eid +'.jpg" alt="IMG-EVENT">'+
+                '<a href="event.html?id='+json[i].eid+'">'+
                 '<div class="block2-overlay trans-0-4>'+
                     '<div class="block2-btn-addcart w-size1 trans-0-4">'+
                     '</div>'+
@@ -173,7 +173,7 @@ function loadEventData(json) {
             '</div>'+
 
             '<div class="block2-txt p-t-20">'+
-                '<a href="event.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                '<a href="event.html?id='+ json[i].eid +'" class="block2-name dis-block s-text3 p-b-5">'+
                     json[i].eventName+
                 '</a>'+
                 '<span class="block2-price m-text6 p-r-5">'+

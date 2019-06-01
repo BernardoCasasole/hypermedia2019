@@ -25,7 +25,7 @@ const userAction = async () => {
 
   response = await fetch('../../v2/author/'+eventJson[0].author+'');
   let authorJson = await response.json();
-  response = await fetch('../../v2/books/'+eventJson[0].author+'');
+  response = await fetch('../../v2/books/'+eventJson[0].id+'');
   let bookJson = await response.json();
   response = await fetch('../../v2/books/sponsored');
   let sponsoredJson = await response.json();
@@ -54,22 +54,22 @@ function loadData(json, authorJson, bookJson, sponsoredJson) {
                                   '</div>' + '<br>'}
   
 
-  document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].id+".png";
+  document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].eid+".png";
   document.getElementById("EVENT_NAME").innerText = json[0].eventName;
   document.getElementById("EVENT_NAME_2").innerText = json[0].eventName;
   document.getElementById("EVENT_DESCRIPTION").innerText = json[0].details;
-  document.getElementById("EVENT_DETAILS").innerHTML = "By" + '<a href="author.html?id='+json[0].id+'">' + '&nbsp;' + authorJson[0].name + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book:" + '<a href="book.html?id='+json[0].id+'">' + '&nbsp;'  + json[0].presentedBook + '&nbsp;' + '</a>' + ' | ' + "Subscribers: " + json[0].subscribers;
+  document.getElementById("EVENT_DETAILS").innerHTML = "By" + '<a href="author.html?id='+json[0].author+'">' + '&nbsp;' + authorJson[0].name + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book:" + '<a href="book.html?id='+json[0].presentedBook+'">' + '&nbsp;'  + json[0].title + '&nbsp;' + '</a>' + ' | ' + "Subscribers: " + json[0].subscribers;
   document.getElementById("BOOK_RELATED").innerHTML = 
 
-            '<a href="../book.html?id='+json[0].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
-              '<img src="../images/books/first-'+json[0].id+'.jpg" alt="IMG-PRODUCT">'+
+            '<a href="../book.html?id='+json[0].presentedBook+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+              '<img src="../images/books/first-'+json[0].presentedBook+'.jpg" alt="IMG-PRODUCT">'+
             '</a>'+
             '<div class="p-t-5">'+
-                '<a href="../book.html?id='+json[0].id+'" class="s-text20">'+
+                '<a href="../book.html?id='+json[0].presentedBook+'" class="s-text20">'+
                     bookJson[0].title +
                 '</a>'+
                 '<br>'+
-                '<a href="../author.html?id='+json[0].id+'" class="s-text22">'+
+                '<a href="../author.html?id='+json[0].author+'" class="s-text22">'+
                     authorJson[0].name +
                 '</a>'+
                 '<span class="dis-block s-text17 p-t-6">'+

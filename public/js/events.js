@@ -7,7 +7,6 @@ let imgPath = "../images/events/"
 
 const userAction = async () => {
     let args = getURLArgs();
-    console.log(args);
     var eventsJson;
   if(args.month !== undefined && args.year !== undefined){
     let response = await fetch(eventsPath+'byMonth/'+args.month+'/'+args.year);
@@ -37,10 +36,11 @@ const userAction = async () => {
  
   loadData(eventsJson, sponsoredJson, eventOfMonthJson);
 }
+//code of this js//////////////////////////////////////////////////
 
 userAction();
 
-
+//other functions ////////////////////////////////////
 
 function loadData(json, sponsoredJson, eventOfMonthJson) {
 
@@ -49,8 +49,8 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
     let events = "";
     for(i=0; i<json.length; i++){
     events =  events + '<div class="item-blog p-b-80">'+
-                            '<a href="event.html?id='+json[i].id+'" class="item-blog-img pos-relative dis-block hov-img-zoom">'+
-                                '<img src="images/events/event_big-'+ json[i].id +'.png" alt="IMG-BLOG">'+
+                            '<a href="event.html?id='+json[i].eid+'" class="item-blog-img pos-relative dis-block hov-img-zoom">'+
+                                '<img src="images/events/event_big-'+ json[i].eid +'.png" alt="IMG-BLOG">'+
                             
                                 '<span class="item-blog-date dis-block flex-c-m pos1 size17 bg4 s-text1">'+
                                     json[i].date.split('T')[0] +
@@ -59,7 +59,7 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                             
                             '<div class="item-blog-txt p-t-33">'+
                                 '<h4 class="p-b-11">'+
-                                    '<a href="event.html?id='+json[i].id+'" class="m-text24">'+
+                                    '<a href="event.html?id='+json[i].eid+'" class="m-text24">'+
                                         json[i].eventName +
                                     '</a>'+
                                 '</h4>'+
@@ -71,7 +71,7 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                                     '</span>'+
                             
                                     '<span>'+
-                                        'Presented Book: <a href="book.html?id='+ json[i].author+'">' + json[i].presentedBook+ '</a>'+
+                                        'Presented Book: <a href="book.html?id='+ json[i].id+'">' + json[i].title+ '</a>'+
                                         '<span class="m-l-3 m-r-6">|</span>'+
                                     '</span>'+
                             
