@@ -36,11 +36,10 @@ const userAction = async () => {
  
   loadData(eventsJson, sponsoredJson, eventOfMonthJson);
 }
-//code of this js//////////////////////////////////////////////////
+
 
 userAction();
 
-//other functions ////////////////////////////////////
 
 function loadData(json, sponsoredJson, eventOfMonthJson) {
 
@@ -112,12 +111,12 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
     for(i=0; i<eventOfMonthJson.length; i++){
         eventOfMonth =  eventOfMonth + 
         '<li class="flex-w p-b-20">'+
-            '<a href="event.html?id='+ eventOfMonthJson[i].id +'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
-                '<img src="images/events/event_small-'+ eventOfMonthJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+            '<a href="event.html?id='+ eventOfMonthJson[i].eid +'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                '<img src="images/events/event_small-'+ eventOfMonthJson[i].eid +'.jpg" alt="IMG-PRODUCT">'+
             '</a>'+
 
             '<div class="w-size23 p-t-5">'+
-                '<a href="event.html?id='+ eventOfMonthJson[i].id +'" class="s-text20">'+
+                '<a href="event.html?id='+ eventOfMonthJson[i].eid +'" class="s-text20">'+
                 eventOfMonthJson[i].eventname +
                 '</a>'+
                 '<br>'+

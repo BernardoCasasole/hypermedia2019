@@ -3,6 +3,12 @@ let imgPath = "../images/books/"
 
 let noResultRemoved = false;
 
+const sponsoredField = async () => {
+    let response = await fetch('../../v2/books/sponsored');
+    let sponsoredJson = await response.json();
+    loadSponsored(sponsoredJson);
+
+}
 
 
 const fillBooksField = async (isGetAll, searchString) => {
@@ -101,6 +107,7 @@ function fillSearchPage() {
         isEventSearched = true
     }
 
+    sponsoredField();
     if(isBookSearched)
         fillBooksField(isGetAll, args.search)
     if(isEventSearched)
@@ -110,6 +117,29 @@ function fillSearchPage() {
 
 }
 
+function loadSponsored(sponsoredJson){
+    let sponsored = "";
+    for(i=0; i<sponsoredJson.length; i++){
+        sponsored =  sponsored + 
+        '<li class="flex-w p-b-20">'+
+            '<a href="book.html?id='+ sponsoredJson[i].id +'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
+                '<img src="images/books/first-'+ sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+            '</a>'+
+
+            '<div class="w-size23 p-t-5">'+
+                '<a href="book.html?id='+ sponsoredJson[i].id +'" class="s-text20">'+
+                sponsoredJson[i].title +
+                '</a>'+
+                '<br>'+
+                '<span class="dis-block s-text17 p-t-6">'+
+                sponsoredJson[i].price.toFixed(2) + ' ' + sponsoredJson[i].currency + 
+                '</span>'+
+            '</div>'+
+        '</li>';
+    }
+
+    document.getElementById("SPONSORED").innerHTML =  sponsored;
+}
 
 function loadBookData(json) {
     let books = "";

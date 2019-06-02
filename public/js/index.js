@@ -1,14 +1,16 @@
 
 
 const userAction = async () => {
-  loadData();
+  response = await fetch('../../v2/books/sponsored');
+  let sponsoredJson = await response.json();
+  loadData(sponsoredJson);
 }
 
 userAction();
 
 
 
-function loadData() {
+function loadData(sponsoredJson) {
 
 var today = new Date();
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -22,6 +24,37 @@ document.getElementById("BEST_SELLERS_OF_MONTH").innerHTML =
 '<a href="books.html?bestsellers&month='+mm+'&year='+yyyy+'" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">'+
     'Best Sellers of the month'+
 '</a>';
+
+let books = "";
+for(i=0; i<sponsoredJson.length; i++){
+    books = books + '<div class="col-sm-3 col-md-3 col-md-3 col-lg-3 p-b-50">'+
+            '<div class="block2">'+
+                '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
+                    '<img src="images/books/first-'+sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+
+                    '<div class="block2-overlay trans-0-4">'+
+                        '<div class="block2-btn-addcart w-size1 trans-0-4">'+
+                            '<!-- Button -->'+
+                            '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+                                'Add to Cart'+
+                            '</button>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+
+                '<div class="block2-txt p-t-20">'+
+                    '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                       sponsoredJson[i].title+
+                    '</a>'+
+
+                    '<span class="block2-price m-text6 p-r-5">'+
+                       sponsoredJson[i].price.toFixed(2) + ' '+sponsoredJson[i].currency +
+                    '</span>'+
+                '</div>'+
+            '</div>'+
+        '</div>';
+    }
+    document.getElementById("SPONSORED").innerHTML = books;
 }
 
 

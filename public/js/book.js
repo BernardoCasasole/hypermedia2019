@@ -3,6 +3,7 @@ let imgPath = "../images/books/"
 let bookHtmlPath = "../book.html"
 let authorHtmlPath = "../author.html"
 let cartPath = "../../v2/cart/"
+let genrePath = "../../v2/books/byGenre/"
 
 let bookId
 
@@ -30,9 +31,11 @@ const userAction = async () => {
   response = await fetch('../../v2/author/'+bookJson[0].author+'');
   let authorJson = await response.json();
 
-
+  response = await fetch(genrePath+bookJson[0].genres+'');
+  let genreJson = await response.json();
+  console.log(genreJson);
   //load the data from json to html file's fields
-  loadData(bookJson, authorJson);
+  loadData(bookJson, authorJson, genreJson);
 }
 
 const postAddToCart = async (bookId) => {
@@ -69,7 +72,39 @@ userAction();
 
 //OTHER FUNCTIONS ///////////////////////////////////////// 
 
-function loadData(json, authorJson) {
+function loadData(json, authorJson,genreJson) {
+  let books = "";
+    for(i=0; i<genreJson.length; i++){
+        if(genreJson[i].id !== json[0].id){
+        books = books + '<div class="col-sm-3 col-md-3 col-md-3 col-lg-3 p-b-50">'+
+                '<div class="block2">'+
+                    '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
+                        '<img src="images/books/first-'+genreJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
+
+                        '<div class="block2-overlay trans-0-4">'+
+                            '<div class="block2-btn-addcart w-size1 trans-0-4">'+
+                                '<!-- Button -->'+
+                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+                                    'Add to Cart'+
+                                '</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+
+                    '<div class="block2-txt p-t-20">'+
+                        '<a href="book.html?id='+genreJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                           genreJson[i].title+
+                        '</a>'+
+
+                        '<span class="block2-price m-text6 p-r-5">'+
+                           genreJson[i].price.toFixed(2) + ' '+genreJson[i].currency +
+                        '</span>'+
+                    '</div>'+
+                '</div>'+
+            '</div>';
+        }
+    }
+
   bookId = json[0].id
   document.getElementById("FIRST").src = imgPath+"first-"+json[0].id+".jpg"
   document.getElementById("SECOND").src = imgPath+"second-"+json[0].id+".jpg"
@@ -98,8 +133,23 @@ function loadData(json, authorJson) {
   if(json[0].theme3 !== null)
     themes += json[0].theme3 
 
+  document.getElementById("BOOK_NAME").innerText = json[0].title;
   document.getElementById("THEMES").innerText = themes;
+  document.getElementById("SIMILAR_BOOKS").innerHTML = books;
+  document.getElementById("BTN_ADDED_SCRIPT").innerText = 
+  '$(\'.block2-btn-addcart\').each(function(){' +
+      'var nameProduct = '+ json[0].title +';'+
+			'$(this).on(\'click\', function(){'+
+				'swal(nameProduct, "is added to cart !", "success");'+
+			'});'+
+		'});'+
 
+		'$(\'.btn-addcart-product-detail\').each(function(){'+
+			'var nameProduct = '+ json[0].title +';'+
+			'$(this).on(\'click\', function(){'+
+				'swal(nameProduct, "is added to cart!", "success");'+
+			'});'+
+		'});';  
   
   document.getElementById("BTN_ADD_TO_CART").onclick = function() {
     postAddToCart(bookId)

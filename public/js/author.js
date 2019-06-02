@@ -32,9 +32,10 @@ const userAction = async () => {
 userAction();
 
 function loadData(json,  booksJson, sponsoredJson) {
+  document.getElementById("AUTHOR_NAME").innerText = json[0].name;
   let books = "";
     for(i=0; i<sponsoredJson.length; i++){
-        books = books + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
+        books = books + '<div class="col-sm-3 col-md-3 col-md-3 col-lg-3 p-b-50">'+
                 '<div class="block2">'+
                     '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
                         '<img src="images/books/first-'+sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+

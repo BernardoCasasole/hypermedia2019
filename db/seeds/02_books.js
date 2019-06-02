@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
         
         {id: 3, title: 'Remarkable Creatures', author: 3, stockQty: 0, soldQty:22, price: 12.10, 
           currency:'€', status: 'out of stock', theme1:'love', theme2:'death', theme3:'war', 
-          genres: 'biography', isSponsored:'false', isbn: '978-3-16-148410-3', reviews: 'User1: Good', 
+          genres: 'fantasy', isSponsored:'true', isbn: '978-3-16-148410-3', reviews: 'User1: Good', 
           description: '“Anyone who tries to make a distinction between education and entertainment doesn’t know the first thing about either.”', caption: 'generic description of the book' },
         
         {id: 4, title: 'The next 100 years', author: 4, stockQty: 250, soldQty:22, price: 38.20, 
@@ -54,7 +54,7 @@ exports.seed = function(knex, Promise) {
       
         {id: 11, title: 'Prisoners of Geography', author: 11, stockQty: 250, soldQty:22, price: 38.20, 
         currency:'€', status: 'available', theme1:'war', theme2:'economy', 
-        genres: 'finance', isSponsored:'true', isbn: '978-3-16-148410-11', reviews: 'User1: Good; User2: Well written', 
+        genres: 'geopolitical', isSponsored:'true', isbn: '978-3-16-148410-11', reviews: 'User1: Good; User2: Well written', 
         description: '“Anyone who tries to make a distinction between education and entertainment doesn’t know the first thing about either.”', caption: 'generic description of the book' },
         
       ]);
