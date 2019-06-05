@@ -7,6 +7,8 @@ let genrePath = "../../v2/books/byGenre/"
 
 let bookId
 
+let title = "This book";
+
 
 const userAction = async () => {
     let args = getURLArgs();
@@ -54,7 +56,7 @@ for (var property in details) {
 }
 formBody = formBody.join("&");
 
-let ans = await fetch(cartPath+'addBook/'+bookId, {
+let ans = await fetch(cartPath+'addBook', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -115,6 +117,7 @@ function loadData(json, authorJson,genreJson) {
   minipic2.src = imgPath+"second-"+json[0].id+".jpg"
 
   document.getElementById("TITLE").innerText = json[0].title;
+  title = json[0].title;
   document.getElementById("TITLE_LINK").setAttribute('href', bookHtmlPath+"?id="+json[0].id)
   document.getElementById("AUTHOR").innerText = authorJson[0].name;
   document.getElementById("AUTHOR_LINK").setAttribute('href', authorHtmlPath+"?id="+json[0].author)
@@ -153,6 +156,7 @@ function loadData(json, authorJson,genreJson) {
   
   document.getElementById("BTN_ADD_TO_CART").onclick = function() {
     postAddToCart(bookId)
+    swal(title, "is added to cart !", "success");
   }
 }
 

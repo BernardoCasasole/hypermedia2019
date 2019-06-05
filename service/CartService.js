@@ -52,3 +52,10 @@ exports.cartCheck = function(userId, bookId) {
   .where('book_id', bookId)
   .andWhere('user_id', userId)
 }
+
+exports.cartDelete = function(userId, bookId) {
+  return db('carts')
+  .where('book_id', bookId)
+  .andWhere('user_id', userId)
+  .del();
+}

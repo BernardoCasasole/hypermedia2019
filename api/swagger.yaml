@@ -631,7 +631,7 @@ paths:
       tags:
       - "user"
       summary: "Login"
-      description: "Login with a form"
+      description: "Login with a form urlencoded: 'username=UNAME&password=PWD'"
       operationId: "userLoginPOST"
       consumes:
       - "application/x-www-form-urlencoded"
@@ -705,7 +705,7 @@ paths:
         404:
           description: "unauthorized"
       x-swagger-router-controller: "Cart"
-  /cart/addBook/{bookId}:
+  /cart/addBook:
     post:
       tags:
       - "cart"
@@ -717,12 +717,31 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "bookId"
-        in: "path"
-        description: "ID of book to add in cart"
+      - in: "body"
+        name: "body"
         required: true
-        type: "integer"
-        format: "int64"
+        schema:
+          $ref: "#/definitions/Cart"
+      responses:
+        200:
+          description: "succesfull addition to cart"
+          schema:
+            $ref: "#/definitions/Cart"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "Cart"
+  /cart/updateQty:
+    post:
+      tags:
+      - "cart"
+      summary: "add a book"
+      description: "add a book to the current user cart"
+      operationId: "cartUpdateQty"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
       - in: "body"
         name: "body"
         required: true

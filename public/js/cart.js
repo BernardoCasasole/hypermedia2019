@@ -18,8 +18,9 @@ const userAction = async () => {
         '<th class="column-1">'+'</th>'+
         '<th class="column-2">'+'Product'+'</th>'+
         '<th class="column-3">'+'Price'+'</th>'+
-        '<th class="column-4">'+'Quantity'+'</th>'+
+        '<th class="column-3">'+'Quantity'+'</th>'+
         '<th class="column-5">'+'Total'+'</th>'+
+        '<th class="column-3">'+'Remove'+'</th>'+
       '</tr>';
     var totalCart = 0;
     for(i=0; i<cartContent.length;i++){
@@ -40,10 +41,11 @@ const userAction = async () => {
                                   '</a>'+
                               '</td>'+
                               '<td class="column-3">'+ cartContent[i].price.toFixed(2) + " "+  cartContent[i].currency + '</td>'+
-                              '<td class="column-4">'+
+                              '<td class="column-3">'+
                                       cartContent[i].qty +
                               '</td>'+
                               '<td class="column-5">'+ totalPrice.toFixed(2) + " "+  cartContent[i].currency +'</td>'+
+                              '<td class="column-3">'+ 'Remove'+'</td>'+
                             '</tr>';
     }
 

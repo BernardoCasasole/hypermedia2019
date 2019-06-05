@@ -56,3 +56,57 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
     utils.writeJson(res, finalRes)
   })
 };
+
+
+module.exports.cartUpdateQty = function cartUpdateQty(req, res, next) {
+  let userId = req.session[cookie.uid];
+  //if user id is undefined, write error and return
+  if(userId === undefined) {
+    utils.writeJson(res, {success:false, error:"User not logged"})
+    return
+  }
+
+  let body = req.swagger.params['body'].value;
+  let bookId = parseInt(body.bookId)
+  let qty = parseInt(body.qty)
+  let finalRes = {success:false}
+
+  //check if the row with book_id and user_id specified already exists
+  Cart.cartCheck(userId, bookId)
+  .then(function(response) {
+    //if does not exists, insert the tuple, if qty is not 0
+    if(response[0]===undefined) {
+      //if qty is 0 do nothing, success is true anyway
+      if(qty === 0) {
+        finalRes.success = true
+        utils.writeJson(res, finalRes)
+      //if qty is not 0, then add the row
+      } else {
+        Cart.cartAddBookAdd(userId, bookId, qty).then(function(r) {
+          finalRes.success = true;
+          utils.writeJson(res, finalRes)
+        })
+      }
+
+    }//if a tuple exists, update it replacing the old qty
+    else {
+      //if qty is 0, update the old tuple
+      if(qty !== 0) {
+        Cart.cartAddBookUpdate(userId, bookId, qty).then(function(r) {
+          finalRes.success = true;
+          utils.writeJson(res, finalRes)
+        })
+      } 
+      //if qty is 0, delete the tuple
+      else {
+        Cart.cartDelete(userId, bookId).then(function(r) {
+          finalRes.success = true;
+          utils.writeJson(res, finalRes)
+        })
+      }
+      
+    }
+  }).catch(function() {
+    utils.writeJson(res, finalRes)
+  })
+}
