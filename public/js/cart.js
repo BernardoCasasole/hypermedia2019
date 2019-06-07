@@ -3,67 +3,69 @@
 const userAction = async () => {
     let cartContent = await fetch("v2/cart")
     cartContent = await cartContent.json()
-    loadData(cartContent);
+    fillPageCart(cartContent);
   }
 
+//code performed ////////////////////////////////////////////
 
+userAction();
   
-  userAction();
-  
-  
-  function loadData(cartContent) {
+//other functions////////////////////////////////////////////
 
-    let cartHtml = '<div class="wrap-table-shopping-cart bgwhite">'+
-    '<div id="TABLE_ROWS">'+
-      '</div>'+'<table class="table-shopping-cart">'+
-      '<tbody>'+'<tr class="table-head">'+
-        '<th class="column-1">'+'</th>'+
-        '<th class="column-2">'+'Product'+'</th>'+
-        '<th class="column-3">'+'Price'+'</th>'+
-        '<th class="column-3">'+'Quantity'+'</th>'+
-        '<th class="column-5">'+'Total'+'</th>'+
-        '<th class="column-3">'+'Remove'+'</th>'+
-      '</tr>';
-    var totalCart = 0;
-    for(i=0; i<cartContent.length;i++){
-      let totalPrice =  cartContent[i].qty*cartContent[i].price;
-      totalCart = totalCart + totalPrice;
-      cartHtml = cartHtml + 
-                            '<tr class="table-row">'+
-                              '<td class="column-1">'+
-                                  '<a href="#">'+
-                                      '<div class="cart-img-product b-rad-4 o-f-hidden">'+
-                                              '<img src="images/books/first-'+ cartContent[i].id +'.jpg" alt="IMG-PRODUCT">'+
-                                      '</div>'+
-                                  '</a>'+
-                              '</td>'+
-                              '<td class="column-2">'+
-                                  '<a href="book.html?id='+ cartContent[i].id +'">'+
-                                      cartContent[i].title +
-                                  '</a>'+
-                              '</td>'+
-                              '<td class="column-3">'+ cartContent[i].price.toFixed(2) + " "+  cartContent[i].currency + '</td>'+
-                              '<td class="column-3">'+
-                                      cartContent[i].qty +
-                              '</td>'+
-                              '<td class="column-5">'+ totalPrice.toFixed(2) + " "+  cartContent[i].currency +'</td>'+
-                              '<td class="column-3">'+ 
-                              '<!-- Button -->'+
-                              '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="alert(\'implement me pls\')">'+
-                                'Remove'+
-                              '</button>'+
-                              '</td>'+
-                            '</tr>';
-    }
 
-    cartHtml = cartHtml + 	'</tbody>'+'</table>'+ '</div>';
+function fillPageCart(cartContent) {
 
-    document.getElementById("TABLE_ROWS").innerHTML = cartHtml;
-    document.getElementById("CART_TOTAL1").innerText = totalCart.toFixed(2) + " €";
-    document.getElementById("CART_TOTAL2").innerText = totalCart.toFixed(2) + " €";
-    document.getElementById("CART_TOTAL3").innerText = totalCart.toFixed(2) + " €";
-      
+  let cartHtml = '<div class="wrap-table-shopping-cart bgwhite">'+
+  '<div id="TABLE_ROWS">'+
+    '</div>'+'<table class="table-shopping-cart">'+
+    '<tbody>'+'<tr class="table-head">'+
+      '<th class="column-1">'+'</th>'+
+      '<th class="column-2">'+'Product'+'</th>'+
+      '<th class="column-3">'+'Price'+'</th>'+
+      '<th class="column-3">'+'Quantity'+'</th>'+
+      '<th class="column-5">'+'Total'+'</th>'+
+      '<th class="column-3">'+'Remove'+'</th>'+
+    '</tr>';
+  var totalCart = 0;
+  for(i=0; i<cartContent.length;i++){
+    let totalPrice =  cartContent[i].qty*cartContent[i].price;
+    totalCart = totalCart + totalPrice;
+    cartHtml = cartHtml + 
+                          '<tr class="table-row booky-fade-out" id="CART_FULL_ROW_'+cartContent[i].id+'">'+
+                            '<td class="column-1">'+
+                                '<a href="#">'+
+                                    '<div class="cart-img-product b-rad-4 o-f-hidden">'+
+                                            '<img src="images/books/first-'+ cartContent[i].id +'.jpg" alt="IMG-PRODUCT">'+
+                                    '</div>'+
+                                '</a>'+
+                            '</td>'+
+                            '<td class="column-2">'+
+                                '<a href="book.html?id='+ cartContent[i].id +'">'+
+                                    cartContent[i].title +
+                                '</a>'+
+                            '</td>'+
+                            '<td class="column-3">'+ cartContent[i].price.toFixed(2) + " "+  cartContent[i].currency + '</td>'+
+                            '<td class="column-3">'+
+                                    cartContent[i].qty +
+                            '</td>'+
+                            '<td class="column-5">'+ totalPrice.toFixed(2) + " "+  cartContent[i].currency +'</td>'+
+                            '<td class="column-3">'+ 
+                            '<!-- Button -->'+
+                            '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="removeCartElement('+cartContent[i].id+')">'+
+                              'Remove'+
+                            '</button>'+
+                            '</td>'+
+                          '</tr>';
   }
+
+  cartHtml = cartHtml + 	'</tbody>'+'</table>'+ '</div>';
+
+  document.getElementById("TABLE_ROWS").innerHTML = cartHtml;
+  document.getElementById("CART_TOTAL1").innerText = totalCart.toFixed(2) + " €";
+  document.getElementById("CART_TOTAL2").innerText = totalCart.toFixed(2) + " €";
+  document.getElementById("CART_TOTAL3").innerText = totalCart.toFixed(2) + " €";
+    
+}
   
   
   //No error checking as now. Parse the url
@@ -114,3 +116,15 @@ const userAction = async () => {
       document.body.appendChild(a)
   }
   
+
+/**
+ * Remove element with id specified from table cart in the cart page
+ * @param {the id of element to remove} id
+ */
+function activeCartRemove(id) {
+  let row = document.getElementById('CART_FULL_ROW_'+id)
+    row.style.opacity = '0'
+    setTimeout(function(){
+      row.remove()
+    }, stdFadeTime);
+}

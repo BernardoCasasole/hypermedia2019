@@ -1,5 +1,6 @@
 //code performed by this js is down the constants functions
 var isLogged = false; //used by other jss
+var stdFadeTime = 500;
 
 //do the passive login and fill the fields to make visible to the user that he's logged 
 const passiveLogin = async () => {
@@ -18,8 +19,10 @@ const passiveLogin = async () => {
     
 }
 
-//do the passive dynamic cart filling
-const passiveCartFill = async () => {
+/**
+ * Update all the carts element in the page (the header ones and if present the cart page one)
+ */
+const updateCart = async () => {
     let cartListD = document.getElementById("CART_LIST_D")
     let cartTotalD = document.getElementById("CART_TOTAL_D")
     let popNumberD = document.getElementById("POP_NUM_ITEMS_D")
@@ -32,6 +35,9 @@ const passiveCartFill = async () => {
 
     fillHeaderCart(cartListD, cartTotalD, popNumberD, cartContent)
     fillHeaderCart(cartListM, cartTotalM, popNumberM, cartContent)
+
+    if(typeof fillPageCart === "function")
+        fillPageCart(cartContent)
 }
 
 
@@ -111,7 +117,7 @@ const removeCartElement = async (bookId) => {
     answer = await answer.json()
     
     if(answer.success === true) {
-        passiveCartFill()
+        cartsRemoveElementAndUpdateCart(bookId)
     } else {
         alert(answer.error+'!')
     }
@@ -121,7 +127,7 @@ const removeCartElement = async (bookId) => {
 //Code performed by this js
 
 passiveLogin();
-passiveCartFill();
+updateCart();
 //////////////////////////////////
 
 //other functions
@@ -216,7 +222,7 @@ function fillHeaderCart(cartlistEl, carttotalEl, popNumberEl, json) {
 
 //get an html part of the dynamic cart for a single cart object
 function htmlCartElementString(cartObject) {
-    return '<li class="header-cart-item">'+
+    return '<li class="header-cart-item booky-fade-out" name="HEADER_CART_ROW_'+cartObject.id+'">'+
         '<div class="header-cart-item-img" onclick="javascript:removeCartElement('+cartObject.id+')">'+
             '<img src="images/cart/item-'+cartObject.id+'.jpg" alt="IMG">'+
         '</div>'+
@@ -231,6 +237,22 @@ function htmlCartElementString(cartObject) {
             '</span>'+
         '</div>'+
     '</li>'
+}
+
+/**
+ * Remove graphically element with id specified from header cart
+ * @param {the id of element to remove} bookId 
+ */
+function headerCartRemove(bookId) {
+    let rows = document.getElementsByName("HEADER_CART_ROW_"+bookId)
+    for(i = 0; i < rows.length; i++) {
+        rows[i].style.opacity = '0'
+    }
+    setTimeout(function(){
+        for(i = 0; i < rows.length; i++) {
+            rows[i].remove();
+        }
+    }, stdFadeTime);
 }
 
 
@@ -251,7 +273,7 @@ function onLoginMobileSubmit() {
 }
 
 var updateDynamicCart = function updateDynamicCart() {
-    passiveCartFill();
+    updateCart();
 }
 
 function onSearchEnterDesktop() {
@@ -303,5 +325,22 @@ function onSearchEnterMobile() {
     }
 
     window.location.href = nextUrl
+
+}
+
+/**
+ * Remove graphically elements from carts, both header and in the page, if exists, then reupdate the carts
+ * @param {The id of the element to be removed} id 
+ */
+function cartsRemoveElementAndUpdateCart(id) {
+    headerCartRemove(id)
+    //in cart page, call also the function to remove item from page
+    if(typeof activeCartRemove === "function") {
+        activeCartRemove(id)
+    }
+
+    setTimeout(function(){
+        updateCart()
+    }, stdFadeTime);
 
 }

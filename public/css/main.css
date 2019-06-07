@@ -2400,3 +2400,8 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 
+.booky-fade-out {
+    opacity: 1;
+    -webkit-transition: opacity 500ms linear;
+    transition: opacity 500ms linear;
+}
