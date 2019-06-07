@@ -38,6 +38,7 @@ function loadData(json, sponsoredJson) {
                                     '<img src="images/authors/author-' + json[i].id + '.jpg" alt="IMG-PRODUCT">'+
 
                                     '<div class="block2-overlay trans-0-4">'+
+                                    '<a class="block2-overlay trans-0-4" href="author.html?id='+json[i].id+'"></a>'+
                                     '</div>'+
                                 '</div>'+
 

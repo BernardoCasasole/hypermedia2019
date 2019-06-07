@@ -73,6 +73,7 @@ userAction();
 //OTHER FUNCTIONS ///////////////////////////////////////// 
 
 function loadData(json, authorJson,genreJson) {
+  document.title = json[0].title + " - Booky"
   let books = "";
     for(i=0; i<genreJson.length; i++){
         if(genreJson[i].id !== json[0].id){

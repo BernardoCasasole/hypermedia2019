@@ -39,6 +39,7 @@ userAction();
 
 
 function loadData(json, authorJson, bookJson, sponsoredJson) {
+  document.title = json[0].eventname + " - Booky"
   let sponsoredHtml = "";
   for(i=0;i<sponsoredJson.length && i<4;i++){
   sponsoredHtml = sponsoredHtml + '<a href="../book.html?id='+sponsoredJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
