@@ -5,6 +5,8 @@ const userAction = async () => {
     cartContent = await cartContent.json()
     loadData(cartContent);
   }
+
+
   
   userAction();
   
@@ -45,7 +47,12 @@ const userAction = async () => {
                                       cartContent[i].qty +
                               '</td>'+
                               '<td class="column-5">'+ totalPrice.toFixed(2) + " "+  cartContent[i].currency +'</td>'+
-                              '<td class="column-3">'+ 'Remove'+'</td>'+
+                              '<td class="column-3">'+ 
+                              '<!-- Button -->'+
+                              '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="alert(\'implement me pls\')">'+
+                                'Remove'+
+                              '</button>'+
+                              '</td>'+
                             '</tr>';
     }
 

@@ -1,5 +1,5 @@
 //code performed by this js is down the constants functions
-
+var isLogged = false; //used by other jss
 
 //do the passive login and fill the fields to make visible to the user that he's logged 
 const passiveLogin = async () => {
@@ -11,7 +11,7 @@ const passiveLogin = async () => {
     if(json[0] === undefined) {
         return
     }
-    
+    isLogged = true;
     fillLoginElementDesktop(loginElD, json);
     fillLoginElementMobile(loginElM, json);
     assignBtns();
@@ -82,6 +82,36 @@ const login = async (uname, pwd) => {
     
     if(answer.success === true) {
         window.location.replace("index.html")
+    } else {
+        alert(answer.error+'!')
+    }
+}
+
+const removeCartElement = async (bookId) => {
+    let details = {
+        'bookId': bookId,
+        'qty': 0
+      };
+    
+    let formBody = [];
+    for (var property in details) {
+      let encodedKey = encodeURIComponent(property);
+      let encodedValue = encodeURIComponent(details[property]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    let answer = await fetch("/v2/cart/updateQty", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: formBody
+    })
+    
+    answer = await answer.json()
+    
+    if(answer.success === true) {
+        passiveCartFill()
     } else {
         alert(answer.error+'!')
     }
@@ -175,21 +205,24 @@ function fillHeaderCart(cartlistEl, carttotalEl, popNumberEl, json) {
         carttotalEl.innerHTML = "Total: " + total.toFixed(2) + ' ' +  currency
         popNumberEl.setAttribute('class', 'header-icons-noti')
         popNumberEl.innerText = totalElements
-    }//else notify that the cart is empty
+    }//else notify that the cart is empty, also remove total and pop up number
     else {
         cartlistEl.innerHTML = "Your cart is empty"
+        popNumberEl.setAttribute('class', '')
+        popNumberEl.innerText = ""
+        carttotalEl.innerHTML = ""
     }
 }
 
 //get an html part of the dynamic cart for a single cart object
 function htmlCartElementString(cartObject) {
     return '<li class="header-cart-item">'+
-        '<div class="header-cart-item-img">'+
+        '<div class="header-cart-item-img" onclick="javascript:removeCartElement('+cartObject.id+')">'+
             '<img src="images/cart/item-'+cartObject.id+'.jpg" alt="IMG">'+
         '</div>'+
 
         '<div class="header-cart-item-txt">'+
-            '<a href="#" class="header-cart-item-name">'+
+            '<a href="book.html?id='+cartObject.id+'" class="header-cart-item-name">'+
                 cartObject.title+
             '</a>'+
 
@@ -272,4 +305,3 @@ function onSearchEnterMobile() {
     window.location.href = nextUrl
 
 }
-

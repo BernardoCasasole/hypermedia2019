@@ -7,6 +7,8 @@ let genrePath = "../../v2/books/byGenre/"
 
 
 
+
+
 const fillBooksPage = async () => {
   let args = getURLArgs();
   if(args.theme !== undefined){
@@ -88,9 +90,10 @@ function loadData(json) {
                         '<img src="images/books/first-'+ json[i].id +'.jpg" alt="IMG-PRODUCT">'+
 
                         '<div class="block2-overlay trans-0-4">'+
+                        '<a class="block2-overlay trans-0-4" href="book.html?id='+json[i].id+'"></a>'+
                             '<div class="block2-btn-addcart w-size1 trans-0-4">'+
                                 '<!-- Button -->'+
-                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="javascript:bookBtnClick('+json[i].id+',\''+json[i].title.toString()+'\')">'+
                                     'Add to Cart'+
                                 '</button>'+
                             '</div>'+
@@ -114,6 +117,42 @@ function loadData(json) {
     }
     document.getElementById("BOOKS").innerHTML = books;
 }
+
+
+function bookBtnClick(btn_id, title) {
+    if(isLogged) {
+        postAddToCart(btn_id, 1)
+        swal(title, "is added to cart !", "success");
+    }
+    else {
+        window.location.href = "../register.html"
+    }
+  }
+
+const postAddToCart = async (bookId, addQty) => {
+    let details = {
+      'bookId': bookId,
+      'qty' : addQty,
+    };
+  
+  let formBody = [];
+  for (var property in details) {
+    let encodedKey = encodeURIComponent(property);
+    let encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+  
+  let ans = await fetch('../../v2/cart/addBook', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    },
+    body: formBody
+  })
+  
+    updateDynamicCart()
+  }
 
 //Function needed to get the arguments contained in the URL
 function getURLArgs() {

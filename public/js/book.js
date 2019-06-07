@@ -40,9 +40,7 @@ const userAction = async () => {
   loadData(bookJson, authorJson, genreJson);
 }
 
-const postAddToCart = async (bookId) => {
-  let qty = document.getElementById("BOOK_QTY").value
-  console.log("clicked add to cart button, with id: "+bookId+", qty: "+qty)
+const postAddToCart = async (bookId, qty) => {
   let details = {
     'bookId': bookId,
     'qty' : qty,
@@ -84,11 +82,12 @@ function loadData(json, authorJson,genreJson) {
                         '<img src="images/books/first-'+genreJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
 
                         '<div class="block2-overlay trans-0-4">'+
+                          '<a class="block2-overlay trans-0-4" href="book.html?id='+genreJson[i].id+'"></a>'+
                             '<div class="block2-btn-addcart w-size1 trans-0-4">'+
-                                '<!-- Button -->'+
-                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
-                                    'Add to Cart'+
-                                '</button>'+
+                              '<!-- Button -->'+
+                              '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="bookBtnClick('+genreJson[i].id+',\''+genreJson[i].title+'\',1)">'+
+                                'Add to Cart'+
+                              '</button>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -139,6 +138,7 @@ function loadData(json, authorJson,genreJson) {
   document.getElementById("BOOK_NAME").innerText = json[0].title;
   document.getElementById("THEMES").innerText = themes;
   document.getElementById("SIMILAR_BOOKS").innerHTML = books;
+  /*
   document.getElementById("BTN_ADDED_SCRIPT").innerText = 
   '$(\'.block2-btn-addcart\').each(function(){' +
       'var nameProduct = '+ json[0].title +';'+
@@ -153,12 +153,24 @@ function loadData(json, authorJson,genreJson) {
 				'swal(nameProduct, "is added to cart!", "success");'+
 			'});'+
 		'});';  
-  
+  */
   document.getElementById("BTN_ADD_TO_CART").onclick = function() {
-    postAddToCart(bookId)
-    swal(title, "is added to cart !", "success");
+    let qty = document.getElementById("BOOK_QTY").value
+    bookBtnClick(bookId, title, qty)
   }
 }
+
+//the function of a button add to cart
+function bookBtnClick(btn_id, title, qty) {
+  if(isLogged) {
+      postAddToCart(btn_id, qty)
+      swal(title, "is added to cart !", "success");
+  }
+  else {
+      window.location.href = "../register.html"
+  }
+}
+
 
 function reviewsParser(reviews) {
   let arrayReviews = reviews.split(";");
