@@ -7,8 +7,8 @@ let uIndex=4;
 
 exports.usersDbSetup = function(database) {
   db = database;
-  console.log("Checking if users table exists...");
   return database.schema.hasTable("users").then(exists => {
+    console.log("Checking if users table exists...");
     if (!exists) {
       console.log("It doesn't!");
     } else {
@@ -62,7 +62,6 @@ exports.userLoginPOST = function(username,password) {
  * no response value expected for this operation
  **/
 exports.userRegisterPOST = function(body) {
-  console.log(body.name + ', '+body.username+', uIndex:'+uIndex)
   return db('users').insert({
     id:uIndex,
     name: body.name,

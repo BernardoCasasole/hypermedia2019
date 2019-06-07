@@ -29,7 +29,6 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
   let body = req.swagger.params['body'].value;
   let username = body.username;
   let password = body.password;
-  console.log("LoginPost: " + username + ", " + password)
 
   //find the user with specified credentials
   User.userLoginPOST(username,password)
@@ -37,12 +36,10 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
       let finalRes = {success:false}
       //if response is undefined, answer with a json conainting success = false
       if(response[0] === undefined) {
-        console.log("undefined response, no success")
         finalRes = {success:false, error:"Username or password wrong"}
       }
       //else return the user plus the success value set to true
       else {
-        console.log("user found, ok")
         //save the user id in the cookie if has logged in successfully
         req.session[cookie.uid] = response[0].id;
         finalRes = {success:true}
@@ -84,14 +81,12 @@ module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
         .then(function(response2) {
           if(response2[0] === undefined) {
             finalRes.error = 'User could not be inserted'
-            console.log(finalRes)
             utils.writeJson(res, finalRes);
           }//else if insert was successful, the answer is complete: set also the cookie and notify success 
           else {
             User.IncrementUIndex()
             req.session[cookie.uid] = response2[0].id
             finalRes.success = true
-            console.log(finalRes)
             utils.writeJson(res, finalRes);
           }
           
@@ -111,7 +106,6 @@ module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
       } else {
         finalRes.error = "Username and Email already in use"
       }
-      console.log(finalRes)
       utils.writeJson(res, finalRes);
     }
 

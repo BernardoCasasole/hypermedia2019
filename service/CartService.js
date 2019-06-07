@@ -5,8 +5,8 @@ let db;
 
 exports.cartsDbSetup = function(database) {
   db = database;
-  console.log("Checking if carts table exists...");
   return database.schema.hasTable("carts").then(exists => {
+    console.log("Checking if carts table exists...");
     if (!exists) {
       console.log("It doesn't!");
     } else {
@@ -31,14 +31,12 @@ exports.cartGET = function(userId) {
 
 //add a row in carts table
 exports.cartAddBookAdd = function(userId, bookId, newBookQty) {
-  console.log("adding a book, new row: uid:"+userId+", bid:"+bookId)
   return db('carts')
     .insert({book_id:bookId, user_id:userId, qty:newBookQty})
 }
 
 //update a row in the cart. the update replaces the old qty
 exports.cartAddBookUpdate = function(userId, bookId, newBookQty) {
-  console.log("updating a row in cart: uid:"+userId+", bid:"+bookId+ ",new Qty:"+newBookQty)
   return db('carts')
   .where('user_id', userId)
   .andWhere('book_id', bookId)

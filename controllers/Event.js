@@ -57,7 +57,6 @@ module.exports.findEventsByName = function findEventsByName (req, res, next) {
   var eventName = req.swagger.params['eventName'].value;
   let offset = req.swagger.params['offset'].value || 0;
   let limit = req.swagger.params['limit'].value || 20;
-  console.log(eventName)
 
   Event.findEventsByName(eventName, offset, limit)
     .then(function (response) {

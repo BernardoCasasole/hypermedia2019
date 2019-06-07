@@ -4,8 +4,8 @@ let db;
 
 exports.eventsDbSetup = function(database) {
   db = database;
-  console.log("Checking if events table exists...");
   return database.schema.hasTable("events").then(exists => {
+    console.log("Checking if events table exists...");
     if (!exists) {
       console.log("It doesn't!");
     } else {

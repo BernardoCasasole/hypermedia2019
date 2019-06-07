@@ -4,8 +4,8 @@ let db;
 
 exports.authorsDbSetup = function(database) {
   db = database;
-  console.log("Checking if authors table exists...");
   return database.schema.hasTable("authors").then(exists => {
+    console.log("Checking if authors table exists...");
     if (!exists) {
       console.log("It doesn't!");
     } else {

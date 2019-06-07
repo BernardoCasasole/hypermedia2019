@@ -31,8 +31,7 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
   let bookId = parseInt(body.bookId)
   let qty = parseInt(body.qty)
   let finalRes = {success:false}
-
-  console.log("adding a book in cart. uid:"+userId+", bid:"+bookId+", qty:"+qty)
+  
 
   //check if the row with book_id and user_id specified already exists
   Cart.cartCheck(userId, bookId)
