@@ -121,7 +121,7 @@ function loadData(json, genreJson) {
   let authorsHtml = '<a href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
   //if author 2 to 4 are not undefined, add them to the authors list of the book
   for(i=2; i<=4; i++) {
-    if(json[0]["author"+i] !== undefined) {
+    if(json[0]["author"+i] !== null) {
       authorsHtml += '<br><a href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
     }
   }

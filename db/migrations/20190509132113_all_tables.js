@@ -63,9 +63,9 @@ exports.up = function(knex, Promise) {
     .createTable('sales', function(table) {
         table.integer('month');
         table.integer('year');
-        table.integer('bookId');
-        table.unique(['month', 'year', 'bookId']);
-        table.integer('totalSold');
+        table.integer('bookid');
+        table.unique(['month', 'year', 'bookid']);
+        table.integer('totalsold');
     })
   
 };

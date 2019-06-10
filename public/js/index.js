@@ -21,7 +21,7 @@ document.getElementById("EVENT_MONTH").innerHTML =
     'All Events this month'+
 '</a>';
 document.getElementById("BEST_SELLERS_OF_MONTH").innerHTML = 
-'<a href="books.html?bestsellers&month='+mm+'&year='+yyyy+'" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">'+
+'<a href="books.html?bestsellers" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">'+
     'Best Sellers of the month'+
 '</a>';
 

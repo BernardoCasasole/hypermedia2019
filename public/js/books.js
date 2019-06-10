@@ -52,6 +52,7 @@ const fillBooksPage = async () => {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
         var currentMonth = mm + '/' + yyyy;
+        console.log('../../v2/books/bySoldCopiesInMonth/'+currentMonth+'?limit=9')
         response = await fetch('../../v2/books/bySoldCopiesInMonth/'+currentMonth+'?limit=9');
         bestsellersJson = await response.json();
     

@@ -199,14 +199,14 @@ exports.getSponsoredBooks = function(offset,limit) {
 
 //get books ordered by sold copies in the specified month (and year)
 exports.getBooksBySoldCopiesInMonth = function(month, year, offset, limit) {
-  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  return db.raw("SELECT b.*, s.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
   "FROM sales as s "+
-  "LEFT JOIN books as b ON s.bookId = b.id " +
+  "LEFT JOIN books as b ON s.bookid = b.id " +
   "LEFT JOIN authors as a1 ON b.author = a1.id " +
   "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
   "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
   "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
   "WHERE s.month = "+month+" AND s.year="+year+" "+
-  "ORDER BY totalSold DESC " +
+  "ORDER BY totalsold DESC " +
   "LIMIT " + limit + " OFFSET " + offset +";")
 }

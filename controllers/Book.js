@@ -12,7 +12,7 @@ module.exports.booksGET = function booksGET (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -23,7 +23,7 @@ module.exports.getBookById = function getBookById (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -38,7 +38,7 @@ module.exports.getBookBySoldCopies = function getBookBySoldCopies (req, res, nex
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -51,7 +51,7 @@ module.exports.getBooksByAuthor = function getBooksByAuthor (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -64,7 +64,7 @@ module.exports.getBooksByGenre = function getBooksByGenre (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -77,7 +77,7 @@ module.exports.getBooksByPublicationDate = function getBooksByPublicationDate (r
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -90,7 +90,7 @@ module.exports.getBooksByTheme = function getBooksByTheme (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -103,7 +103,7 @@ module.exports.getBooksByTitle = function getBooksByTitle (req, res, next) {
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 };
 
@@ -130,6 +130,6 @@ module.exports.getBooksBySoldCopiesInMonth = function getBooksBySoldCopiesInMont
       utils.writeJson(res, response.rows);
     })
     .catch(function (response) {
-      utils.writeJson(res, response.rows);
+      utils.writeJson(res, response);
     });
 }
