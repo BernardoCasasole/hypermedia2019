@@ -60,6 +60,8 @@ exports.seed = function(knex, Promise) {
     {month: 8 ,year: 2019, bookid: 8, totalsold: 42},
     {month: 8 ,year: 2019, bookid: 9, totalsold: 117},
     {month: 8 ,year: 2019, bookid: 10, totalsold: 62},
-    {month: 8 ,year: 2019, bookid: 11, totalsold: 22}
+    {month: 8 ,year: 2019, bookid: 11, totalsold: 22},
+    {month: 8 ,year: 2019, bookid: 12, totalsold: 21},
+    {month: 8 ,year: 2019, bookid: 13, totalsold: 20}
   ]);
 };
