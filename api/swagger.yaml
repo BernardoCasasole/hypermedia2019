@@ -84,7 +84,7 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
-  /book/byTitle/{title}:
+  /books/byTitle/{title}:
     get:
       tags:
       - "book"
