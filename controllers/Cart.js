@@ -23,7 +23,7 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
   let userId = req.session[cookie.uid];
   //if user id is undefined, write error and return
   if(userId === undefined) {
-    utils.writeJson(res, {success:false, error:"User not logged"})
+    utils.writeJson(res, {success:false, error:"User not logged", errorcode:101})
     return
   }
 

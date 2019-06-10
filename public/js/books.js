@@ -24,6 +24,7 @@ const fillBooksPage = async () => {
     }
     loadData(themeJson);
   }else if(args.genre !== undefined){
+    console.log(genrePath+args.genre+'')
     let response = await fetch(genrePath+args.genre+'');
         
     let genreJson = await response.json(); //extract JSON from the http response
@@ -106,9 +107,15 @@ function loadData(json) {
                         '</a>'+
                         '<a href="author.html?id='+ json[i].author +'" class="block2-name dis-block s-text3 p-b-5">'+
                             json[i].name+
-                        '</a>'+
-
-                        '<span class="block2-price m-text6 p-r-5">'+
+                        '</a>'
+        //add the extra authors if any
+        for (j=2; j<=4;j++) {
+          if(json[i]["name"+j] !== null)
+          books += '<a href="author.html?id='+ json[i]["author"+j] +'" class="block2-name dis-block s-text3 p-b-5">'+
+                    json[i]["name"+j]+
+                    '</a>'
+        }
+        books +=        '<span class="block2-price m-text6 p-r-5">'+
                             json[i].price.toFixed(2) + ' '+ json[i].currency +
                         '</span>'+
                     '</div>'+

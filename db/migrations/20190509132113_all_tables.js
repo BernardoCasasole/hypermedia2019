@@ -11,7 +11,10 @@ exports.up = function(knex, Promise) {
     .createTable('books', function(table) {
         table.increments('id');
         table.text('title').notNullable();
-        table.integer('author');//.references('id').inTable('authors');
+        table.integer('author').notNullable().references('id').inTable('authors');
+        table.integer('author2').references('id').inTable('authors');
+        table.integer('author3').references('id').inTable('authors');
+        table.integer('author4').references('id').inTable('authors');
         table.integer('stockQty').notNullable();
         table.integer('soldQty').notNullable().defaultTo(0);
         table.float('price').notNullable();
@@ -22,7 +25,7 @@ exports.up = function(knex, Promise) {
         table.enum('theme2', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
         table.enum('theme3', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
         table.enum('genres', ['all', 'biography', 'fantasy', 'adventure', 'romance', 'travel', 'thriller', 'crime', 'kids', 'geopolitical', 'finance']);
-        table.boolean('isSponsored');
+        table.boolean('issponsored');
         table.text('isbn');
         table.text('description');
         table.text('additional_info');

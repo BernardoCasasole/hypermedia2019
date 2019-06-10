@@ -1,6 +1,8 @@
-let authorPath = "../../v2/author/";
+let authorPath = "../../v2/author/"
 let imgPath = "../images/authors/"
 let booksPath = "../../v2/books/byAuthor/"
+let cartPath = "../../v2/cart/"
+
 
 
 const userAction = async () => {
@@ -29,7 +31,37 @@ const userAction = async () => {
   loadData(authorJson, booksJson, sponsoredJson);
 }
 
+const postAddToCart = async (bookId, qty) => {
+  let details = {
+    'bookId': bookId,
+    'qty' : qty,
+  };
+
+let formBody = [];
+for (var property in details) {
+  let encodedKey = encodeURIComponent(property);
+  let encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+let ans = await fetch(cartPath+'addBook', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  },
+  body: formBody
+})
+
+  updateCart()
+}
+
+//code of this js/////////////////////////////
+
 userAction();
+
+
+//other fuctions////////////////////////////
 
 function loadData(json,  booksJson, sponsoredJson) {
   document.title = json[0].name + " - Booky"
@@ -44,7 +76,7 @@ function loadData(json,  booksJson, sponsoredJson) {
                         '<div class="block2-overlay trans-0-4">'+
                             '<div class="block2-btn-addcart w-size1 trans-0-4">'+
                                 '<!-- Button -->'+
-                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
+                                '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4" onclick="bookBtnClick('+sponsoredJson[i].id+',\''+sponsoredJson[i].title+'\',1)">'+
                                     'Add to Cart'+
                                 '</button>'+
                             '</div>'+
@@ -133,4 +165,19 @@ function writeErrorPage() {
     a.href = "./"
     document.body.appendChild(document.createElement("br"))
     document.body.appendChild(a)
+}
+
+
+//buttons functions
+
+
+//the function of a button add to cart
+function bookBtnClick(btn_id, title, qty) {
+  if(isLogged) {
+      postAddToCart(btn_id, qty)
+      swal(title, "is added to cart !", "success");
+  }
+  else {
+      window.location.href = "../register.html"
+  }
 }

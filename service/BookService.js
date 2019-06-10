@@ -23,10 +23,14 @@ exports.booksDbSetup = function(database) {
  * returns List
  **/
 exports.booksGET = function(offset,limit) {
-  return db('books')
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+    "FROM books as b "+
+    "LEFT JOIN authors as a1 ON b.author = a1.id " +
+    "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+    "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+    "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+    "LIMIT " + limit + " OFFSET " + offset +";")
+
 }
 
 
@@ -38,9 +42,13 @@ exports.booksGET = function(offset,limit) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
-  return db.select()
-  .from('books')
-  .where('id', bookId)
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+    "FROM books as b "+
+    "LEFT JOIN authors as a1 ON b.author = a1.id " +
+    "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+    "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+    "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+    "WHERE b.id = " + bookId)
 }
 
 /**
@@ -52,12 +60,14 @@ exports.getBookById = function(bookId) {
  * returns Book
  **/
 exports.getBookBySoldCopies = function(offset,limit) {
-  return db.select()
-    .from('books')
-    .orderBy('soldQty', 'desc')
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+    "FROM books as b "+
+    "LEFT JOIN authors as a1 ON b.author = a1.id " +
+    "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+    "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+    "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+    "ORDER BY soldQty desc " +
+    "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -71,11 +81,14 @@ exports.getBookBySoldCopies = function(offset,limit) {
  * returns Book
  **/
 exports.getBooksByAuthor = function(author,offset,limit) {
-  return db.select()
-    .from('books')
-    .where('author',author)
-    .limit(limit)
-    .offset(offset)
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE b.author = "+author+" OR b.author2="+author+" OR b.author3="+author+" OR b.author4="+author+" "+
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -89,12 +102,14 @@ exports.getBooksByAuthor = function(author,offset,limit) {
  * returns Book
  **/
 exports.getBooksByGenre = function(genre,offset,limit) {
-  return db.select()
-    .from('books')
-    .where('genres',genre)
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE b.genres = '"+genre+"' "+
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -108,12 +123,14 @@ exports.getBooksByGenre = function(genre,offset,limit) {
  * returns Book
  **/
 exports.getBooksByPublicationDate = function(date,offset,limit) {
-  return db.select()
-    .from('books')
-    .where('publicationDate', date)
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE b.publicationDate = "+date+" "+
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -127,16 +144,14 @@ exports.getBooksByPublicationDate = function(date,offset,limit) {
  * returns Book
  **/
 exports.getBooksByTheme = function(theme,offset,limit) {
-  limit = 5;
-  offset = 0;
-  return db.select()
-    .from('books')
-    .where('theme1',theme)
-    .orWhere('theme2', theme)
-    .orWhere('theme3', theme)
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE b.theme1 = '"+theme+"' OR b.theme2='"+theme+"' OR b.theme3='"+theme+"' "+
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -152,12 +167,14 @@ exports.getBooksByTheme = function(theme,offset,limit) {
 exports.getBooksByTitle = function(title,offset,limit) {
   title = title.toLowerCase()
   title = "'%"+title+"%'"
-  return db.select()
-    .from('books')
-    .whereRaw("lower(title) like " + title)
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE lower(title) like "+title+" "+
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 
@@ -170,23 +187,26 @@ exports.getBooksByTitle = function(title,offset,limit) {
  * returns Book
  **/
 exports.getSponsoredBooks = function(offset,limit) {
-  return db.select()
-    .from('books')
-    .where('isSponsored',true)
-    .limit(limit)
-    .offset(offset)
-    .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM books as b "+
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE b.issponsored " +
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
 //get books ordered by sold copies in the specified month (and year)
 exports.getBooksBySoldCopiesInMonth = function(month, year, offset, limit) {
-  return db.select()
-  .from('sales')
-  .where('month', month)
-  .andWhere('year', year)
-  .orderBy('totalSold', 'desc')
-  .limit(limit)
-  .offset(offset)
-  .leftJoin('books', 'sales.bookId', '=', 'books.id')
-  .leftJoin('authors', 'books.author', '=', 'authors.id')
+  return db.raw("SELECT b.*, a1.name as name, a2.name as name2, a3.name as name3, a4.name as name4 " +
+  "FROM sales as s "+
+  "LEFT JOIN books as b ON s.bookId = b.id " +
+  "LEFT JOIN authors as a1 ON b.author = a1.id " +
+  "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
+  "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
+  "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
+  "WHERE s.month = "+month+" AND s.year="+year+" "+
+  "ORDER BY totalSold DESC " +
+  "LIMIT " + limit + " OFFSET " + offset +";")
 }

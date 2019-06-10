@@ -5,6 +5,8 @@ let authorHtmlPath = "../author.html"
 let cartPath = "../../v2/cart/"
 let genrePath = "../../v2/books/byGenre/"
 
+var isLogged;
+
 let bookId
 
 let title = "This book";
@@ -30,14 +32,11 @@ const userAction = async () => {
       return;
   }
 
-  response = await fetch('../../v2/author/'+bookJson[0].author+'');
-  let authorJson = await response.json();
-
   response = await fetch(genrePath+bookJson[0].genres+'');
   let genreJson = await response.json();
   console.log(genreJson);
   //load the data from json to html file's fields
-  loadData(bookJson, authorJson, genreJson);
+  loadData(bookJson, genreJson);
 }
 
 const postAddToCart = async (bookId, qty) => {
@@ -62,7 +61,7 @@ let ans = await fetch(cartPath+'addBook', {
   body: formBody
 })
 
-  updateDynamicCart()
+  updateCart()
 }
 
 
@@ -72,7 +71,7 @@ userAction();
 
 //OTHER FUNCTIONS ///////////////////////////////////////// 
 
-function loadData(json, authorJson,genreJson) {
+function loadData(json, genreJson) {
   document.title = json[0].title + " - Booky"
   let books = "";
     for(i=0; i<genreJson.length; i++){
@@ -119,8 +118,14 @@ function loadData(json, authorJson,genreJson) {
   document.getElementById("TITLE").innerText = json[0].title;
   title = json[0].title;
   document.getElementById("TITLE_LINK").setAttribute('href', bookHtmlPath+"?id="+json[0].id)
-  document.getElementById("AUTHOR").innerText = authorJson[0].name;
-  document.getElementById("AUTHOR_LINK").setAttribute('href', authorHtmlPath+"?id="+json[0].author)
+  let authorsHtml = '<a href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
+  //if author 2 to 4 are not undefined, add them to the authors list of the book
+  for(i=2; i<=4; i++) {
+    if(json[0]["author"+i] !== undefined) {
+      authorsHtml += '<br><a href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
+    }
+  }
+  document.getElementById("AUTHORS").innerHTML = authorsHtml
   
   document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
   document.getElementById("CAPTION").innerText = json[0].caption
