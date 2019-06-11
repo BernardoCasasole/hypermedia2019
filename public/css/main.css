@@ -549,7 +549,7 @@ iframe {
 ///////////////////////////////////////////////////////////
 */
 .header1 {
-  height: 125px;
+  height: 80px;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -1402,10 +1402,10 @@ li.sale-noti > a {
 }
 
 .item-slick1 {
-  height: 570px;
+  height: 300px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top center;
 }
 
 .arrow-slick1 {
@@ -1489,7 +1489,7 @@ li.sale-noti > a {
   }
 
   .item-slick1 {
-    height: 470px;
+    height: 300px;
   }
 }
 
