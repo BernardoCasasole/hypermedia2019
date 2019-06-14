@@ -66,7 +66,7 @@ exports.getBookBySoldCopies = function(offset,limit) {
     "LEFT JOIN authors as a2 ON b.author2 = a2.id " +
     "LEFT JOIN authors as a3 ON b.author3 = a3.id " +
     "LEFT JOIN authors as a4 ON b.author4 = a4.id " +
-    "ORDER BY soldQty desc " +
+    "ORDER BY soldqty desc " +
     "LIMIT " + limit + " OFFSET " + offset +";")
 }
 
