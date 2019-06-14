@@ -3578,6 +3578,15 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 	height: 100%;
 }
 
+.size25{
+	width: 85%;
+	height: 30px;
+}
+
+.size26{
+	width: 85%;
+	height: 35px;
+}
 /*[ Width Size ]
 ///////////////////////////////////////////////////////////
 */
@@ -3649,6 +3658,10 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 	width: 440px;
 }
 
+.w-size177 {
+	width: 800px;
+}
+
 .w-size18 {
 	max-width: 690px;
 }
@@ -3716,6 +3729,7 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 .bg6 {background-color: #f0f0f0;}
 .bg7 {background-color: #333333;}
 .bg8 {background-color: #e6e6e6;}
+.bg9 {background-color: #696969;}
 
 .bg-img1 {
 	background-repeat: no-repeat;
@@ -3767,6 +3781,11 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 .bo4 {
 	border: 1px solid #e6e6e6;
 	border-radius: 2px;
+}
+
+.bo20 {
+	margin-left: unset;
+    margin-right: auto;
 }
 
 .bo5 {
