@@ -11,9 +11,12 @@ let genrePath = "../../v2/books/byGenre/"
 
 const fillBooksPage = async () => {
   let args = getURLArgs();
+  //selecting books per theme
   if(args.theme !== undefined){
+    
     let response = await fetch(themePath+args.theme+'');
-        
+    //loading subtitle of the page
+    loadSubtitle("Theme: "+args.theme)
     let themeJson = await response.json(); //extract JSON from the http response
 
     //if the id is valid but does not exist a book with that id return error 404 page
@@ -23,8 +26,9 @@ const fillBooksPage = async () => {
         return;
     }
     loadData(themeJson);
+    //selecting books by genre
   }else if(args.genre !== undefined){
-    console.log(genrePath+args.genre+'')
+    loadSubtitle("Genre: "+args.genre)
     let response = await fetch(genrePath+args.genre+'');
         
     let genreJson = await response.json(); //extract JSON from the http response
@@ -36,7 +40,9 @@ const fillBooksPage = async () => {
         return;
     }
     loadData(genreJson);
+
     }else if(args.sponsored !== undefined){
+      loadSubtitle("Sposored Books")
         response = await fetch('../../v2/books/sponsored');
         sponsoredJson = await response.json();
     
@@ -48,6 +54,7 @@ const fillBooksPage = async () => {
         }
         loadData(sponsoredJson)
     }else if(args.bestsellers !== undefined){
+      loadSubtitle("Best Sellers Of The Month")
         var today = new Date();
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
@@ -63,7 +70,20 @@ const fillBooksPage = async () => {
             return;
         }
         loadData(bestsellersJson)
-    } else {
+    } else if(args.bestsellersYear !== undefined){
+        loadSubtitle("Best Sellers Of The Year")
+        response = await fetch('../../v2/books/bySoldCopies?limit=9');
+        sponsoredJson = await response.json();
+    
+        //if the id is valid but does not exist a book with that id return error 404 page
+        if(sponsoredJson[0] === undefined) {
+            console.log("no book found!")
+            writeErrorPage();
+            return;
+        }
+        loadData(sponsoredJson)
+    }else {
+        loadSubtitle("All books")
         let response = await fetch(bookPath+'');
         
         let booksJson = await response.json(); //extract JSON from the http response
@@ -80,6 +100,10 @@ const fillBooksPage = async () => {
 //JS ACTIONS/////////////////////////////
 
 fillBooksPage();
+
+function loadSubtitle(title){
+  document.getElementById("SUBTITLE").innerText = title;
+}
 
 //OTHER FUNCTIONS ///////////////////////////////
 
@@ -103,7 +127,7 @@ function loadData(json) {
                     '</div>'+
 
                     '<div class="block2-txt p-t-20">'+
-                        '<a href="book.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                        '<a href="book.html?id='+ json[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                             json[i].title+
                         '</a>'+
                         '<a href="author.html?id='+ json[i].author +'" class="block2-name dis-block s-text3 p-b-5">'+

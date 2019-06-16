@@ -163,7 +163,7 @@ function loadBookData(json) {
                     '</div>'+
 
                     '<div class="block2-txt p-t-20">'+
-                        '<a href="book.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                        '<a href="book.html?id='+ json[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                             json[i].title+
                         '</a>'+
                         '<a href="author.html?id='+ json[i].author +'" class="block2-name dis-block s-text3 p-b-5">'+
@@ -203,7 +203,7 @@ function loadEventData(json) {
             '</div>'+
 
             '<div class="block2-txt p-t-20">'+
-                '<a href="event.html?id='+ json[i].eid +'" class="block2-name dis-block s-text3 p-b-5">'+
+                '<a href="event.html?id='+ json[i].eid +'" class="block2-name dis-block s-text33 p-b-5">'+
                     json[i].eventname+
                 '</a>'+
                 '<span class="block2-price m-text6 p-r-5">'+
@@ -239,7 +239,7 @@ function loadAuthorData(json) {
             '</div>'+
 
             '<div class="block2-txt p-t-20">'+
-                '<a href="author.html?id='+ json[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                '<a href="author.html?id='+ json[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                     json[i].name+
                 '</a>'+
             '</div>'+

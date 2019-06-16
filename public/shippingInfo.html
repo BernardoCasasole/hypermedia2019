@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Cart - Booky</title>
+	<title>Shipping Informations - Booky</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -67,7 +67,10 @@
 
 						<div class="w-size20 w-full-sm">
 							<p class="s-text8 p-b-23">
-								Qualche informazione super interessantissima che nessuno leggerà 
+
+									Place your order online.
+									We do not accept mail orders or purchase orders.
+									We accept Visa, MasterCard, American Express, Discover and PayPal.
 							</p>
 						</div>
 					</div>
@@ -79,7 +82,7 @@
 
 						<div class="w-size20 w-full-sm">
 							<p class="s-text8 p-b-23">
-								Qualche informazione super interessantissima che nessuno leggerà 
+									All orders are processed within 2-3 business days. Orders are not shipped or delivered on weekends or holidays. Plese submit your address to get the costs informations.
 							</p>
 						</div>
 					</div>
@@ -90,7 +93,7 @@
 
 						<div class="w-size20 w-full-sm">
 							<p class="s-text8 p-b-23">
-								Qualche informazione super interessantissima che nessuno leggerà 
+									You can return a product for up to 30 days from the date you purchased it. Any product you return must be in the same condition you received it and in the original packaging. Please keep the receipt.
 							</p>
 						</div>
 					</div>
@@ -102,29 +105,11 @@
 						</span>
 
 						<span class="m-text21 w-size20 w-full-sm">
-							$4.00
+							4.00 €
 						</span>
 					</div>
 
-					<div class="flex-w flex-sb-m p-b-12">
-						<span class="s-text18 w-size19 w-full-sm">
-							Ship to Isles:
-						</span>
-
-						<span class="m-text21 w-size20 w-full-sm">
-							$30.00
-						</span>
-					</div>
-
-					<div class="flex-w flex-sb-m p-b-12">
-						<span class="s-text18 w-size19 w-full-sm">
-							Ship to China:
-						</span>
-
-						<span class="m-text21 w-size20 w-full-sm">
-							$40.00
-						</span>
-					</div>
+					
 					<!--  -->
 
 					
@@ -153,14 +138,15 @@
 							</span>
 
 							<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
-								<select class="selection-2" name="country">
+								<select id="ddlViewBy" class="selection-2" name="country">
 									<option>Select a country...      </option>
 
 									<option>Italy</option>
-									<option>US</option>
 									<option>Europe (no italy)</option>
+									<option>USA</option>
 									<option>UK</option>
 									<option>Japan</option>
+									<option>China</option>
 								</select>
 							</div>
 
@@ -174,7 +160,7 @@
 
 							<div class="size14 trans-0-4 m-b-10">
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<button onclick="myFunction()" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 									Update Totals
 								</button>
 							</div>
@@ -189,7 +175,7 @@
 						</span>
 
 						<span class="m-text21 w-size20 w-full-sm" id = "CART_TOTAL3">
-							$00.00
+							0.00 €
 						</span>
 					</div>
 
@@ -241,6 +227,43 @@
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
+<!--===============================================================================================-->
+
+<script>
+		function myFunction() {
+			var e = document.getElementById("ddlViewBy");
+			var strUser = e.selectedIndex;
+			  console.log(strUser);
+			let total;
+			switch (strUser) {
+				case 1:
+					total = 5
+					break;
+				case 2:
+				total = 10
+					break;
+				case 3:
+				total = 20
+					break;
+				case 4:
+				total = 15
+					break;	
+				case 5:
+				total = 35
+					break;
+				
+				case 6:
+				total = 30
+					break;
+				case 0:
+				total = 0
+					break;			
+			}						
+			document.getElementById("CART_TOTAL3").innerText = total.toFixed(2) + " €"
+			  
+		}
+</script>
+
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<script src="js/headerDynamic.js"></script>

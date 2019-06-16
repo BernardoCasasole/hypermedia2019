@@ -84,7 +84,7 @@ function loadData(json,  booksJson, sponsoredJson) {
                     '</div>'+
 
                     '<div class="block2-txt p-t-20">'+
-                        '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                        '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                            sponsoredJson[i].title+
                         '</a>'+
 

@@ -3036,6 +3036,12 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	line-height: 1.5;
 }
 
+.s-text33 {
+	font-family: Montserrat-Regular;
+	font-size: 23px;
+	color: #555555;
+	line-height: 1.5;
+}
 .s-text4 {
 	font-family: Montserrat-Regular;
 	font-size: 15px;
@@ -3070,6 +3076,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	font-size: 13px;
 	color: #888888;
 	line-height: 1.8;
+}
+
+.s-text88, .s-text88 a {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: #111111;
+	line-height: 1.8;
+	font-weight: bold;
 }
 
 .s-text9 {
@@ -3182,6 +3196,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	color: white;
 	line-height: 1.5;
 	letter-spacing: 2px;
+}
+
+.m-text123 {
+	font-family: Montserrat-Regular;
+	font-size: 18px;
+	color: white;
+	line-height: 1.5;
+	letter-spacing: 3px;
 }
 
 .m-text2 {

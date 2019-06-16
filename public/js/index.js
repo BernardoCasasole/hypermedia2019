@@ -32,18 +32,15 @@ for(i=0; i<sponsoredJson.length; i++){
                 '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
                     '<img src="images/books/first-'+sponsoredJson[i].id +'.jpg" alt="IMG-PRODUCT">'+
 
-                    '<div class="block2-overlay trans-0-4">'+
-                        '<div class="block2-btn-addcart w-size1 trans-0-4">'+
-                            '<!-- Button -->'+
-                            '<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">'+
-                                'Add to Cart'+
-                            '</button>'+
-                        '</div>'+
+                   '<div class="block2-overlay trans-0-4">'+
+                    '<a class="block2-overlay trans-0-4" href="book.html?id='+sponsoredJson[i].id+'"></a>'+
                     '</div>'+
+                   
+
                 '</div>'+
 
                 '<div class="block2-txt p-t-20">'+
-                    '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                    '<a href="book.html?id='+sponsoredJson[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                        sponsoredJson[i].title+
                     '</a>'+
 

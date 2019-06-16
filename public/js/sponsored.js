@@ -1,55 +1,17 @@
-let authorPath = "../../v2/authors/";
-let imgPath = "../images/authors/"
-
-
-
-
+let sponsoredPath = "../../v2/books/sponsored";
 
 const userAction = async () => {
-  let args = getURLArgs();
-    
-  let response = await fetch(authorPath+'');
-  
-  let authorJson = await response.json(); //extract JSON from the http response
-
-  //if the id is valid but does not exist a book with that id return error 404 page
-  if(authorJson[0] === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
-      writeErrorPage();
-      return;
-  }
-  response = await fetch('../../v2/books/sponsored');
+  let  response = await fetch(sponsoredPath);
   let sponsoredJson = await response.json();
 
   //load the data from json to html file's fields
-  loadData(authorJson, sponsoredJson);
+  loadData(sponsoredJson);
 }
 
 userAction();
 
-function loadData(json, sponsoredJson) {
-    let authors = "";
-    for(i=0; i<json.length; i++){
-
-    authors =  authors + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
-                            '<div class="block2">'+
-                            
-                                '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
-                                    '<img src="images/authors/author-' + json[i].id + '.jpg" alt="IMG-PRODUCT">'+
-
-                                    '<div class="block2-overlay trans-0-4">'+
-                                    '<a class="block2-overlay trans-0-4" href="author.html?id='+json[i].id+'"></a>'+
-                                    '</div>'+
-                                '</div>'+
-
-                                '<div class="block2-txt p-t-20">'+
-                                    '<a href="author.html?id='+ json[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
-                                        json[i].name +
-                                    '</a>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>';
-    }
+function loadData(sponsoredJson) {
+    
     let sponsoredHtml = "";
     for(i=0;i<sponsoredJson.length && i<4;i++){
     sponsoredHtml = sponsoredHtml + '<a href="../book.html?id='+sponsoredJson[i].id+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
@@ -63,9 +25,6 @@ function loadData(json, sponsoredJson) {
                                         sponsoredJson[i].price.toFixed(2) + ' ' + sponsoredJson[i].currency  +
                                         '</span>'+
                                     '</div>' + '<br>'}
-    
-    
-    document.getElementById("AUTHORS").innerHTML =  authors;
     document.getElementById("BOOK_SPONSORED").innerHTML = sponsoredHtml;
 }
 

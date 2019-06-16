@@ -28,8 +28,8 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 													
 													'<ul class="toBeCentered header-cart-wrapitem">'+
 													'<hr>'+
-													'<a href="books.html" >'+'All generes'+'</a>'+ '<br>'+
-													'<a href="books.html" >'+'All themes'+'</a>'+ '<br>'+
+													'<a href="genres.html" >'+'All generes'+'</a>'+ '<br>'+
+													'<a href="themes.html" >'+'All themes'+'</a>'+ '<br>'+
 													'<hr>'+
 													'</ul>' +
 											'</div>'+						
@@ -44,6 +44,10 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 
 								'<li>'+
 									'<a href="events.html">'+'Events'+'</a>'+
+								'</li>'+
+
+								'<li>'+
+									'<a href="about.html">'+'About'+'</a>'+
 								'</li>'+
 
 								'<li>'+
@@ -196,9 +200,16 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 							'<div class="header-cart header-dropdown" id="HEADER_LOGIN_M">'+
 								'<form id="LOGIN_FORM_M" action="javascript:onLoginMobileSubmit()">'+
 									'<ul class="header-cart-wrapitem">'+
-										'<input type="text" placeholder="Enter Username" id="unameM" name="uname" required>'+
-										'<br/>'+
-										'<input type="password" placeholder="Enter Password" id= "pwdM" name="pwd" required>'+
+									'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
+									'&nbsp'+ '&nbsp'+
+									'<input type="text" placeholder="Enter Username" name="uname" id="unameD" required>'+
+									'<br/>'+
+									'<br>'+
+									'<label for="pwd">'+'<b>'+'Password'+'</b>'+'</label>'+
+									'&nbsp'+ '&nbsp'+ '&nbsp'+ '&nbsp'+
+									'<input type="password" placeholder="Enter Password" name="pwd" id="pwdD" required>'+
+									'<br>'+
+									'<br>'+
 
 									'</ul>'+
 								
@@ -211,6 +222,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 								'</form>'+
 								'<br/>'+
 								
+								'<hr>'+
 
 								'<div class="header-cart-buttons">'+
 									'<div class="header-cart-wrapbtn">'+
@@ -286,11 +298,23 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
+							'<a href="genres.html">'+ 'All books genres'+'</a>'+ 
+						'</li>'+
+
+						'<li class="item-menu-mobile">'+
+							'<a href="themes.html">'+ 'All books themes'+'</a>'+ 
+						'</li>'+
+
+						'<li class="item-menu-mobile">'+
 							'<a href="authors.html">'+'Authors'+'</a>'+
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
 							'<a href="events.html">'+'Events'+'</a>'+
+						'</li>'+
+
+						'<li class="item-menu-mobile">'+
+							'<a href="about.html">'+'About'+'</a>'+
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
@@ -353,6 +377,11 @@ document.getElementById("FOOTER").innerHTML = '<div class="flex-w p-b-90">'+
 		'<li class="p-b-9">'+
 			'<a href="#" class="s-text7">'+
 				'<a href="shippingInfo.html">'+'Shipping Info'+'</a>'+
+			'</a>'+
+		'</li>'+
+		'<li class="p-b-9">'+
+			'<a href="#" class="s-text7">'+
+				'<a href="about.html">'+'About Us'+'</a>'+
 			'</a>'+
 		'</li>'+
 	'</ul>'+

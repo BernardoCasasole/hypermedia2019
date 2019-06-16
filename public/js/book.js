@@ -93,7 +93,7 @@ function loadData(json, genreJson) {
                     '</div>'+
 
                     '<div class="block2-txt p-t-20">'+
-                        '<a href="book.html?id='+genreJson[i].id +'" class="block2-name dis-block s-text3 p-b-5">'+
+                        '<a href="book.html?id='+genreJson[i].id +'" class="block2-name dis-block s-text33 p-b-5">'+
                            genreJson[i].title+
                         '</a>'+
 
@@ -132,7 +132,7 @@ function loadData(json, genreJson) {
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
   document.getElementById("GENRES").innerText = "Genre: "+ json[0].genres
   document.getElementById("DESCRIPTION").innerText = json[0].description
-  document.getElementById("REVIEWS").innerText = reviewsParser(json[0].reviews)
+  document.getElementById("REVIEWS").innerHTML =reviewsParser(json[0].reviews)
   let themes = ""
   if(json[0].theme1 !== null)
     themes += json[0].theme1 + '\n'
@@ -144,22 +144,7 @@ function loadData(json, genreJson) {
   document.getElementById("BOOK_NAME").innerText = json[0].title;
   document.getElementById("THEMES").innerText = themes;
   document.getElementById("SIMILAR_BOOKS").innerHTML = books;
-  /*
-  document.getElementById("BTN_ADDED_SCRIPT").innerText = 
-  '$(\'.block2-btn-addcart\').each(function(){' +
-      'var nameProduct = '+ json[0].title +';'+
-			'$(this).on(\'click\', function(){'+
-				'swal(nameProduct, "is added to cart !", "success");'+
-			'});'+
-		'});'+
 
-		'$(\'.btn-addcart-product-detail\').each(function(){'+
-			'var nameProduct = '+ json[0].title +';'+
-			'$(this).on(\'click\', function(){'+
-				'swal(nameProduct, "is added to cart!", "success");'+
-			'});'+
-		'});';  
-  */
   document.getElementById("BTN_ADD_TO_CART").onclick = function() {
     let qty = document.getElementById("BOOK_QTY").value
     bookBtnClick(bookId, title, qty)
@@ -179,11 +164,25 @@ function bookBtnClick(btn_id, title, qty) {
 
 
 function reviewsParser(reviews) {
-  let arrayReviews = reviews.split(";");
+  console.log(reviews)
+  let arrayReviews = reviews.split("<");
+  console.log(arrayReviews)
+
   let fixedReviews = ""
-  for(i=0; i<arrayReviews.length; i++){
-    fixedReviews = fixedReviews + '\n' + arrayReviews[i];
-  }
+  for(i=0; i<arrayReviews.length;){
+      fixedReviews = fixedReviews + '<p class="s-text88">' + arrayReviews[i] + '<\p>' + '\n';
+      i = i + 2
+      fixedReviews = fixedReviews + '<p>'
+      for(j=0; j<arrayReviews[i]; j++)
+        fixedReviews = fixedReviews + ' &#9733;'
+      fixedReviews = fixedReviews + '<\p>'  
+      i = i - 1
+      fixedReviews = fixedReviews + '<p class="s-text8">' + arrayReviews[i] + '<\p>' + '\n' 
+
+      i = i + 2 
+      if(i<arrayReviews.length)
+      fixedReviews = fixedReviews + '<hr>'
+    }
   return fixedReviews;
 }
 
