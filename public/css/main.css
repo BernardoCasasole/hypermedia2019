@@ -33,9 +33,25 @@ Title           : 18px/1.6 '', Arial, sans-serif;
 Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
 -------------------------------------------------------------------*/
+/*[ RATING ]
+///////////////////////////////////////////////////////////
+*/
 
-
-
+.rating {
+  font-size: 20px;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  margin-right: auto;
+  width: 2.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
 /*[ FONT ]
 ///////////////////////////////////////////////////////////
 */
