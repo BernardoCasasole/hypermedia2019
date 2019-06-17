@@ -180,7 +180,7 @@ function loadBookData(json) {
     //if there were results, write them
     if(json.length > 0) {
         removeNoResultDiv()
-        document.getElementById("BOOKS_H3").innerText = "Results in books:"
+        document.getElementById("BOOKS_H3").innerText = "Results in books"
         document.getElementById("BOOKS").innerHTML = books;
     }
 }
@@ -216,7 +216,7 @@ function loadEventData(json) {
     //if there were results, write them
     if(json.length > 0) {
         removeNoResultDiv()
-        document.getElementById("EVENTS_H3").innerText = "Results in events:"
+        document.getElementById("EVENTS_H3").innerText = "Results in events"
         document.getElementById("EVENTS").innerHTML = events;
     }
 }
@@ -249,7 +249,7 @@ function loadAuthorData(json) {
     //if there were results, write them
     if(json.length > 0) {
         removeNoResultDiv()
-        document.getElementById("AUTHORS_H3").innerText = "Results in authors:"
+        document.getElementById("AUTHORS_H3").innerText = "Results in authors"
         document.getElementById("AUTHORS").innerHTML = authors;
     }
 }

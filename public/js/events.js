@@ -118,7 +118,7 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                                 '</div>'+
                             
                                 '<p class="p-b-12">'
-                                    +json[i].details +
+                                    +json[i].details1 +
                                 '</p>'+
                             
                                 

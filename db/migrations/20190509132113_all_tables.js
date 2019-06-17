@@ -38,8 +38,9 @@ exports.up = function(knex, Promise) {
         table.string('eventname').notNullable();
         table.integer('presentedBook').references('id').inTable('books');
         table.date('date');
-        table.text('details');
+        table.text('details2');
         table.integer('subscribers').notNullable().defaultTo(0);
+        table.text('details1');
     })
 
     .createTable('users', function(table) {

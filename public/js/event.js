@@ -58,7 +58,8 @@ function loadData(json, authorJson, bookJson, sponsoredJson) {
   document.getElementById("EVENT_IMG").src = imgPath+"event_big-"+json[0].eid+".png";
   document.getElementById("EVENT_NAME").innerText = json[0].eventname;
   document.getElementById("EVENT_NAME_2").innerText = json[0].eventname;
-  document.getElementById("EVENT_DESCRIPTION").innerText = json[0].details;
+  document.getElementById("EVENT_DESCRIPTION1").innerText = json[0].details1;
+  document.getElementById("EVENT_DESCRIPTION2").innerText = json[0].details2;
   document.getElementById("EVENT_DETAILS").innerHTML = "By" + '<a href="author.html?id='+json[0].author+'">' + '&nbsp;' + authorJson[0].name + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book:" + '<a href="book.html?id='+json[0].presentedBook+'">' + '&nbsp;'  + json[0].title + '&nbsp;' + '</a>' + ' | ' + "Subscribers: " + json[0].subscribers;
   document.getElementById("BOOK_RELATED").innerHTML = 
 
