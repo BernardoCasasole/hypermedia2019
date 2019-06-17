@@ -202,12 +202,12 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 									'<ul class="header-cart-wrapitem">'+
 									'<label for="uname">'+'<b>'+'Username'+'</b>'+'</label>'+
 									'&nbsp'+ '&nbsp'+
-									'<input type="text" placeholder="Enter Username" name="uname" id="unameD" required>'+
+									'<input type="text" placeholder="Enter Username" name="uname" id="unameM" required>'+
 									'<br/>'+
 									'<br>'+
 									'<label for="pwd">'+'<b>'+'Password'+'</b>'+'</label>'+
 									'&nbsp'+ '&nbsp'+ '&nbsp'+ '&nbsp'+
-									'<input type="password" placeholder="Enter Password" name="pwd" id="pwdD" required>'+
+									'<input type="password" placeholder="Enter Password" name="pwd" id="pwdM" required>'+
 									'<br>'+
 									'<br>'+
 
