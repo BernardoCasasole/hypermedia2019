@@ -28,7 +28,7 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 													
 													'<ul class="toBeCentered header-cart-wrapitem">'+
 													'<hr>'+
-													'<a href="genres.html" >'+'All generes'+'</a>'+ '<br>'+
+													'<a href="genres.html" >'+'All genres'+'</a>'+ '<br>'+
 													'<a href="themes.html" >'+'All themes'+'</a>'+ '<br>'+
 													'<hr>'+
 													'</ul>' +
