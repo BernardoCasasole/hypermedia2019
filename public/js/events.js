@@ -35,7 +35,7 @@ const userAction = async () => {
   response = await fetch(eventsPath+'byMonth/'+currentMonth);
   let eventOfMonthJson = await response.json();
  
-  loadSubtitle("All events in "+ monthParcer(args.month))
+  loadSubtitle("All Events"+ monthParcer(args.month))
   loadData(eventsJson, sponsoredJson, eventOfMonthJson);
 }
 
@@ -46,31 +46,31 @@ function loadSubtitle(title){
 function monthParcer(month){
     let monthString = "";
     switch (month) {
-        case "1":  monthString = "January";
+        case "1":  monthString = " in January";
                  break;
-        case "2":  monthString = "February";
+        case "2":  monthString = " in February";
                  break;
-        case "3":  monthString = "March";
+        case "3":  monthString = " in March";
                  break;
-        case "4":  monthString = "April";
+        case "4":  monthString = " in April";
                  break;
-        case "5":  monthString = "May";
+        case "5":  monthString = " in May";
                  break;
-        case "6":  monthString = "June";
+        case "6":  monthString = " in June";
                  break;
-        case "7":  monthString = "July";
+        case "7":  monthString = " in July";
                  break;
-        case "8":  monthString = "August";
+        case "8":  monthString = " in August";
                  break;
-        case "9":  monthString = "September";
+        case "9":  monthString = " in September";
                  break;
-        case "10": monthString = "October";
+        case "10": monthString = " in October";
                  break;
-        case "11": monthString = "November";
+        case "11": monthString = " in November";
                  break;
-        case "12": monthString = "December";
+        case "12": monthString = " in December";
                  break;
-        default: monthString = "Invalid month";
+        default: monthString = "";
                  break;
     }
     return monthString;
