@@ -107,3 +107,8 @@ exports.findEventsByName = function(eventName, offset, limit) {
   .limit(limit)
   .offset(offset);
 }
+exports.eventsMonth = function() {
+  return db.distinct('date')
+  .from('events')
+}
+

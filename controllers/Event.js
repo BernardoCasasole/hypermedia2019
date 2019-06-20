@@ -26,6 +26,16 @@ module.exports.findEventById = function findEventById (req, res, next) {
     });
 };
 
+module.exports.eventsMonth = function eventsMonth (req, res, next) {
+  Event.eventsMonth()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.findEventByCategory = function findEventByCategory (req, res, next) {
   let category = req.swagger.params['category'].value;
   let offset = req.swagger.params['offset'].value || 0;

@@ -6,6 +6,10 @@ let imgPath = "../images/events/"
 
 
 const userAction = async () => {
+    response = await fetch(eventsPath+'eventsMonth');
+    let eventsMonthDate = await response.json();
+    console.log(eventsMonthDate);
+     loadEventsFilter(eventsMonthDate);
     let args = getURLArgs();
     var eventsJson;
   if(args.month !== undefined && args.year !== undefined){
@@ -78,6 +82,32 @@ function monthParcer(month){
 
 userAction();
 
+function  loadEventsFilter(eventsMonthDate){
+    console.log(eventsMonthDate[2])
+    var months = [];
+    var j = 0;
+    for(i=0; i<eventsMonthDate.length; i++){
+        var currMonth = parseInt((eventsMonthDate[i]).date.split("-")[1])
+        if(!months.includes(currMonth)){
+            months[j]=currMonth
+            j++
+        }
+    var sortedMonths = months.sort();    
+    }
+    
+    monthsHtml = "";
+    for(i=0; i<sortedMonths.length; i++){
+
+        monthsHtml += '<li class="flex-sb-m">'+
+            '<a href="events.html?month='+sortedMonths[i]+'&year=2019" class="s-text13 p-t-5 p-b-5">'+
+                'Events'+ monthParcer(sortedMonths[i]+'') +
+            '</a>'+
+        '</li>';
+        
+    }
+
+    document.getElementById("LOAD_EVENTS").innerHTML = monthsHtml;
+}
 
 function loadData(json, sponsoredJson, eventOfMonthJson) {
 

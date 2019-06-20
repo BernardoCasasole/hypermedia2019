@@ -393,6 +393,6 @@ document.getElementById("FOOTER").innerHTML = '<div class="flex-w p-b-90">'+
 '<div class="t-center p-l-15 p-r-15">'+
 
 '<div class="t-center s-text8 p-t-20">'+
-	'Copyright © 2019 All rights reserved.'+
+	'Booky © 2019 All rights reserved.'+
 '</div>'+
 '</div>';
