@@ -4,6 +4,7 @@ let bookHtmlPath = "../book.html"
 let authorHtmlPath = "../author.html"
 let cartPath = "../../v2/cart/"
 let genrePath = "../../v2/books/byGenre/"
+let themePath = "../../v2/books/byTheme/"
 
 var isLogged;
 
@@ -34,7 +35,20 @@ const userAction = async () => {
 
   response = await fetch(genrePath+bookJson[0].genres+'');
   let genreJson = await response.json();
-  console.log(genreJson);
+  //if no similar books per genre exists, let's look at the themes
+  if(genreJson.length<2) {
+    response = await fetch(themePath+bookJson[0].theme1+'');
+    genreJson = await response.json();
+  }
+  if(genreJson.length<2) {
+    response = await fetch(themePath+bookJson[0].theme2+'');
+    genreJson = await response.json();
+  }
+  if(genreJson.length<2) {
+    response = await fetch(themePath+bookJson[0].theme3+'');
+    genreJson = await response.json();
+  }
+
   //load the data from json to html file's fields
   loadData(bookJson, genreJson);
 }

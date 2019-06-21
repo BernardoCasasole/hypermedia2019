@@ -110,6 +110,8 @@ function loadSubtitle(title){
 function loadData(json) {
     let books = "";
     for(i=0; i<json.length; i++){
+      //checking if book is available before displaing it
+        if(json[i].status === "available"){
         books = books + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
                 '<div class="block2">'+
                     '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
@@ -147,6 +149,7 @@ function loadData(json) {
                 '</div>'+
             '</div>';
     }
+  }
     document.getElementById("BOOKS").innerHTML = books;
 }
 

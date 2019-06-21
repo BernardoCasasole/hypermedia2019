@@ -13,8 +13,8 @@ exports.seed = function(knex, Promise) {
           description: 'The Old Man and the Sea is a short novel written by the American author Ernest Hemingway in 1951 in Cuba, and published in 1952.  It was the last major work of fiction by Hemingway that was published during his lifetime. ', caption: '  A short novel written by the American author Ernest Hemingway' },
         
         {id: 3, title: 'Remarkable Creatures', author: 3, stockQty: 0, soldqty:45, price: 12.10, 
-          currency:'€', status: 'out of stock', theme1:'love', theme2:'death', theme3:'war', 
-          genres: 'fantasy', issponsored:true, isbn: '978-3-16-148410-3', reviews: 'Elizabeth Morrison< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Flynn Cook< I really liked the book, it is perhaps one of the author\'s best works. The end is particularly interesting. I highly recommend it. < 5 < Rachel Anderson< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 <Flynn Cook< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 ', 
+          currency:'€', status: 'available', theme1:'love', theme2:'death', theme3:'war', 
+          genres: 'fantasy', issponsored:false, isbn: '978-3-16-148410-3', reviews: 'Elizabeth Morrison< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Flynn Cook< I really liked the book, it is perhaps one of the author\'s best works. The end is particularly interesting. I highly recommend it. < 5 < Rachel Anderson< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 <Flynn Cook< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 ', 
           description: 'Is a 2009 historical genre novel by Tracy Chevalier, set between Lyme Regis and London in the early nineteenth century. ', caption: 'Historical figures have rarely been so cleverly used, says Ruth Padel. ' },
         
         {id: 4, title: 'The next 100 years', author: 4, stockQty: 250, soldqty:101, price: 19.20, 
@@ -29,7 +29,7 @@ exports.seed = function(knex, Promise) {
       
         {id: 6, title: 'Sostiene Pereira', author: 6, stockQty: 250, soldqty:921, price: 18.80, 
         currency:'€', status: 'available', theme1:'courage', theme2:'war', 
-        genres: 'biography', issponsored:false, isbn: '978-3-16-148410-6', reviews: 'Kristen Baker< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Flynn Cook< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 <Violet Stevenson< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 ', 
+        genres: 'fiction', issponsored:false, isbn: '978-3-16-148410-6', reviews: 'Kristen Baker< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Flynn Cook< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 <Violet Stevenson< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 ', 
         description: 'The novel is set in Lisbon in 1938, in the midst of the Salazar dictatorial regime. Dr. Pereira is a journalist who has abandoned the crime headings to edit the cultural column of an afternoon newspaper in the city, the Lisboa. A completely mediocre character, he is a quiet man, with no ideas or political positions, devoted only to literature, the French in particular, and to the memory of his wife, who had died a few years of phthisis, to whose portrait he continues to speak every day. Pereira is also cardiopathic, obese and very routine (he dines every day at the Café Orquidea always ordering the same things, omelette and lemonade).', caption: ' A novel by Antonio Tabucchi, published by Feltrinelli in 1994.' },
       
         {id: 7, title: 'Rich Dad Poor Dad', author: 7, stockQty: 250, soldqty:22, price: 29.99, 
@@ -39,7 +39,7 @@ exports.seed = function(knex, Promise) {
       
         {id: 8, title: 'The Testaments', author: 8, stockQty: 250, soldqty:181, price: 22.00, 
         currency:'€', status: 'available',theme1:'courage', 
-        genres: 'biography', issponsored:false, isbn: '978-3-16-148410-8', reviews: 'Rian Tunner< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Rachel Anderson< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 ',
+        genres: 'fiction', issponsored:false, isbn: '978-3-16-148410-8', reviews: 'Rian Tunner< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Rachel Anderson< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 ',
         description: 'The Testaments is a novel by Margaret Atwood, slated for publication in 2019.  A sequel to her 1985 novel The Handmaid\'s Tale,  the novel will take place 15 years after Offred\'s final scene in the original novel, and will be narrated by three female characters.   ', caption: ' The Testaments is a novel by Margaret Atwood, slated for publication in 2019' },
       
         {id: 9, title: 'Girl, Stop Apologizing', author: 9, stockQty: 250, soldqty:611, price: 21.00, 
@@ -49,7 +49,7 @@ exports.seed = function(knex, Promise) {
       
         {id: 10, title: 'Educated', author: 10, stockQty: 250, soldqty:99, price: 26.60, 
         currency:'€', status: 'available', theme1:'courage', theme2:'friendship', theme3:'lifestyle', 
-        genres: 'biography', issponsored:false, isbn: '978-3-16-148410-10', reviews: 'Rian Tunner< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Elizabeth Morrison< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 <Rachel Anderson< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 ', 
+        genres: 'biography', issponsored:true, isbn: '978-3-16-148410-10', reviews: 'Rian Tunner< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Elizabeth Morrison< A good book, one of the best I\'ve read this year. Deep and interesting. I recommend it < 4 <Rachel Anderson< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 ', 
         description: 'In 2018, Penguin Random House published Westover\'s Educated: A Memoir, which tells the story of her struggle to reconcile her desire for education and autonomy with her family\'s rigid ideology. The book was an instant #1 New York Times bestseller, and was positively reviewed by the New York Times ', caption: 'Story of her struggle to reconcile her desire for education and autonomy with her family\'s rigid ideology ' },
       
         {id: 11, title: 'Prisoners of Geography', author: 11, stockQty: 250, soldqty:220, price: 11.99, 
@@ -64,7 +64,7 @@ exports.seed = function(knex, Promise) {
 
         {id:13, title:'Gli ultimi tre giorni di Fernando Pessoa', author: 6, stockQty: 24, soldqty: 49, price: 18.50,
         currency:'€', status: 'available', theme1:'death',
-        genres: 'biography', issponsored:false, isbn: '978-3-16-148410-13', reviews: 'Kristen Baker< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Violet Stevenson< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Elizabeth Morrison< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 ',
+        genres: 'fiction', issponsored:false, isbn: '978-3-16-148410-13', reviews: 'Kristen Baker< A good book, although it is not excellent. A bit slow and not particularly interesting, it is still a pleasant book to read. < 3 <Violet Stevenson< A particularly interesting book, not exactly my kind, but I read it with particular interest. < 4 <Elizabeth Morrison< An appreciable book, not particularly noteworthy but still a pleasant read. It contains innumerable food for thought. I would recommend it. < 3 ',
         description: 'An imaginary biographic novel in which Tabucchi, with tenderness and passion, describes the death of one of the greatest 900\'s writers.', caption: 'Tabucchi\'s book about Pessoa'}
       ]);
 };
