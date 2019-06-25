@@ -282,7 +282,7 @@ paths:
       tags:
       - "book"
       summary: "Get books ordered by num of sold copies in the specified month"
-      description: "Returns books ordered by num of sold copies in the specified month, if there are sales for that month. If there are not, return a standard books list. (To try it, choose dates between 04/2019 and 10/2019)"
+      description: "Returns books ordered by num of sold copies in the specified month, if there are sales for that month. If there are not, return a standard books list. (To try it, choose dates between 04/2019 and 10/2019). Sold quantities can be seen in the 'totalsold' field (not soldQty)"
       operationId: "getBooksBySoldCopiesInMonth"
       produces:
       - "application/json"
