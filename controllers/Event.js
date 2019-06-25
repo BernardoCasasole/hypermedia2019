@@ -8,10 +8,13 @@ module.exports.eventsGET = function eventsGET (req, res, next) {
   let limit = req.swagger.params['limit'].value || 20;
   Event.eventsGET(offset,limit)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+       utils.writeJson(res, response, 404)
+      else
+        utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -19,33 +22,26 @@ module.exports.findEventById = function findEventById (req, res, next) {
   var eventId = req.swagger.params['eventId'].value;
   Event.findEventById(eventId)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+       utils.writeJson(res, response, 404)
+      else
+        utils.writeJson(res, response, 200)
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
 module.exports.eventsMonth = function eventsMonth (req, res, next) {
   Event.eventsMonth()
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+       utils.writeJson(res, response, 400)
+      else
+        utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.findEventByCategory = function findEventByCategory (req, res, next) {
-  let category = req.swagger.params['category'].value;
-  let offset = req.swagger.params['offset'].value || 0;
-  let limit = req.swagger.params['limit'].value || 20;
-  Event.findEventByCategory(category, limit, offset)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -56,10 +52,13 @@ module.exports.findEventByMonth = function findEventByMonth (req, res, next) {
   let limit = req.swagger.params['limit'].value || 20;
   Event.findEventByMonth(month, year, limit, offset)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+       utils.writeJson(res, response, 404)
+      else
+        utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -70,9 +69,12 @@ module.exports.findEventsByName = function findEventsByName (req, res, next) {
 
   Event.findEventsByName(eventName, offset, limit)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+        utils.writeJson(res, response, 404)
+      else
+        utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };

@@ -11,10 +11,13 @@ module.exports.cartGET = function cartGET (req, res, next) {
   }
   Cart.cartGET(userId)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if(response[0] === undefined)
+        utils.writeJson(res, response, 401);
+      else
+        utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      utils.writeJson(res, response, 500);
     });
 };
 
@@ -23,7 +26,7 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
   let userId = req.session[cookie.uid];
   //if user id is undefined, write error and return
   if(userId === undefined) {
-    utils.writeJson(res, {success:false, error:"User not logged", errorcode:101})
+    utils.writeJson(res, {success:false, error:"User not logged"}, 401)
     return
   }
 
@@ -39,7 +42,7 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
     if(response[0]===undefined) {
       Cart.cartAddBookAdd(userId, bookId, qty).then(function(r) {
         finalRes.success = true;
-        utils.writeJson(res, finalRes)
+        utils.writeJson(res, finalRes, 200)
       })
       
 
@@ -47,11 +50,11 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
     else {
       Cart.cartAddBookUpdate(userId, bookId, qty+response[0].qty).then(function(r) {
         finalRes.success = true;
-        utils.writeJson(res, finalRes)
+        utils.writeJson(res, finalRes, 200)
       })
     }
   }).catch(function() {
-    utils.writeJson(res, finalRes)
+    utils.writeJson(res, finalRes, 500)
   })
 };
 
@@ -60,7 +63,7 @@ module.exports.cartUpdateQty = function cartUpdateQty(req, res, next) {
   let userId = req.session[cookie.uid];
   //if user id is undefined, write error and return
   if(userId === undefined) {
-    utils.writeJson(res, {success:false, error:"User not logged"})
+    utils.writeJson(res, {success:false, error:"User not logged"}, 401)
     return
   }
 
@@ -77,12 +80,12 @@ module.exports.cartUpdateQty = function cartUpdateQty(req, res, next) {
       //if qty is 0 do nothing, success is true anyway
       if(qty === 0) {
         finalRes.success = true
-        utils.writeJson(res, finalRes)
+        utils.writeJson(res, finalRes, 200)
       //if qty is not 0, then add the row
       } else {
         Cart.cartAddBookAdd(userId, bookId, qty).then(function(r) {
           finalRes.success = true;
-          utils.writeJson(res, finalRes)
+          utils.writeJson(res, finalRes, 200)
         })
       }
 
@@ -92,19 +95,19 @@ module.exports.cartUpdateQty = function cartUpdateQty(req, res, next) {
       if(qty !== 0) {
         Cart.cartAddBookUpdate(userId, bookId, qty).then(function(r) {
           finalRes.success = true;
-          utils.writeJson(res, finalRes)
+          utils.writeJson(res, finalRes, 200)
         })
       } 
       //if qty is 0, delete the tuple
       else {
         Cart.cartDelete(userId, bookId).then(function(r) {
           finalRes.success = true;
-          utils.writeJson(res, finalRes)
+          utils.writeJson(res, finalRes, 200)
         })
       }
       
     }
   }).catch(function() {
-    utils.writeJson(res, finalRes)
+    utils.writeJson(res, finalRes, 500)
   })
 }

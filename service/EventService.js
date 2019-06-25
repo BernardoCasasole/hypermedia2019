@@ -51,23 +51,6 @@ exports.findEventById = function(eventId) {
   .leftJoin('books', 'events.presentedBook', '=', 'books.id')
 }
 
-/**
- * Find events by category
- * Returns a list of events by category
- *
- * category String category of event to register in
- * returns Event
- **/
-exports.findEventByCategory = function(category, limit, offset) {
-  return db.select()
-  .from('events')
-  .where('category', category)
-  .leftJoin('authors', 'events.author', '=', 'authors.id')
-  .leftJoin('books', 'events.presentedBook', '=', 'books.id')
-  .limit(limit)
-  .offset(offset);
-}
-
 
 /**
  * Find events by date

@@ -39,7 +39,6 @@ exports.up = function(knex, Promise) {
         table.integer('presentedBook').references('id').inTable('books');
         table.date('date');
         table.text('details2');
-        table.integer('subscribers').notNullable().defaultTo(0);
         table.text('details1');
     })
 
