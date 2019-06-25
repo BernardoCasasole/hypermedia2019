@@ -10,7 +10,8 @@ info:
   license:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "hypermedia2019-booky.herokuapp.com"
+#host: "hypermedia2019-booky.herokuapp.com"
+host: "localhost:8080"
 basePath: "/v2"
 tags:
 - name: "book"
@@ -24,7 +25,7 @@ tags:
 - name: "author"
   description: "Operation about authors"
 schemes:
-- "https"
+#- "https"
 - "http"
 paths:
   /books:
@@ -583,8 +584,12 @@ paths:
       responses:
         200:
           description: "login successful"
+          schema:
+            $ref: "#/definitions/Response"
         401:
           description: "unauthorized"
+          schema:
+            $ref: "#/definitions/Response"
       x-swagger-router-controller: "User"
   /user/logout:
     post:
@@ -600,6 +605,8 @@ paths:
       responses:
         200:
           description: "succesfull logout"
+          schema:
+            $ref: "#/definitions/Response"
       x-swagger-router-controller: "User"
   /user/register:
     post:
@@ -622,10 +629,16 @@ paths:
       responses:
         200:
           description: "succesfull registration"
+          schema:
+            $ref: "#/definitions/Response"
         400:
           description: "bad request"
+          schema:
+            $ref: "#/definitions/Response"
         409:
           description: "Already existing user"
+          schema:
+            $ref: "#/definitions/Response"
         500:
           description: "Internal Server Error"
       x-swagger-router-controller: "User"
@@ -650,8 +663,36 @@ paths:
       tags:
       - "cart"
       summary: "add a book"
-      description: "add a book to the current user cart, if the user is logged"
+      description: "add a book to the current user cart, if the user is logged. Working example (remove quotes, spaces and line breaks):<br>'bookId=5&qty=3'"
       operationId: "cartAddBook"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        description: "in form of<br>'bookId=BOOK_ID&qty=QTY'<br>A working example is (quotes must be removed):<br>'bookId=5&qty=3'"
+        schema:
+          $ref: "#/definitions/Cart"
+      responses:
+        200:
+          description: "successful addition to cart"
+          schema:
+            $ref: "#/definitions/Cart"
+        401:
+          description: "unauthorized"
+          schema:
+            $ref: "#/definitions/Response"
+      x-swagger-router-controller: "Cart"
+  /cart/updateQty:
+    post:
+      tags:
+      - "cart"
+      summary: "add a book"
+      description: "add a book to the current user cart. Working example (remove quotes, spaces and line breaks):<br>'bookId=5&qty=3'"
+      operationId: "cartUpdateQty"
       consumes:
       - "application/x-www-form-urlencoded"
       produces:
@@ -667,34 +708,11 @@ paths:
         200:
           description: "succesfull addition to cart"
           schema:
-            $ref: "#/definitions/Cart"
+            $ref: "#/definitions/Response"
         401:
           description: "unauthorized"
-      x-swagger-router-controller: "Cart"
-  /cart/updateQty:
-    post:
-      tags:
-      - "cart"
-      summary: "add a book"
-      description: "add a book to the current user cart"
-      operationId: "cartUpdateQty"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/Cart"
-      responses:
-        200:
-          description: "succesfull addition to cart"
           schema:
-            $ref: "#/definitions/Cart"
-        401:
-          description: "unauthorized"
+            $ref: "#/definitions/Response"
       x-swagger-router-controller: "Cart"
 definitions:
   Author:
@@ -773,10 +791,10 @@ definitions:
   Cart:
     type: "object"
     properties:
-      id:
-        type: "integer"
+      bookId:
+        type: "string"
       qty:
-        type: "integer"
+        type: "string"
       title:
         type: "string"
       price:
@@ -797,7 +815,7 @@ definitions:
     required:
     - "title"
     properties:
-      id:
+      bookId:
         type: "integer"
         format: "int64"
       title:
@@ -857,6 +875,15 @@ definitions:
       additional_info: "info on The Old Man and the Sea"
       description: "description of The Old Man and the Sea"
       reviews: "User1: good; User2: well written"
+  Response:
+    type: "object"
+    required:
+    - "success"
+    properties:
+      success:
+        type: "boolean"
+      error:
+        type: "string"
   Amount:
     type: "object"
     required:
