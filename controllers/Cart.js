@@ -27,11 +27,8 @@ module.exports.cartAddBook = function cartAddBook (req, res, next) {
     utils.writeJson(res, {success:false, error:"User not logged"}, 401)
   } else {
     let body = req.swagger.params['body'].value;
-    console.log(body)
-    console.log(body.qty)
     let bookId = parseInt(body.bookId)
     let qty = parseInt(body.qty)
-    console.log(qty)
     let finalRes = {success:false}
 
     //check if the row with book_id and user_id specified already exists
