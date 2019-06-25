@@ -143,7 +143,7 @@ module.exports.getBooksBySoldCopiesInMonth = function getBooksBySoldCopiesInMont
       if (response1 === undefined || response1.rows[0] === undefined) {
         Book.booksGET(offset, limit).then(function(response2) {
           if(response2.rows[0] === undefined)
-            utils.writeJson(res, response.rows, 404);
+            utils.writeJson(res, response2.rows, 404);
           else
             utils.writeJson(res, response2.rows, 200);
         })
