@@ -10,8 +10,7 @@ info:
   license:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-#host: "hypermedia2019-booky.herokuapp.com"
-host: "localhost:8080"
+host: "hypermedia2019-booky.herokuapp.com"
 basePath: "/v2"
 tags:
 - name: "book"
@@ -25,7 +24,7 @@ tags:
 - name: "author"
   description: "Operation about authors"
 schemes:
-#- "https"
+- "https"
 - "http"
 paths:
   /books:
