@@ -729,7 +729,7 @@ definitions:
     title: "Author"
     description: "Author present in our website"
     example:
-      id: 0
+      id: 1
       name: "Michelle Obama"
       description: "Description of Michelle Obama"
       biography: "Biography of Michelle Obama"
