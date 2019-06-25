@@ -650,7 +650,7 @@ paths:
       tags:
       - "cart"
       summary: "add a book"
-      description: "add a book to the current user cart"
+      description: "add a book to the current user cart, if the user is logged"
       operationId: "cartAddBook"
       consumes:
       - "application/x-www-form-urlencoded"
@@ -660,6 +660,7 @@ paths:
       - in: "body"
         name: "body"
         required: true
+        description: "in form of<br>'bookId=BOOK_ID&qty=QTY'<br>A working example is (quotes must be removed):<br>'bookId=5&qty=3'"
         schema:
           $ref: "#/definitions/Cart"
       responses:
