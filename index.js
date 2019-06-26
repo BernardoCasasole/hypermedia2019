@@ -10,6 +10,7 @@ var jsyaml = require('js-yaml');
 var serverPort = process.env.PORT || 8080;
 let cookieSession = require("cookie-session");
 let cookieParser = require("cookie-parser");
+var favicon = require('serve-favicon');
 let serveStatic = require("serve-static");
 
 let cookie = require("./utils/cookie.js");
@@ -30,6 +31,8 @@ var swaggerDoc = jsyaml.safeLoad(spec);
 // Add cookies to responses
 app.use(cookieParser());
 app.use(cookieSession({ name: "session", keys: ["bookey1", "bookey2"] }));
+
+app.use(favicon(path.join(__dirname, 'public', 'images/favicon.ico')))
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
