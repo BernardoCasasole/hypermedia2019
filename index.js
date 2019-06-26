@@ -49,35 +49,19 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Serve the Swagger documents and Swagger UI
   app.use(middleware.swaggerUi());
 
-  /*/
-  app.use(function (req, res, next) {
-    //console.log(req.getHeader('set-cookie'));
-    res.setHeader('Set-Cookie', ['type=ninja', 'language=javascript']);
-  })
-  //*/
 
-  /*/Cookie function
+  /**
+   * catch the path for the swaggerui and redirect to the docs
+   */
   app.use(function (req, res, next) {
-    // check if client sent cookie
-    var cookie = req.session.cookie;
-    console.log(req.session);
-    console.log(res);
-    if (cookie === undefined)
-    {
-      // no: set a new cookie
-      var randomNumber=Math.random().toString();
-      randomNumber=randomNumber.substring(2,randomNumber.length);
-      res.cookies[cookies.length] = ('cookieName123',randomNumber, { maxAge: 900000, httpOnly: true });
-      console.log('cookie created successfully');
-    } 
-    else
-    {
-      // yes, cookie was already present 
-      console.log('cookie exists', cookie);
-    } 
-    next(); // <-- important!
-    })
-  //*/
+    if(req.url === "/backend/swaggerui") {
+      let swaggerUIDocsUrl = "/docs"
+      res.writeHead(301, {Location: swaggerUIDocsUrl});
+      res.end();
+    } else
+      next()
+  })
+
 
   app.use(serveStatic(__dirname + "/public"));
 
