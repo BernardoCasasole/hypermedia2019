@@ -6,6 +6,8 @@ var stdFadeTime = 500;
 const passiveLogin = async () => {
     let loginElD = document.getElementById('HEADER_LOGIN_D')
     let loginElM = document.getElementById('HEADER_LOGIN_M')
+    let iconElD = document.getElementById('USER_ICON_D')
+    let iconElM = document.getElementById('USER_ICON_M')
     let login = await fetch("v2/user")
     let json = await login.json();
     //if login is not already done, return and leave it as it is
@@ -13,8 +15,8 @@ const passiveLogin = async () => {
         return
     }
     isLogged = true;
-    fillLoginElementDesktop(loginElD, json);
-    fillLoginElementMobile(loginElM, json);
+    fillLoginElementDesktop(loginElD, iconElD, json);
+    fillLoginElementMobile(loginElM, iconElM, json);
     assignBtns();
     
 }
@@ -132,7 +134,8 @@ updateCart();
 
 //other functions
 
-function fillLoginElementDesktop(loginEl, json) {
+function fillLoginElementDesktop(loginEl, iconEl, json) {
+    iconEl.setAttribute("src", "images/icons/icon-header-01-logged.png")
     loginEl.innerHTML = '<ul class="header-cart-wrapitem">'+
     '<li><b>Welcome, '+json[0].name+'!</b></li>'+
     '<li>'+json[0].username+'</li>'+
@@ -156,7 +159,8 @@ function fillLoginElementDesktop(loginEl, json) {
 }
 
 
-function fillLoginElementMobile(el, json) {
+function fillLoginElementMobile(el, iconEl, json) {
+    iconEl.setAttribute("src", "images/icons/icon-header-01-logged.png")
     el.innerHTML = '<ul class="header-cart-wrapitem">'+
     '<li><b>Welcome, '+json[0].name+'!</b></li>'+
     '<li>'+json[0].username+'</li>'+

@@ -91,7 +91,7 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 						'<span class="linedivide1">'+'</span>'+
 
 						'<div class="header-wrapicon2">'+
-							'<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
+							'<img src="images/icons/icon-header-01.png" id="USER_ICON_D" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
 							
 							
 							'<!-- Header cart noti- login -->'+
@@ -193,7 +193,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 						'</div>'+
 						'<span class="linedivide2"></span>'+
 						'<div class="header-wrapicon2">'+
-							'<img src="images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
+							'<img src="images/icons/icon-header-01.png" id="USER_ICON_M" class="header-icon1 js-show-header-dropdown" alt="ICON">'+
 							
 							
 							'<!-- Header cart noti- login -->'+
