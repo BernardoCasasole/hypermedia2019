@@ -883,25 +883,4 @@ definitions:
         type: "boolean"
       error:
         type: "string"
-  Amount:
-    type: "object"
-    required:
-    - "currency"
-    - "value"
-    properties:
-      value:
-        type: "number"
-        format: "double"
-        minimum: 0.01
-        maximum: 1000000000000000
-      currency:
-        $ref: "#/definitions/Currency"
-    description: "Price\n"
-    example:
-      currency: "eur"
-      value: 11
-  Currency:
-    type: "string"
-    pattern: "^[A-Z]{3,3}$"
-    description: "some description\n"
-    example: "eur"
+        
