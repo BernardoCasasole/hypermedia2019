@@ -30,7 +30,6 @@ exports.eventsGET = function(offset,limit) {
     .from('events')
     .limit(limit)
     .offset(offset)
-    .leftJoin('authors', 'events.author', '=', 'authors.id')
     .leftJoin('books', 'events.presentedBook', '=', 'books.id')
     .select()
 }
@@ -47,7 +46,6 @@ exports.findEventById = function(eventId) {
   return db.select()
   .from('events')
   .where('eid', eventId)
-  .leftJoin('authors', 'events.author', '=', 'authors.id')
   .leftJoin('books', 'events.presentedBook', '=', 'books.id')
 }
 
@@ -64,7 +62,6 @@ exports.findEventByMonth = function(month, year, limit, offset) {
   .from('events')
   .whereRaw(`EXTRACT(MONTH FROM date::date) = ?`, [month])
   .andWhereRaw(`EXTRACT(YEAR FROM date::date) = ?`, [year])
-  .leftJoin('authors', 'events.author', '=', 'authors.id')
   .leftJoin('books', 'events.presentedBook', '=', 'books.id')
   .limit(limit)
   .offset(offset);
