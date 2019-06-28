@@ -788,6 +788,21 @@ definitions:
       creditcardNumber: "asbc123"
       creditcardHolder: "Mario Rossi"
   Cart:
+    type: "array"
+    items:
+      $ref: "#/definitions/CartElement"
+    example:
+      - id: 3
+        qty: 4
+        title: "Remarkable Creatures"
+        price: 12.10
+        currency: "€"
+      - id: 13
+        qty: 1
+        title: "Gli ultimi tre giorni di Fernando Pessoa"
+        price: 18.50
+        currency: "€"
+  CartElement:
     type: "object"
     properties:
       bookId:
