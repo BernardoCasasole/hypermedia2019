@@ -33,7 +33,7 @@ const userAction = async () => {
       return;
   }
 
-  response = await fetch(genrePath+bookJson[0].genres+'');
+  response = await fetch(genrePath+bookJson[0].genre+'');
   let genreJson = await response.json();
   //if no similar books per genre exists, let's look at the themes
   if(genreJson.length<2) {
@@ -144,7 +144,7 @@ function loadData(json, genreJson) {
   document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
   document.getElementById("CAPTION").innerText = json[0].caption
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
-  document.getElementById("GENRES").innerText = "Genre: "+ json[0].genres
+  document.getElementById("GENRES").innerText = "Genre: "+ json[0].genre
   document.getElementById("DESCRIPTION").innerText = json[0].description
   document.getElementById("REVIEWS").innerHTML =reviewsParser(json[0].reviews)
   let themes = ""
