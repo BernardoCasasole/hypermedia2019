@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
         table.enum('theme1', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
         table.enum('theme2', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
         table.enum('theme3', ['all', 'economy', 'love', 'nature', 'friendship', 'courage', 'war', 'death', 'lifestyle']);
-        table.enum('genres', ['all', 'biography', 'fantasy', 'adventure', 'fiction', 'travel', 'thriller', 'crime', 'kids', 'geopolitical', 'finance']);
+        table.enum('genre', ['all', 'biography', 'fantasy', 'adventure', 'fiction', 'travel', 'thriller', 'crime', 'kids', 'geopolitical', 'finance']);
         table.boolean('issponsored');
         table.text('isbn');
         table.text('description');
