@@ -833,8 +833,21 @@ definitions:
         type: "integer"
         format: "int64"
       title:
-        type: "string"
+        type: "integer"
+        format: "int64"
       author:
+        type: "string"
+      author2:
+        type: "string"
+      author3:
+        type: "string"
+      name:
+        type: "string"
+      name2:
+        type: "string"
+      name3:
+        type: "string"
+      name4:
         type: "string"
       price:
         type: "number"
@@ -875,6 +888,13 @@ definitions:
       id: 2
       title: "The old man and the sea"
       author: 2
+      author2: "null"
+      author3: "null"
+      author4: "null"
+      name: "Ernest Hemingway"
+      name2: "null"
+      name3: "null"
+      name4: "null"
       price: 12.81
       currency: "€"
       stockQty: 301
