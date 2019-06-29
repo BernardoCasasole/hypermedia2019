@@ -349,7 +349,7 @@ paths:
         404:
           description: "Authors not found"
       x-swagger-router-controller: "Author"
-  /author/{authorId}:
+  /authors/{authorId}:
     get:
       tags:
       - "author"
@@ -373,7 +373,7 @@ paths:
         404:
           description: "Author not found"
       x-swagger-router-controller: "Author"
-  /author/byName/{name}:
+  /authors/byName/{name}:
     get:
       tags:
       - "author"

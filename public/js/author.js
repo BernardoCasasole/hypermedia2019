@@ -1,4 +1,4 @@
-let authorPath = "../../v2/author/"
+let authorPath = "../../v2/authors/"
 let imgPath = "../images/authors/"
 let booksPath = "../../v2/books/byAuthor/"
 let cartPath = "../../v2/cart/"

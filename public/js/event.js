@@ -23,7 +23,7 @@ const userAction = async () => {
       return;
   }
 
-  response = await fetch('../../v2/author/'+eventJson[0].author+'');
+  response = await fetch('../../v2/authors/'+eventJson[0].author+'');
   let authorJson = await response.json();
   response = await fetch('../../v2/books/'+eventJson[0].id+'');
   let bookJson = await response.json();

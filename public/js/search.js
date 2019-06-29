@@ -73,7 +73,7 @@ const fillEventsField = async (isGetAll, searchString) => {
         loadAuthorData(json);
         //if is not a star search, search for what user selected
     } else {
-        let response = await fetch('../../v2/author/byName/'+searchString);
+        let response = await fetch('../../v2/authors/byName/'+searchString);
         let json = await response.json(); //extract JSON from the http response
     
         //load the data in the html
