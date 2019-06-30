@@ -60,7 +60,7 @@ function loadData(json, authorJson, bookJson, sponsoredJson) {
   document.getElementById("EVENT_NAME_2").innerText = json[0].eventname;
   document.getElementById("EVENT_DESCRIPTION1").innerText = json[0].details1;
   document.getElementById("EVENT_DESCRIPTION2").innerText = json[0].details2;
-  document.getElementById("EVENT_DETAILS").innerHTML = "By" + '&nbsp;' + json[0].speaker + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Presented book:" + '<a href="book.html?id='+json[0].presentedBook+'">' + '&nbsp;'  + json[0].title + '&nbsp;' + '</a>' 
+  document.getElementById("EVENT_DETAILS").innerHTML = "Speaker:" + '&nbsp;' + json[0].speaker + '&nbsp;' + '</a>' + ' | ' + "Date: " + json[0].date.split('T')[0] + ' | ' + "Related book:" + '<a href="book.html?id='+json[0].presentedBook+'">' + '&nbsp;'  + json[0].title + '&nbsp;' + '</a>' 
   document.getElementById("BOOK_RELATED").innerHTML = 
 
             '<a href="../book.html?id='+json[0].presentedBook+'" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">'+
