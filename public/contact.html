@@ -61,8 +61,7 @@
 					
 							<div >
 								<h4 class=" m-text26 p-b-36 p-t-15">
-				
-									<a href="https://www.google.com/maps/place/Politecnico+di+Milano/@45.4780906,9.226049,17z/data=!3m1!4b1!4m5!3m4!1s0x4786c6f67dd11753:0x8e30fae1774a3377!8m2!3d45.4780906!4d9.2282377"  >
+									<div id="googleMap"></div>
 									<h4 class="m-text33 p-b-36 p-t-15">
 									<img src="images/icons/position.png" alt="IMG-LOGO" width="30px">
 									&nbsp 
@@ -175,7 +174,18 @@
 <!--===============================================================================================-->
 
 <!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>-->
+	<script>
+        function myMap() {
+            var mapProp= {
+                center:new google.maps.LatLng(51.508742,-0.120850),
+                zoom:5,
+            };
+            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        }
+    </script>
+      
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0xR-j8ZcIPn9U0095rVjYndtBycaXVws&callback=myMap"></script>
 	<script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
