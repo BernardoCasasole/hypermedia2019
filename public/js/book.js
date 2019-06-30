@@ -28,7 +28,6 @@ const userAction = async () => {
 
   //if the id is valid but does not exist a book with that id return error 404 page
   if(bookJson[0] === undefined || bookJson[0].author === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
       writeErrorPage();
       return;
   }
@@ -144,16 +143,16 @@ function loadData(json, genreJson) {
   document.getElementById("PRICE").innerText = json[0].price.toFixed(2) + " " + json[0].currency
   document.getElementById("CAPTION").innerText = json[0].caption
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
-  document.getElementById("GENRES").innerText = "Genre: "+ json[0].genre
+  document.getElementById("GENRES").innerText = "Literary genre: "+  jsUcfirst(json[0].genre)
   document.getElementById("DESCRIPTION").innerText = json[0].description
   document.getElementById("REVIEWS").innerHTML =reviewsParser(json[0].reviews)
   let themes = ""
   if(json[0].theme1 !== null)
-    themes += json[0].theme1 + '\n'
+    themes +=  jsUcfirst(json[0].theme1) + '\n'
   if(json[0].theme2 !== null)
-    themes += json[0].theme2 + '\n'
+    themes +=  jsUcfirst(json[0].theme2) + '\n'
   if(json[0].theme3 !== null)
-    themes += json[0].theme3 
+    themes +=  jsUcfirst(json[0].theme3) 
 
   document.getElementById("BOOK_NAME").innerText = json[0].title;
   document.getElementById("THEMES").innerText = themes;
@@ -177,10 +176,13 @@ function bookBtnClick(btn_id, title, qty) {
 }
 
 
+function jsUcfirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function reviewsParser(reviews) {
-  console.log(reviews)
   let arrayReviews = reviews.split("<");
-  console.log(arrayReviews)
 
   let fixedReviews = ""
   for(i=0; i<arrayReviews.length;){

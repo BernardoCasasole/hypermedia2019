@@ -19,7 +19,7 @@ const userAction = async () => {
 
   //if the id is valid but does not exist a book with that id return error 404 page
   if(authorJson[0] === undefined || authorJson[0].name === undefined) {
-      console.log("an author with specified id does not exist")
+   
       writeErrorPage();
       return;
   }
@@ -122,7 +122,6 @@ function loadData(json,  booksJson, sponsoredJson) {
 //No error checking as now. Parse the url
 function parseTopURL() {
   let query = window.location.search.substring(1);
-  console.log("window.location.search.substring(1) = '" + query + "'");
   let args = query.split('&');
   for(let i=0; i<args.length; i++) {
     let pair = args[i].split('=');
@@ -153,7 +152,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

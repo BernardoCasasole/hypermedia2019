@@ -14,7 +14,6 @@ const userAction = async () => {
 
   //if the id is valid but does not exist a book with that id return error 404 page
   if(authorJson[0] === undefined) {
-      console.log("a book with specified id does not exist, or has no author!")
       writeErrorPage();
       return;
   }
@@ -89,7 +88,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

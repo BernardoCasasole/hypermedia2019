@@ -69,7 +69,6 @@ function fillPageCart(cartContent) {
   //No error checking as now. Parse the url
   function parseTopURL() {
     let query = window.location.search.substring(1);
-    console.log("window.location.search.substring(1) = '" + query + "'");
     let args = query.split('&');
     for(let i=0; i<args.length; i++) {
       let pair = args[i].split('=');
@@ -100,7 +99,6 @@ function fillPageCart(cartContent) {
           query_string[pair[0]].push(decodeURIComponent(pair[1]));
         }
       } 
-      console.log(query_string)
       return query_string;
     }
   

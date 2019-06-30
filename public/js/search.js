@@ -189,7 +189,6 @@ function loadBookData(json) {
 function loadEventData(json) {
     let events = "";
     for(i=0; i<json.length; i++){
-        console.log(json[i])
         events = events + '<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">'+
         '<div class="block2">'+
             '<div class="block2-img wrap-pic-w of-hidden pos-relative">'+
@@ -276,7 +275,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

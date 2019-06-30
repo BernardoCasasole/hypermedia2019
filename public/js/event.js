@@ -6,7 +6,6 @@ let imgPath = "../images/events/"
 const userAction = async () => {
     let args = getURLArgs();
     let id = args.id;
-    console.log(args);
     //if the id of a book is undefined, return error 404 and a link to the home
   if (id === undefined) {
     writeErrorPage();
@@ -15,7 +14,6 @@ const userAction = async () => {
   let response = await fetch(eventsPath+id+'');
   
   let eventJson = await response.json(); //extract JSON from the http response
-  console.log(eventJson);
   //if the id is valid but does not exist a book with that id return error 404 page
   if(eventJson[0] === undefined || eventJson[0].author === undefined) {
       console.log("an event with specified id does not exist, or has no name!")
@@ -87,7 +85,6 @@ document.getElementById("BOOK_SPONSORED").innerHTML = sponsoredHtml;
 //No error checking as now. Parse the url
 function parseTopURL() {
   let query = window.location.search.substring(1);
-  console.log("window.location.search.substring(1) = '" + query + "'");
   let args = query.split('&');
   for(let i=0; i<args.length; i++) {
     let pair = args[i].split('=');
@@ -127,7 +124,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

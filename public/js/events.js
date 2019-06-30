@@ -8,7 +8,6 @@ let imgPath = "../images/events/"
 const userAction = async () => {
     response = await fetch(eventsPath+'eventsMonth');
     let eventsMonthDate = await response.json();
-    console.log(eventsMonthDate);
      loadEventsFilter(eventsMonthDate);
     let args = getURLArgs();
     var eventsJson;
@@ -83,7 +82,6 @@ function monthParcer(month){
 userAction();
 
 function  loadEventsFilter(eventsMonthDate){
-    console.log(eventsMonthDate[2])
     var months = [];
     var j = 0;
     for(i=0; i<eventsMonthDate.length; i++){
@@ -218,7 +216,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

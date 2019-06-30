@@ -21,7 +21,6 @@ const fillBooksPage = async () => {
 
     //if the id is valid but does not exist a book with that id return error 404 page
     if(themeJson[0] === undefined) {
-        console.log("a book with specified theme does not exist!")
         writeErrorPage();
         return;
     }
@@ -42,7 +41,7 @@ const fillBooksPage = async () => {
     loadData(genreJson);
 
     }else if(args.sponsored !== undefined){
-      loadSubtitle("Sposored Books")
+      loadSubtitle("Sposored Books - Our Favourite Readings")
         response = await fetch('../../v2/books/sponsored');
         sponsoredJson = await response.json();
     
@@ -59,7 +58,7 @@ const fillBooksPage = async () => {
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
         var currentMonth = mm + '/' + yyyy;
-        console.log('../../v2/books/bySoldCopiesInMonth/'+currentMonth+'?limit=9')
+  
         response = await fetch('../../v2/books/bySoldCopiesInMonth/'+currentMonth+'?limit=9');
         bestsellersJson = await response.json();
     
@@ -209,7 +208,6 @@ function getURLArgs() {
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   }
 

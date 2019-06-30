@@ -28,8 +28,8 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 													
 													'<ul class="toBeCentered header-cart-wrapitem">'+
 													'<hr>'+
-													'<a href="genres.html" >'+'All genres'+'</a>'+ '<br>'+
-													'<a href="themes.html" >'+'All themes'+'</a>'+ '<br>'+
+													'<a href="genres.html" >'+'All Literary Genres'+'</a>'+ '<br>'+
+													'<a href="themes.html" >'+'All Literary Themes'+'</a>'+ '<br>'+
 													'<hr>'+
 													'</ul>' +
 											'</div>'+						
@@ -297,7 +297,7 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
-							'<a href="genres.html">'+ 'All books genres'+'</a>'+ 
+							'<a href="genres.html">'+ 'All books literary genres'+'</a>'+ 
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+

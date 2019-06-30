@@ -11,8 +11,6 @@ exports.urlQueryParser = function () {
 
     let queryString = window.location.search.substring(1);
 
-    console.log("window.location.search.substring(1) = '" + queryString + "'");
-
     let args = queryString.split("&");
 
     for (let i=0;i<args.length;i++) {
@@ -25,17 +23,13 @@ exports.urlQueryParser = function () {
 
 
       if (typeof query_string[pair[0]] === "undefined") {
-          console.log("undefined, adding " + pair[0] + " with value " + pair[1])
         query_string[pair[0]] = decodeURIComponent(pair[1]);
       } else if (typeof query_string[pair[0]] === "string") {
-          console.log("was string, adding to " + pair[0] + " value " + pair[1])
         let arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
         query_string[pair[0]] = arr;
       } else {
-          console.log("was array, adding to " + pair[0] + " value " + pair[1])
         query_string[pair[0]].push(decodeURIComponent(pair[1]));
       }
     } 
-    console.log(query_string)
     return query_string;
   };
