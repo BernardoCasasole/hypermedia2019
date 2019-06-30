@@ -7,19 +7,20 @@ let cookie = require('../utils/cookie.js');
 module.exports.getUser = function getUser (req, res, next) {
   let user_id = req.session[cookie.uid];
   if(user_id === undefined) {
-    user_id = 0
+    utils.writeJson(res, [], 401)
   } //no user with id=0 exists, so will return a empty json
-
-  User.getUser(user_id)
+   else {
+    User.getUser(user_id)
     .then(function (response) {
       if(response[0] === undefined)
-        utils.writeJson(res, response, 404)
+        utils.writeJson(res, response, 401)
       else
         utils.writeJson(res, response, 200);
     })
     .catch(function (response) {
       utils.writeJson(res, response, 500);
     });
+   }
 };
 
 /**

@@ -559,7 +559,7 @@ paths:
           description: "successfully managed operation"
           schema:
             $ref: "#/definitions/User"
-        404:
+        401:
           description: "Invalid user id"
       x-swagger-router-controller: "User"
   /user/login:
