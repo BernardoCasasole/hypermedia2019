@@ -133,17 +133,16 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                             
                                 '<div class="s-text8 flex-w flex-m p-b-21">'+
                                     '<span>'+
-                                        'By <a href="author.html?id='+json[i].author+'">'+ json[i].name +'</a>'+
+                                        'By '+ json[i].speaker +
                                         '<span class="m-l-3 m-r-6">|</span>'+
                                     '</span>'+
                             
                                     '<span>'+
                                         'Presented Book: <a href="book.html?id='+ json[i].id+'">' + json[i].title+ '</a>'+
                                         '<span class="m-l-3 m-r-6">|</span>'+
-                                    '</span>'+
-                            
-                                    '<span>'+
-                                        +json[i].subscribers + ' Subscribers'+
+
+                                        '<span>'+
+                                        'Date: ' + json[i].date.split('T')[0] +
                                     '</span>'+
                                 '</div>'+
                             

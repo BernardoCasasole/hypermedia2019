@@ -113,29 +113,28 @@ document.getElementById("DESKTOP_HEADER").innerHTML =
 								
 									'<div class="header-cart-buttons">'+
 										'<div class="header-cart-wrapbtn1">'+
-											'<button class="flex-c-m size26 bg1 bo-rad-20 hov1 s-text1 trans-0-4 all123" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
+											'<button class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4 all123" align="right" type="submit" background-color: #4CAF50>'+'Login'+'</button>'+
 										'</div>'+
 										'<br>'+
 										'<br>'+
 									'</div>'+
 								'</form>'+
 								'<br/>'+
-								'<br/>'+
+
 								
 								'<hr>' +
 
 								'<div class="header-cart-buttons">'+
-									'<div class="header-cart-wrapbtn2">'+
+									'<div class="header-cart-wrapbtn">'+
 										'<!-- Button -->'+
-										'<a href="register.html" class="flex-c-m size25 bg9 bo-rad-20 hov1 s-text1 trans-0-4">'+
+										'<a href="register.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
 											'Register'+
 										'</a>'+
 									'</div>'+
-
-									'<div class="header-cart-wrapbtn2">'+
+									'<div class="header-cart-wrapbtn">'+
 										'<!-- Button -->'+
-										'<a href="#" class="flex-c-m size25 bg9 bo-rad-20 hov1 s-text1 trans-0-4">'+
-											'User Profile'+
+										'<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">'+
+											'User Page'+
 										'</a>'+
 									'</div>'+
 								'</div>'+
