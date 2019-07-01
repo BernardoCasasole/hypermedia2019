@@ -526,6 +526,41 @@ paths:
         404:
           description: "Event not found in specified month"
       x-swagger-router-controller: "Event"
+  /events/byBook/{bookId}:
+    get:
+      tags:
+      - "event"
+      summary: "Find events by ID of its presented book"
+      description: "Returns one or more events if the specified book has at least one associated."
+      operationId: "findEventsByBook"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "bookId"
+        in: "path"
+        description: "ID of the book presented in the events searched"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Event"
+        404:
+          description: "Events not found"
+      x-swagger-router-controller: "Event"
   /events/eventsMonth:
     get:
       tags:

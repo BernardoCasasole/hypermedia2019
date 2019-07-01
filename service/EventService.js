@@ -87,8 +87,18 @@ exports.findEventsByName = function(eventName, offset, limit) {
   .limit(limit)
   .offset(offset);
 }
+
 exports.eventsMonth = function() {
   return db.distinct('date')
   .from('events')
 }
 
+
+/**
+ * find all events by book id
+ */
+exports.findEventsByBook = function(bookId) {
+  return db.select()
+  .from('events')
+  .where('presentedBook', bookId)
+}
