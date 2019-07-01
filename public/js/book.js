@@ -134,12 +134,11 @@ function loadData(json, genreJson, eventsJson) {
 
   document.getElementById("TITLE").innerText = json[0].title;
   title = json[0].title;
-  document.getElementById("TITLE_LINK").setAttribute('href', bookHtmlPath+"?id="+json[0].id)
-  let authorsHtml = '<a href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
+  let authorsHtml = '<a style="text-decoration: underline" href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
   //if author 2 to 4 are not undefined, add them to the authors list of the book
   for(i=2; i<=4; i++) {
     if(json[0]["author"+i] !== null) {
-      authorsHtml += '<br><a href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
+      authorsHtml += '<br><a style="text-decoration: underline" href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
     }
   }
   document.getElementById("AUTHORS").innerHTML = authorsHtml
@@ -150,12 +149,12 @@ function loadData(json, genreJson, eventsJson) {
   document.getElementById("GENRES").innerText = "Literary genre: "+  jsUcfirst(json[0].genre)
   document.getElementById("DESCRIPTION").innerText = json[0].description
   if(eventsJson.length > 0){
-            var eventsString = '<h4 class="m-text19 p-t-30 p-b-25">'+
+            var eventsString = '<hr>'+ '<h4 class="m-text19">'+
             'Related events'+
             '</h4>'+
-            '<div class="wrap-tags flex-w m-text17">'
+            '<div class="s-text8 m-r-35">'
             for(i=0; i<eventsJson.length; i++){
-                eventsString += '<a href="event.html?id='+eventsJson[i].eid+'">' + eventsJson[i].eventname + '&nbsp;' + '</a> <br>'  
+                eventsString += '<a style="text-decoration: underline" href="event.html?id='+eventsJson[i].eid+'">' + eventsJson[i].eventname + '&nbsp;' + '</a> <br>'  
             }
             eventsString += '</div>'
             document.getElementById("EVENTS").innerHTML = eventsString				
