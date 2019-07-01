@@ -297,11 +297,11 @@ document.getElementById("MOBILE_HEADER").innerHTML =
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
-							'<a href="genres.html">'+ 'All books literary genres'+'</a>'+ 
+							'<a href="genres.html">'+ 'All literary genres'+'</a>'+ 
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
-							'<a href="themes.html">'+ 'All books themes'+'</a>'+ 
+							'<a href="themes.html">'+ 'All literary themes'+'</a>'+ 
 						'</li>'+
 
 						'<li class="item-menu-mobile">'+
