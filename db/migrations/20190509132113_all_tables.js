@@ -35,6 +35,7 @@ exports.up = function(knex, Promise) {
     .createTable('events', function(table) {
         table.increments('eid');
         table.string('speaker');
+        table.string('location');
         table.string('eventname').notNullable();
         table.integer('presentedBook').references('id').inTable('books');
         table.date('date');

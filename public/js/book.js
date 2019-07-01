@@ -5,6 +5,7 @@ let authorHtmlPath = "../author.html"
 let cartPath = "../../v2/cart/"
 let genrePath = "../../v2/books/byGenre/"
 let themePath = "../../v2/books/byTheme/"
+let eventsPath = "../../v2/events/byBook/"
 
 var isLogged;
 
@@ -48,8 +49,11 @@ const userAction = async () => {
     genreJson = await response.json();
   }
 
+  response = await fetch(eventsPath+bookJson[0].id+'');
+  let eventsJson = await response.json();
+
   //load the data from json to html file's fields
-  loadData(bookJson, genreJson);
+  loadData(bookJson, genreJson, eventsJson);
 }
 
 const postAddToCart = async (bookId, qty) => {
@@ -84,7 +88,7 @@ userAction();
 
 //OTHER FUNCTIONS ///////////////////////////////////////// 
 
-function loadData(json, genreJson) {
+function loadData(json, genreJson, eventsJson) {
   document.title = json[0].title + " - Booky"
   let books = "";
     for(i=0; i<genreJson.length; i++){
@@ -145,6 +149,18 @@ function loadData(json, genreJson) {
   document.getElementById("ISBN").innerText = "ISBN: " + json[0].isbn
   document.getElementById("GENRES").innerText = "Literary genre: "+  jsUcfirst(json[0].genre)
   document.getElementById("DESCRIPTION").innerText = json[0].description
+  if(eventsJson.length > 0){
+            var eventsString = '<h4 class="m-text19 p-t-30 p-b-25">'+
+            'Related events'+
+            '</h4>'+
+            '<div class="wrap-tags flex-w m-text17">'
+            for(i=0; i<eventsJson.length; i++){
+                eventsString += '<a href="event.html?id='+eventsJson[i].eid+'">' + eventsJson[i].eventname + '&nbsp;' + '</a> <br>'  
+            }
+            eventsString += '</div>'
+            document.getElementById("EVENTS").innerHTML = eventsString				
+                              
+  }
   document.getElementById("REVIEWS").innerHTML =reviewsParser(json[0].reviews)
   let themes = ""
   if(json[0].theme1 !== null)

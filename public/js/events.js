@@ -139,9 +139,11 @@ function loadData(json, sponsoredJson, eventOfMonthJson) {
                                         'Related Book: <a href="book.html?id='+ json[i].id+'">' + json[i].title+ '</a>'+
                                         '<span class="m-l-3 m-r-6">|</span>'+
 
-                                        '<span>'+
-                                        'Date: ' + json[i].date.split('T')[0] +
-                                    '</span>'+
+                                        
+                                    '<span>'+
+                                    'Location: ' + json[i].location +
+                                    
+                                '</span>'+
                                 '</div>'+
                             
                                 '<p class="p-b-12">'
