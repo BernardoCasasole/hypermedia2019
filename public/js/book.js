@@ -134,11 +134,11 @@ function loadData(json, genreJson, eventsJson) {
 
   document.getElementById("TITLE").innerText = json[0].title;
   title = json[0].title;
-  let authorsHtml = '<a style="text-decoration: underline" href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
+  let authorsHtml = '<a class="underlined" href="'+authorHtmlPath+'?id='+json[0].author+'">'+ json[0].name + '</a>'
   //if author 2 to 4 are not undefined, add them to the authors list of the book
   for(i=2; i<=4; i++) {
     if(json[0]["author"+i] !== null) {
-      authorsHtml += '<br><a style="text-decoration: underline" href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
+      authorsHtml += '<br><a class="underlined" href="'+authorHtmlPath+'?id='+json[0]["author"+i]+'">'+ json[0]['name'+i] + '</a>'
     }
   }
   document.getElementById("AUTHORS").innerHTML = authorsHtml
@@ -154,7 +154,7 @@ function loadData(json, genreJson, eventsJson) {
             '</h4>'+
             '<div class="s-text8 m-r-35">'
             for(i=0; i<eventsJson.length; i++){
-                eventsString += '<a style="text-decoration: underline" href="event.html?id='+eventsJson[i].eid+'">' + eventsJson[i].eventname + '&nbsp;' + '</a> <br>'  
+                eventsString += '<a class="underlined" href="event.html?id='+eventsJson[i].eid+'">' + eventsJson[i].eventname + '</a>' + '&nbsp;' + '&nbsp;' +'-'+ '&nbsp;' + eventsJson[i].date.split('T')[0] +'<br>'  
             }
             eventsString += '</div>'
             document.getElementById("EVENTS").innerHTML = eventsString				

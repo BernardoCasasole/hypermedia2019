@@ -37,6 +37,13 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 ///////////////////////////////////////////////////////////
 */
 
+.underlined{
+  text-decoration: underline
+}
+.underlined:hover{
+  color:#e65540;
+}
+
 .rating {
   font-size: 20px;
   unicode-bidi: bidi-override;
