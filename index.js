@@ -65,6 +65,13 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
   app.use(serveStatic(__dirname + "/public"));
 
+  /**
+   * If every other request failed to manage the page, give page 404
+   */
+  app.use(function (req, res, next) {
+      res.writeHead(301, {Location: "/404.html"});
+      res.end();
+  })
 
   setupDataLayer().then(() => {
     // Start the server
