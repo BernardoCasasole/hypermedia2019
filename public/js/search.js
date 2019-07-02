@@ -12,6 +12,7 @@ const sponsoredField = async () => {
 
 
 const fillBooksField = async (isGetAll, searchString) => {
+    console.log(searchString)
     //if is a * search, get all books
     if(isGetAll) {
         let response = await fetch(bookPath+'');
@@ -106,16 +107,27 @@ function fillSearchPage() {
         isAuthorSearched = true
         isEventSearched = true
     }
-
+    var subtitle = "You looked for \"" + args.search + "\" in ";
     sponsoredField();
-    if(isBookSearched)
+    if(isBookSearched){
         fillBooksField(isGetAll, args.search)
-    if(isEventSearched)
+        subtitle += "Books"
+    }
+    if(isEventSearched){
         fillEventsField(isGetAll, args.search)
-    if(isAuthorSearched)
+        subtitle += ", Events"
+    }
+    if(isAuthorSearched){
         fillAuthorsField(isGetAll, args.search)
+        subtitle += ", Authors"
+    }
+    loadSubtitle(subtitle);
 
 }
+
+function loadSubtitle(title){
+    document.getElementById("SUBTITLE").innerText = title;
+  }
 
 function loadSponsored(sponsoredJson){
     let sponsored = "";
