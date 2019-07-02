@@ -2249,6 +2249,23 @@ li.sale-noti > a {
   width: 100%;
 }
 
+.cart-img-product1 {
+  width: 90px;
+  position: relative;
+}
+
+.cart-img-product1 {
+  margin: 5px
+}
+
+.cart-img-product1 img {
+  width: 80%;
+}
+.cart-img-product1:hover:after {
+  cursor: pointer;
+  opacity: 1;
+}
+
 .cart-img-product::after {
   content: '\e870';
   font-family: Linearicons;
@@ -2265,6 +2282,17 @@ li.sale-noti > a {
   height: 100%;
   top: 0;
   left: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  opacity: 0;
+}
+
+.cart-img-product1::after {
+
   background-color: rgba(0,0,0,0.5);
   color: white;
   transition: all 0.3s;

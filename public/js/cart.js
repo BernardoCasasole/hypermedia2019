@@ -33,7 +33,7 @@ function fillPageCart(cartContent) {
     cartHtml = cartHtml + 
                           '<tr class="table-row booky-fade-out" id="CART_FULL_ROW_'+cartContent[i].id+'">'+
                             '<td class="column-1">'+
-                                '<a href="book.html?id='+ cartContent[i].id +'">'+
+                                '<a class="cart-img-product1" href="book.html?id='+ cartContent[i].id +'">'+
                                     '<img src="images/books/first-'+ cartContent[i].id +'.jpg" alt="IMG-PRODUCT">'+
                                 '</a>'+
                             '</td>'+
