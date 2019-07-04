@@ -4,7 +4,7 @@
   "description": "This is a simple bookstore server with a book inventory, users and a shopping cart.",
   "main": "index.js",
   "scripts": {
-    "start": "knex migrate:rollback && knex migrate:latest && knex seed:run && node index.js"
+    "start": "node index.js"
   },
   "keywords": [
     "swagger"
